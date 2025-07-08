@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk acaaa yangg paling ngeselin wkwkwkwk ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Background Particles -->
+    <div id="particles-container"></div>
+    
+    <!-- Floating Elements Background -->
+    <div class="floating-bg">
+        <div class="floating-element" style="--delay: 0s; --duration: 8s;">💕</div>
+        <div class="floating-element" style="--delay: 2s; --duration: 10s;">🌸</div>
+        <div class="floating-element" style="--delay: 4s; --duration: 12s;">✨</div>
+        <div class="floating-element" style="--delay: 6s; --duration: 9s;">💖</div>
+        <div class="floating-element" style="--delay: 1s; --duration: 11s;">🦋</div>
+    </div>
+
+    <!-- Audio Elements - Local MP3 File -->
+    <audio id="background-music" loop preload="auto">
+        <source src="assets/niki.mp3" type="audio/mpeg">
+        <!-- Fallback message -->
+        File MP3 tidak ditemukan. Silakan pastikan file ada di folder assets/
+    </audio>
+    <!-- Music Control -->
+    <div id="music-control" class="music-toggle">
+        <button id="music-toggle-btn" class="music-btn">
+            <span class="music-icon">🎵</span>
+            <span class="music-text">Music</span>
+        </button>
+    </div>
+
+    <div class="website-container">
+        <header class="main-header">
+            <div class="title-container">
+                <h1 class="title animated fadeInDown sparkle-text">
+                    <span class="letter">S</span><span class="letter">e</span><span class="letter">l</span><span class="letter">a</span><span class="letter">m</span><span class="letter">a</span><span class="letter">t</span>
+                    <span class="letter"> </span>
+                    <span class="letter">U</span><span class="letter">l</span><span class="letter">a</span><span class="letter">n</span><span class="letter">g</span>
+                    <span class="letter"> </span>
+                    <span class="letter">T</span><span class="letter">a</span><span class="letter">h</span><span class="letter">u</span><span class="letter">n</span><span class="letter">,</span>
+                    <span class="letter"> </span>
+                    <span class="letter highlight">A</span><span class="letter highlight">Y</span><span class="letter highlight">Y</span><span class="letter highlight">Y</span><span class="letter highlight">!</span>
+                </h1>
+                <div class="sparkles">
+                    <div class="sparkle"></div>
+                    <div class="sparkle"></div>
+                    <div class="sparkle"></div>
+                    <div class="sparkle"></div>
+                    <div class="sparkle"></div>
+                </div>
+            </div>
+            <p class="subtitle animated fadeInUp pulse-text">ini pesan pesan dariii arris untuk aca, dibaca yaa 🎉</p>
+        </header>
+
+        <main class="content-area">
+            <section id="opening-message" class="message-box active animated zoomIn">
+                <div class="content-wrapper">
+                    <img src="assets/gambar1.jpg" alt="Amplop Surat" class="icon-main bounce-in"> 
+                    <h2 class="section-title slide-in">Sefruit utasan kalimat sederhana...</h2>
+                    <p class="fade-in-up">Halooo cantik! Hari ini, hari spesialnyaa acaaa, aku punya sesuatu yang spesial juga untuk aca. Siap untuk sedikit petualangan?</p>
+                    <button id="startButton" class="btn btn-primary magical-btn">
+                        <span class="btn-text">Yuk, Gasss!</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                    <p id="music-info" class="music-status pulse">🎵 Klik tombol untuk memulai musik! 💕</p>
+                </div>
+            </section>
+
+            <section id="wishes" class="message-box hidden">
+                <div class="content-wrapper">
+                    <img src="assets/gambar3.jpg" alt="Ucapan" class="icon-main rotate-in">
+                    <h2 class="section-title">Dari Lubuk Hati yang Paling Dalam eakkk💌</h2>
+                    <div class="wish-item slide-in-left" style="--delay: 0.2s">
+                        <p class="wish-text">"Selamat ulang tahun yang ke-20 tahun ayyy! Semoga hari ini dan selanjutnyaa dipenuhi dengan tawa, cinta, dan semua hal yang membuat kamu bahagia yaa ayyy. Kamu pantas mendapatkan yang terbaik di dunia."</p>
+                        <div class="heart-trail">💕</div>
+                    </div>
+                    <div class="wish-item slide-in-right" style="--delay: 0.4s">
+                        <p class="wish-text">"Setiap momen tuu hadiah buatt arris. Terima kasih sudah menjadi dirimu yang luar biasa, yang selalu ceria dan sangat lucuk."</p>
+                        <div class="heart-trail">💖</div>
+                    </div>
+                    <div class="wish-item interactive-wish scale-in" style="--delay: 0.6s">
+                        <p class="gift-text">Psst... ada kado kecil nih, coba klik deh:</p>
+                        <div class="gift-container">
+                            <img src="assets/gambar2.jpg" alt="Kado" id="giftIcon" class="gift-icon magical-gift">
+                            <div class="gift-glow"></div>
+                        </div>
+                        <p id="giftMessage" class="hidden-message alert-message">
+                            <span class="surprise-text">Kejutan! wkwkwkwkwk</span>
+                            <br>Ini adalah tiket untuk satu pelukan hangat kapanpun kamu mau! 🤗 
+                            <br><span class="love-text">Plus, Love You So Much AYY!</span>
+                        </p>
+                    </div>
+                    <button class="btn btn-secondary nextButton magical-btn">
+                        <span class="btn-text">Ada lagi nih...</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+            </section>
+
+            <section id="memories" class="message-box hidden">
+                <div class="content-wrapper">
+                    <img src="assets/bunga2.png" alt="Kenangan" class="icon-main bounce-in">
+                    <h2 class="section-title">Album Kenangan Kita 📸</h2>
+                    <p class="fade-in-up">Melihat kembali beberapa momen kita...</p>
+                    <div class="gallery">
+                        <div class="photo-card photo-hover" style="--delay: 0.1s">
+                            <div class="photo-frame">
+                                <img src="assets/aca1.jpg" alt="Foto Kenangan 1">
+                                <div class="photo-overlay">
+                                    <div class="photo-icon">💕</div>
+                                </div>
+                            </div>
+                            <p class="caption">Inget engga ayy ? lucu banget kann huhuhu</p>
+                        </div>
+                        <div class="photo-card photo-hover" style="--delay: 0.3s">
+                            <div class="photo-frame">
+                                <img src="assets/aca2.jpg" alt="Foto Kenangan 2">
+                                <div class="photo-overlay">
+                                    <div class="photo-icon">🌸</div>
+                                </div>
+                            </div>
+                            <p class="caption">yang ini jugaa ga kalah lucuu</p>
+                        </div>
+                        <div class="photo-card photo-hover" style="--delay: 0.5s">
+                            <div class="photo-frame">
+                                <img src="assets/aca3.jpg" alt="Foto Kenangan 3">
+                                <div class="photo-overlay">
+                                    <div class="photo-icon">✨</div>
+                                </div>
+                            </div>
+                            <p class="caption">satu lagii dehh</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary nextButton magical-btn">
+                        <span class="btn-text">Satu pesan lagi nih ayy...</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+            </section>
+
+            <section id="special-note" class="message-box hidden">
+                <div class="content-wrapper">
+                    <img src="assets/gambar3.png" alt="Surat Spesial" class="icon-main rotate-in">
+                    <h2 class="section-title">Sebuah Surat Kecil... 📜</h2>
+                    <div id="typed-message-container" class="typewriter-container">
+                        <div class="paper-effect">
+                            <p id="typed-message" class="typed-text"></p>
+                            <div class="ink-drops">
+                                <div class="drop"></div>
+                                <div class="drop"></div>
+                                <div class="drop"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary nextButton magical-btn">
+                        <span class="btn-text">Penutup Spesial...</span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+            </section>
+
+            <section id="closing-message" class="message-box hidden">
+                <div class="content-wrapper">
+                    <img src="assets/bunga1.png" alt="Hati" class="icon-main pulse-heart">
+                    <h2 class="section-title romantic-title">Untuk acaa!!... ❤️</h2>
+                    <p class="fade-in-up romantic-text">Semoga hari ulang tahun sayangg. Aku berharap kita selalu bareng bareng yaa, selalu sama sama walau kadang banyak berantemnyaa, semoga kamu sehat selalu dan semoga berkah di umur yang baru inii, semangatt dan bahagiaa selalu ayy!.</p>
+                    <p class="final-love magical-signature">
+                        Dengan segenap cinta eaa,<br/>
+                        <span class="signature">Arris</span>
+                        <div class="signature-line"></div>
+                    </p>
+                    <div class="floating-hearts-container enhanced-hearts">
+                        <!-- Hearts akan digenerate oleh JavaScript -->
+                    </div>
+                    <div class="celebration-fireworks">
+                        <div class="firework"></div>
+                        <div class="firework"></div>
+                        <div class="firework"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <p>Dibuat dengan penuh cinta pada tanggal <span id="currentDate"></span></p>
+        </footer>
+    </div>
+
+    <script src="script-simple.js"></script>
+</body>
+</html>
