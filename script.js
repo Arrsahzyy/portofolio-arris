@@ -795,4 +795,141 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+
+    // =================================================================
+    // 12. DOWNLOAD FUNCTIONALITY FIX
+    // =================================================================
+    
+    // Menangani download CV dan Sertifikat
+    function initializeDownloadButtons() {
+        // Ambil semua tombol download
+        const downloadButtons = document.querySelectorAll('a[download]');
+        
+        downloadButtons.forEach(button => {
+            // Pastikan tombol dapat diklik
+            button.style.pointerEvents = 'auto';
+            button.style.cursor = 'pointer';
+            button.style.position = 'relative';
+            button.style.zIndex = '200';
+            
+            // Event listener untuk download
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const href = this.getAttribute('href');
+                const downloadName = this.getAttribute('download');
+                
+                console.log('Download clicked:', href);
+                
+                // Buat element anchor baru untuk memastikan download
+                const tempLink = document.createElement('a');
+                tempLink.href = href;
+                tempLink.download = downloadName || '';
+                tempLink.style.display = 'none';
+                
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+                
+                // Feedback visual
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i data-lucide="check" class="w-5 h-5 mr-2"></i>Downloaded!';
+                
+                // Render ulang ikon
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+                
+                // Kembali ke teks original setelah 2 detik
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                        lucide.createIcons();
+                    }
+                }, 2000);
+            });
+            
+            // Hover effect khusus
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.02)';
+                this.style.boxShadow = '0 10px 25px rgba(45, 212, 191, 0.3)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    }
+    
+    // Panggil fungsi setelah DOM loaded
+    initializeDownloadButtons();
+    
+    // Panggil lagi setelah delay untuk memastikan
+    setTimeout(initializeDownloadButtons, 1000);
+
+
+    // =================================================================
+    // 13. SMOOTH SKILL CARDS ANIMATION OPTIMIZATION
+    // =================================================================
+    
+    function initSmoothSkillAnimations() {
+        const skillCards = document.querySelectorAll('.skill-card');
+        
+        // Tambahkan class no-animate sementara untuk mencegah lag saat load
+        skillCards.forEach(card => {
+            card.classList.add('no-animate');
+        });
+        
+        // Hapus no-animate class setelah delay untuk memulai animasi
+        setTimeout(() => {
+            skillCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.remove('no-animate');
+                }, index * 100); // Stagger removal untuk efek yang lebih natural
+            });
+        }, 500);
+        
+        // Optimasi untuk intersection observer - pause animasi ketika tidak terlihat
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const card = entry.target;
+                    if (entry.isIntersecting) {
+                        card.style.animationPlayState = 'running';
+                    } else {
+                        card.style.animationPlayState = 'paused';
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            
+            skillCards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+        
+        // Optimasi hover - tambahkan debounce untuk performa
+        skillCards.forEach(card => {
+            let hoverTimeout;
+            
+            card.addEventListener('mouseenter', () => {
+                clearTimeout(hoverTimeout);
+                card.style.animationPlayState = 'paused';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                hoverTimeout = setTimeout(() => {
+                    card.style.animationPlayState = 'running';
+                }, 100);
+            });
+        });
+        
+        console.log('Smooth skill card animations initialized');
+    }
+    
+    // Jalankan optimasi animasi skill cards
+    initSmoothSkillAnimations();
 });

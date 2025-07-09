@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Arris Ahmad Fadillah - Mahasiswa Teknik Elektro</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/arrisahmad.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icons/arrisahmad.jpg">
+    <link rel="apple-touch-icon" href="assets/icons/arrisahmad.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/arrisahmad.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/arrisahmad.jpg">
+    <meta name="msapplication-TileImage" content="assets/icons/arrisahmad.jpg">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -258,8 +266,8 @@
             </div>
         </section>
 
-           <!-- Download Section -->
-        <section id="download" class="py-20 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+        <!-- Download Section -->
+        <section id="download" class="download-section py-20 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="section-title" data-aos="fade-up">Download Dokumen</h2>
                 <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">
@@ -269,40 +277,62 @@
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                     <!-- CV Card -->
                     <div class="download-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                        <div class="w-16 h-16 mx-auto mb-6 bg-teal-100 dark:bg-teal-900 rounded-full flex items-center justify-center">
-                            <i data-lucide="file-text" class="w-8 h-8 text-teal-600 dark:text-teal-400"></i>
+                        <div class="download-card-content">
+                            <div class="download-card-header">
+                                <div class="download-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                                    <img src="assets/icons/computer.png" alt="CV Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-12 h-12 object-contain">
+                                    <i data-lucide="file-text" class="w-12 h-12 text-teal-600 dark:text-teal-400" style="display: none;"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Curriculum Vitae</h3>
+                            </div>
+                            <div class="download-card-body">
+                                <div class="download-card-description">
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Dokumen lengkap yang berisi informasi tentang pengalaman pendidikan, organisasi, proyek, dan keterampilan saya.
+                                    </p>
+                                </div>
+                                <div class="download-card-tags">
+                                    <span class="inline-block bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-sm font-medium mr-2">PDF</span>
+                                    <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">2 Halaman</span>
+                                </div>
+                                <div class="download-card-footer">
+                                    <a href="assets/cv/CV_Arris_Ahmad_Fadillah.pdf" download class="btn-primary w-full">
+                                        <i data-lucide="download" class="w-5 h-5 mr-2"></i>
+                                        Download CV
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Curriculum Vitae</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            Dokumen lengkap yang berisi informasi tentang pengalaman pendidikan, organisasi, proyek, dan keterampilan saya.
-                        </p>
-                        <div class="mb-6">
-                            <span class="inline-block bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-sm font-medium mr-2">PDF</span>
-                            <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">2 Halaman</span>
-                        </div>
-                        <a href="assets/cv/CV_Arris_Ahmad_Fadillah.pdf" download class="btn-primary w-full">
-                            <i data-lucide="download" class="w-5 h-5 mr-2"></i>
-                            Download CV
-                        </a>
                     </div>
 
                     <!-- Sertifikat Card -->
                     <div class="download-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
-                        <div class="w-16 h-16 mx-auto mb-6 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
-                            <i data-lucide="award" class="w-8 h-8 text-purple-600 dark:text-purple-400"></i>
+                        <div class="download-card-content">
+                            <div class="download-card-header">
+                                <div class="download-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                                    <img src="assets/icons/settings.png" alt="Certificate Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-12 h-12 object-contain">
+                                    <i data-lucide="award" class="w-12 h-12 text-purple-600 dark:text-purple-400" style="display: none;"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Sertifikat & Pencapaian</h3>
+                            </div>
+                            <div class="download-card-body">
+                                <div class="download-card-description">
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Kumpulan sertifikat dari berbagai pelatihan, workshop, dan kompetisi yang telah saya ikuti dan raih. nvsdgshdfhsjfhjdhfjdhfhjhfjfhjdhfjsdh
+                                    </p>
+                                </div>
+                                <div class="download-card-tags">
+                                    <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium mr-2">ZIP</span>
+                                    <span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Multiple Files</span>
+                                </div>
+                                <div class="download-card-footer">
+                                    <a href="assets/certificates/Sertifikat_Arris_Ahmad.zip" download class="btn-secondary w-full">
+                                        <i data-lucide="award" class="w-5 h-5 mr-2"></i>
+                                        Download Sertifikat
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Sertifikat & Pencapaian</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
-                            Kumpulan sertifikat dari berbagai pelatihan, workshop, dan kompetisi yang telah saya ikuti dan raih.
-                        </p>
-                        <div class="mb-6">
-                            <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium mr-2">ZIP</span>
-                            <span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Multiple Files</span>
-                        </div>
-                        <a href="assets/certificates/Sertifikat_Arris_Ahmad.zip" download class="btn-secondary w-full">
-                            <i data-lucide="award" class="w-5 h-5 mr-2"></i>
-                            Download Sertifikat
-                        </a>
                     </div>
                 </div>
                 
@@ -397,17 +427,29 @@
     <footer class="bg-gray-800 text-gray-400 py-6 relative z-10">
         <div class="container mx-auto px-6 text-center">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://linkedin.com/in/arris-ahmad" target="_blank" class="social-icon social-icon-linkedin" title="LinkedIn">
-                    <span class="social-icon-text">in</span>
+                <a href="https://linkedin.com/in/arris-ahmad" target="_blank" class="social-icon" title="LinkedIn">
+                    <div class="social-icon-container">
+                        <img src="assets/icons/linkedin.png" alt="LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i data-lucide="linkedin" style="display: none;"></i>
+                    </div>
                 </a>
-                <a href="https://github.com/arrisahmad" target="_blank" class="social-icon social-icon-github" title="GitHub">
-                    <span class="social-icon-text">gh</span>
+                <a href="https://github.com/arrisahmad" target="_blank" class="social-icon" title="GitHub">
+                    <div class="social-icon-container">
+                        <img src="assets/icons/github.png" alt="GitHub" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i data-lucide="github" style="display: none;"></i>
+                    </div>
                 </a>
-                <a href="https://instagram.com/arrisahmad" target="_blank" class="social-icon social-icon-instagram" title="Instagram">
-                    <span class="social-icon-text">ig</span>
+                <a href="https://instagram.com/arrisahmad" target="_blank" class="social-icon" title="Instagram">
+                    <div class="social-icon-container">
+                        <img src="assets/icons/instagram.png" alt="Instagram" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i data-lucide="instagram" style="display: none;"></i>
+                    </div>
                 </a>
-                <a href="https://youtube.com/@arrisahmad" target="_blank" class="social-icon social-icon-youtube" title="YouTube">
-                    <span class="social-icon-text">yt</span>
+                <a href="https://youtube.com/@arrisahmad" target="_blank" class="social-icon" title="YouTube">
+                    <div class="social-icon-container">
+                        <img src="assets/icons/youtube.png" alt="YouTube" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <i data-lucide="youtube" style="display: none;"></i>
+                    </div>
                 </a>
             </div>
             <p>&copy; <span id="current-year"></span> Arris Ahmad Fadillah. Dibuat dengan <i data-lucide="heart" class="inline-block w-4 h-4 text-red-500 fill-current"></i> dan semangat elektro.</p>

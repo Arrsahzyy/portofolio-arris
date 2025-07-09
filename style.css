@@ -62,7 +62,7 @@ body {
     margin-bottom: 3rem;
 }
 
-/* Tombol Utama & Sekunder */
+/* Tombol Utama & Sekunder - Perfect Text Centering */
 .btn-primary {
     background-color: #14b8a6;
     color: white;
@@ -71,9 +71,14 @@ body {
     border-radius: 9999px;
     transition: all 0.3s ease;
     transform: translateZ(0);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    min-height: 3rem !important;
+    box-sizing: border-box !important;
 }
 
 .btn-primary:hover {
@@ -89,9 +94,14 @@ body {
     border-radius: 9999px;
     transition: all 0.3s ease;
     transform: translateZ(0);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    min-height: 3rem !important;
+    box-sizing: border-box !important;
 }
 
 .btn-secondary:hover {
@@ -101,20 +111,60 @@ body {
 
 /* Efek Glow pada Hero Section */
 .hero-glow {
-    box-shadow: 0 0 80px 20px #2dd4bf44;
+    box-shadow: 
+        0 0 60px 15px rgba(45, 212, 191, 0.3),
+        0 0 100px 25px rgba(45, 212, 191, 0.2),
+        0 0 140px 35px rgba(45, 212, 191, 0.1);
     animation: pulse-glow 4s infinite ease-in-out;
+    position: relative;
+}
+
+.hero-glow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        rgba(45, 212, 191, 0.2) 0%, 
+        rgba(45, 212, 191, 0.1) 30%, 
+        transparent 70%);
+    animation: pulse-glow-inner 4s infinite ease-in-out;
+    z-index: -1;
 }
 
 @keyframes pulse-glow {
     0%, 100% {
-        box-shadow: 0 0 80px 20px #2dd4bf44;
+        box-shadow: 
+            0 0 60px 15px rgba(45, 212, 191, 0.3),
+            0 0 100px 25px rgba(45, 212, 191, 0.2),
+            0 0 140px 35px rgba(45, 212, 191, 0.1);
+        transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 100px 30px #2dd4bf66;
+        box-shadow: 
+            0 0 80px 20px rgba(45, 212, 191, 0.4),
+            0 0 120px 30px rgba(45, 212, 191, 0.3),
+            0 0 160px 40px rgba(45, 212, 191, 0.15);
+        transform: scale(1.02);
     }
 }
 
-/* Kartu Keahlian (Skill Card) */
+@keyframes pulse-glow-inner {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Kartu Keahlian (Skill Card) - Ultra optimized for smooth animation */
 .skill-card {
     background-color: white;
     padding: 1.5rem;
@@ -131,6 +181,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    will-change: transform, box-shadow;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .dark .skill-card {
@@ -170,14 +227,17 @@ body {
 }
 
 .skill-card:hover {
-    transform: translateY(-15px) scale(1.05);
+    transform: translateY(-15px) scale(1.05) translateZ(0);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     background: linear-gradient(145deg, #ffffff, #f8fafc);
+    animation-play-state: paused;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .dark .skill-card:hover {
     box-shadow: 0 20px 40px rgba(45, 212, 191, 0.2);
     background: linear-gradient(145deg, #2d3748, #1a202c);
+    animation-play-state: paused;
 }
 
 .skill-icon {
@@ -274,22 +334,52 @@ body {
     color: #d1d5db;
 }
 
-/* Animasi floating untuk skill cards */
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
+/* Ultra-smooth floating animation untuk skill cards */
+@keyframes float-smooth {
+    0% { 
+        transform: translate3d(0, 0px, 0);
+    }
+    33.33% { 
+        transform: translate3d(0, -4px, 0);
+    }
+    66.66% { 
+        transform: translate3d(0, -2px, 0);
+    }
+    100% { 
+        transform: translate3d(0, 0px, 0);
+    }
+}
+
+@keyframes float-smooth-reverse {
+    0% { 
+        transform: translate3d(0, 0px, 0);
+    }
+    33.33% { 
+        transform: translate3d(0, -2px, 0);
+    }
+    66.66% { 
+        transform: translate3d(0, -4px, 0);
+    }
+    100% { 
+        transform: translate3d(0, 0px, 0);
+    }
 }
 
 .skill-card:nth-child(odd) {
-    animation: float 6s ease-in-out infinite;
+    animation: float-smooth 10s ease-in-out infinite;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .skill-card:nth-child(even) {
-    animation: float 6s ease-in-out infinite reverse;
+    animation: float-smooth-reverse 10s ease-in-out infinite;
+    animation-delay: -2.5s;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
 }
 
 .skill-card:hover {
-    animation: none;
+    animation-play-state: paused;
 }
 
 
@@ -341,93 +431,169 @@ body {
 }
 
 
-/* Ikon Sosial Media */
+/* Ikon Sosial Media - Enhanced with strict sizing control */
 .social-icon {
-    color: #6b7280;
-    transition: all 0.3s ease;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    color: #6b7280 !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    flex-shrink: 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
 }
 
 .social-icon:hover {
-    color: #2dd4bf;
-    transform: scale(1.2);
+    color: #2dd4bf !important;
+    transform: scale(1.05) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .dark .social-icon {
-    color: #9ca3af;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    color: #9ca3af !important;
 }
 
 .dark .social-icon:hover {
-    color: #5eead4;
+    color: #5eead4 !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Social Media Icons using SVG/PNG */
+/* Social Icon Container - untuk mengelola ikon PNG dan fallback SVG */
+.social-icon-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+}
+
+/* Social Media Icons using SVG/PNG - strict size control with perfect centering */
 .social-icon img {
-    transition: all 0.3s ease;
-    filter: brightness(0.8);
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+    object-fit: contain !important;
+    filter: brightness(0.8) !important;
+    flex-shrink: 0 !important;
+    display: block !important;
 }
 
 .social-icon:hover img {
-    filter: brightness(1.2);
-    transform: scale(1.1) rotate(5deg);
+    filter: brightness(1.2) !important;
+    transform: translate(-50%, -50%) scale(1.1) rotate(5deg) !important;
+}
+
+/* Fallback SVG icons (Lucide) - strict size control with perfect centering */
+.social-icon i[data-lucide] {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+    stroke-width: 2 !important;
+    flex-shrink: 0 !important;
+}
+
+.social-icon:hover i[data-lucide] {
+    transform: translate(-50%, -50%) scale(1.1) rotate(5deg) !important;
 }
 
 /* Dark mode adjustments for social icons */
 .dark .social-icon img {
-    filter: brightness(1.2) invert(1);
+    filter: brightness(1.2) invert(1) !important;
 }
 
 .dark .social-icon:hover img {
-    filter: brightness(1.5) invert(1);
+    filter: brightness(1.5) invert(1) !important;
 }
 
-/* Specific colors for social media icons on hover */
+/* Specific colors for social media icons on hover - with strict sizing */
 .social-icon[title="LinkedIn"]:hover {
-    background-color: rgba(0, 119, 181, 0.1);
-    border-color: rgba(0, 119, 181, 0.3);
-    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.2);
+    background-color: rgba(0, 119, 181, 0.1) !important;
+    border-color: rgba(0, 119, 181, 0.3) !important;
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.2) !important;
 }
 
 .social-icon[title="GitHub"]:hover {
-    background-color: rgba(51, 51, 51, 0.1);
-    border-color: rgba(51, 51, 51, 0.3);
-    box-shadow: 0 8px 20px rgba(51, 51, 51, 0.2);
+    background-color: rgba(51, 51, 51, 0.1) !important;
+    border-color: rgba(51, 51, 51, 0.3) !important;
+    box-shadow: 0 8px 20px rgba(51, 51, 51, 0.2) !important;
 }
 
 .social-icon[title="Instagram"]:hover {
-    background-color: rgba(225, 48, 108, 0.1);
-    border-color: rgba(225, 48, 108, 0.3);
-    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.2);
+    background-color: rgba(225, 48, 108, 0.1) !important;
+    border-color: rgba(225, 48, 108, 0.3) !important;
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.2) !important;
 }
 
 .social-icon[title="YouTube"]:hover {
-    background-color: rgba(255, 0, 0, 0.1);
-    border-color: rgba(255, 0, 0, 0.3);
-    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    border-color: rgba(255, 0, 0, 0.3) !important;
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2) !important;
 }
 
 .dark .social-icon[title="LinkedIn"]:hover {
-    background-color: rgba(0, 119, 181, 0.15);
-    border-color: rgba(0, 119, 181, 0.4);
-    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.3);
+    background-color: rgba(0, 119, 181, 0.15) !important;
+    border-color: rgba(0, 119, 181, 0.4) !important;
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.3) !important;
 }
 
 .dark .social-icon[title="GitHub"]:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2) !important;
 }
 
 .dark .social-icon[title="Instagram"]:hover {
-    background-color: rgba(225, 48, 108, 0.15);
-    border-color: rgba(225, 48, 108, 0.4);
-    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.3);
+    background-color: rgba(225, 48, 108, 0.15) !important;
+    border-color: rgba(225, 48, 108, 0.4) !important;
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.3) !important;
 }
 
 .dark .social-icon[title="YouTube"]:hover {
-    background-color: rgba(255, 0, 0, 0.15);
-    border-color: rgba(255, 0, 0, 0.4);
-    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+    background-color: rgba(255, 0, 0, 0.15) !important;
+    border-color: rgba(255, 0, 0, 0.4) !important;
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3) !important;
 }
+
+/* Responsive sizing for social icons */
+@media (max-width: 768px) {
+    .social-icon {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    
+    .social-icon img,
+    .social-icon i[data-lucide] {
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        min-height: 18px !important;
+        max-width: 18px !important;
+        max-height: 18px !important;
+        transform: translate(-50%, -50%) !important;
+    }
+    
+    .social-icon:hover img,
+    .social-icon:hover i[data-lucide] {
+        transform: translate(-50%, -50%) scale(1.1) rotate(5deg) !important;
+    }
+}
+
+
 
 /* Canvas untuk Partikel */
 #particle-canvas {
@@ -553,16 +719,29 @@ footer {
     opacity: 1;
 }
 
-/* Optimasi untuk performa animasi */
+/* Optimasi untuk performa animasi skill cards */
 .skill-card, .skill-icon, .skill-title, .skill-desc {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
-/* Perbaikan untuk mobile */
+/* Enable GPU acceleration for all skill card elements */
+.skill-card * {
+    transform: translateZ(0);
+}
+
+/* Prevent layout thrashing */
+.skill-card {
+    contain: layout style paint;
+}
+
+/* Perbaikan untuk mobile - Reduced animation untuk performa */
 @media (max-width: 768px) {
     .skill-card:hover {
-        transform: translateY(-10px) scale(1.02);
+        transform: translateY(-10px) scale(1.02) translateZ(0);
+        animation-play-state: paused;
     }
     
     .skill-icon {
@@ -574,6 +753,16 @@ footer {
     .skill-icon i {
         width: 2rem;
         height: 2rem;
+    }
+    
+    /* Reduce floating animation on mobile for better performance */
+    .skill-card:nth-child(odd) {
+        animation: float-smooth 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    }
+    
+    .skill-card:nth-child(even) {
+        animation: float-smooth-reverse 10s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+        animation-delay: -2.5s;
     }
 }
 
@@ -744,10 +933,26 @@ footer {
     left: 100%;
 }
 
-/* Download Section Styling */
+/* Download Section Styling - Perfect Layout with Fixed Button Position */
 .download-card {
     transition: all 0.3s ease;
     transform: translateY(0);
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    min-height: 500px !important;
+}
+
+/* Ensure grid items have equal height */
+.download-section .grid {
+    align-items: stretch !important;
+    display: grid !important;
+}
+
+.download-section .grid > div {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
 }
 
 .download-card:hover {
@@ -757,6 +962,56 @@ footer {
 
 .dark .download-card:hover {
     box-shadow: 0 20px 40px rgba(45, 212, 191, 0.1);
+}
+
+/* Download card content layout */
+.download-card-content {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+    height: 100% !important;
+    min-height: 100% !important;
+}
+
+.download-card-header {
+    flex-shrink: 0 !important;
+}
+
+.download-card-body {
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.download-card-description {
+    flex-grow: 1 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.download-card-description p {
+    margin-bottom: 0 !important;
+}
+
+.download-card-tags {
+    flex-shrink: 0 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.download-card-tags span {
+    white-space: nowrap;
+}
+
+/* Responsive download cards */
+@media (max-width: 768px) {
+    .download-card {
+        min-height: 450px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-card {
+        min-height: 420px !important;
+    }
 }
 
 .download-card .btn-primary,
@@ -770,315 +1025,274 @@ footer {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Social Media Icons - Clean Implementation */
-.social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background: rgba(45, 212, 191, 0.1);
-    border: 1px solid rgba(45, 212, 191, 0.2);
-    transition: all 0.3s ease;
+/* Fix for Download Button Clickability - Perfect Text Centering */
+.download-card .btn-primary,
+.download-card .btn-secondary {
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
+    cursor: pointer;
     text-decoration: none;
-    position: relative;
-    overflow: hidden;
-}
-
-.social-icon:hover {
-    background: rgba(45, 212, 191, 0.2);
-    border-color: rgba(45, 212, 191, 0.4);
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 8px 20px rgba(45, 212, 191, 0.3);
-}
-
-.dark .social-icon {
-    background: rgba(45, 212, 191, 0.05);
-    border-color: rgba(45, 212, 191, 0.1);
-}
-
-.dark .social-icon:hover {
-    background: rgba(45, 212, 191, 0.15);
-    border-color: rgba(45, 212, 191, 0.3);
-    box-shadow: 0 8px 20px rgba(45, 212, 191, 0.2);
-}
-
-/* Social Icon Container */
-.social-icon-container {
-    width: 1.5rem;
-    height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-.social-icon-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: all 0.3s ease;
-    filter: brightness(0.8);
-}
-
-.social-icon-container i {
-    width: 100%;
-    height: 100%;
-    color: #14b8a6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-}
-
-.social-icon:hover .social-icon-container img {
-    filter: brightness(1.2);
-    transform: scale(1.1);
-}
-
-.social-icon:hover .social-icon-container i {
-    color: #0d9488;
-    transform: scale(1.1);
-}
-
-/* Dark mode adjustments */
-.dark .social-icon-container img {
-    filter: brightness(1.2) invert(1);
-}
-
-.dark .social-icon:hover .social-icon-container img {
-    filter: brightness(1.5) invert(1);
-}
-
-.dark .social-icon-container i {
-    color: #5eead4;
-}
-
-.dark .social-icon:hover .social-icon-container i {
-    color: #2dd4bf;
-}
-
-/* Force display icons */
-i[data-lucide] {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    stroke-width: 2;
-    stroke: currentColor;
-    fill: none;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    transform: translateZ(0);
+    min-height: 3rem !important;
+    box-sizing: border-box !important;
 }
 
-/* Specific styling for social media icons */
-.social-icon i[data-lucide] {
+.download-card .btn-primary {
+    background-color: #14b8a6;
+    color: white;
+}
+
+.download-card .btn-secondary {
+    background-color: #14b8a6;
+    color: white;
+}
+
+.download-card .btn-primary:hover {
+    background-color: #0d9488;
+    transform: translateY(-2px);
+}
+
+.download-card .btn-secondary:hover {
+    background-color: #4b5563;
+    transform: translateY(-2px);
+}
+
+/* Perfect text centering for all button content */
+.btn-primary span,
+.btn-secondary span,
+.download-card .btn-primary span,
+.download-card .btn-secondary span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    line-height: 1 !important;
     width: 100% !important;
-    height: 100% !important;
-    display: flex !important;
 }
 
-/* Ensure icons in footer are visible */
-footer .social-icon i[data-lucide] {
-    display: flex !important;
-}
-
-/* Ensure icons in buttons are visible */
-.btn-primary i[data-lucide],
-.btn-secondary i[data-lucide] {
+/* Perfect icon centering in buttons */
+.btn-primary i,
+.btn-secondary i,
+.download-card .btn-primary i,
+.download-card .btn-secondary i {
     display: inline-flex !important;
-    flex-shrink: 0;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
 }
 
-/* Fix for heart icon in footer */
-i[data-lucide="heart"] {
-    color: #ef4444 !important;
-    fill: currentColor !important;
+/* Contact section button perfect centering */
+#copy-email-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    min-height: 3.5rem !important;
+    box-sizing: border-box !important;
 }
 
-/* Enhanced download card animations */
+#copy-email-btn span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+#email-text {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+}
+
+/* Final universal button centering */
+button, .btn-primary, .btn-secondary {
+    text-align: center !important;
+    font-size: inherit !important;
+}
+
+/* Ensure download card pseudo-elements don't block clicks */
+.download-card::before,
+.download-card::after {
+    pointer-events: none;
+    z-index: 1;
+}
+
 .download-card {
     position: relative;
-    overflow: hidden;
+    z-index: 10;
 }
 
-.download-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(45, 212, 191, 0.1), transparent);
-    transition: transform 0.6s ease;
-    transform: rotate(45deg) translate(-100%, -100%);
-}
-
-.download-card:hover::before {
-    transform: rotate(45deg) translate(100%, 100%);
-}
-
-
-
-
-
-/* Theme toggle button styling */
-#theme-toggle {
+/* Force clickable area for download buttons */
+.download-card a[download] {
     position: relative;
-    overflow: hidden;
-}
-
-#theme-toggle svg {
-    transition: all 0.3s ease;
-    stroke-width: 2;
-    stroke: currentColor;
-}
-
-#theme-toggle-light-icon {
-    fill: none !important;
-    stroke: currentColor !important;
-    stroke-width: 2 !important;
-    stroke-linecap: round !important;
-    stroke-linejoin: round !important;
-}
-
-#theme-toggle-dark-icon {
-    fill: currentColor !important;
-}
-
-#theme-toggle:hover svg {
-    transform: scale(1.1);
-}
-
-/* Ensure theme toggle icons are properly displayed */
-#theme-toggle svg:not(.hidden) {
-    display: block !important;
-}
-
-/* Perfect positioning for skill icons */
-.skill-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 1.5rem 1rem;
-}
-
-.skill-icon {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    width: 4rem;
-    height: 4rem;
-    display: flex !important;
+    z-index: 1000 !important;
+    pointer-events: auto !important;
+    display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
 }
 
-.skill-icon img,
-.skill-icon i {
-    display: block;
-    margin: 0 auto;
-    position: static !important;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
+/* Ensure icons in download buttons are not blocking clicks */
+.download-card a[download] i {
+    pointer-events: none;
+    z-index: 1;
 }
 
-.skill-title {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+/* Remove any potential overlay blocking */
+.download-card * {
+    pointer-events: auto;
 }
 
-.skill-desc {
-    margin-top: 0.25rem;
+.download-card .download-icon {
+    pointer-events: none;
 }
 
-/* Hover adjustments */
-.skill-card:hover .skill-icon {
-    transform: scale(1.2) rotate(10deg);
+.download-card .download-icon * {
+    pointer-events: none;
 }
 
-.skill-card:hover .skill-icon i,
-.skill-card:hover .skill-icon img {
-    transform: none !important;
+/* Additional perfect centering rules for social icons */
+.social-icon {
+    box-sizing: border-box !important;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .skill-icon {
-        width: 3rem;
-        height: 3rem;
-        margin-top: 0.25rem;
-        margin-bottom: 0.75rem;
+.social-icon img,
+.social-icon i[data-lucide] {
+    box-sizing: border-box !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    transition: all 0.3s ease !important;
+}
+
+.social-icon:hover img {
+    transform: translate(-50%, -50%) scale(1.1) rotate(5deg) !important;
+}
+
+.social-icon:hover i[data-lucide] {
+    transform: translate(-50%, -50%) scale(1.1) rotate(5deg) !important;
+}
+
+/* Ensure container is properly positioned */
+.social-icon-container {
+    position: relative !important;
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .skill-card:nth-child(odd),
+    .skill-card:nth-child(even) {
+        animation: none;
     }
     
-    .skill-icon img,
-    .skill-icon i {
-        width: 2rem;
-        height: 2rem;
+    .skill-card {
+        transition: transform 0.2s ease;
     }
 }
 
-/* Responsive design for social media icons */
-@media (max-width: 768px) {
-    .social-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-    
-    .social-icon-container {
-        width: 1.25rem;
-        height: 1.25rem;
-    }
-    
-    .social-icon-container i {
-        font-size: 1.25rem;
-    }
+/* Additional smooth animation optimizations */
+.skill-card {
+    /* Force hardware acceleration */
+    transform: translate3d(0, 0, 0);
+    /* Optimize rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Platform-specific hover effects */
-.social-icon[title="LinkedIn"]:hover {
-    background-color: rgba(0, 119, 181, 0.1);
-    border-color: rgba(0, 119, 181, 0.3);
-    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.2);
+/* Prevent animation lag on load */
+.skill-card.no-animate {
+    animation: none !important;
 }
 
-.social-icon[title="GitHub"]:hover {
-    background-color: rgba(51, 51, 51, 0.1);
-    border-color: rgba(51, 51, 51, 0.3);
-    box-shadow: 0 8px 20px rgba(51, 51, 51, 0.2);
+/* Stagger animation delays for more natural feel */
+.skill-card:nth-child(3n+1) {
+    animation-delay: 0s;
 }
 
-.social-icon[title="Instagram"]:hover {
-    background-color: rgba(225, 48, 108, 0.1);
-    border-color: rgba(225, 48, 108, 0.3);
-    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.2);
+.skill-card:nth-child(3n+2) {
+    animation-delay: -1.5s;
 }
 
-.social-icon[title="YouTube"]:hover {
-    background-color: rgba(255, 0, 0, 0.1);
-    border-color: rgba(255, 0, 0, 0.3);
-    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+.skill-card:nth-child(3n+3) {
+    animation-delay: -3s;
 }
 
-.dark .social-icon[title="LinkedIn"]:hover {
-    background-color: rgba(0, 119, 181, 0.15);
-    border-color: rgba(0, 119, 181, 0.4);
-    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.3);
+/* Additional fixes for perfect download card layout */
+.download-card-content {
+    min-height: 100% !important;
 }
 
-.dark .social-icon[title="GitHub"]:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+.download-card-description p {
+    margin-bottom: 0 !important;
 }
 
-.dark .social-icon[title="Instagram"]:hover {
-    background-color: rgba(225, 48, 108, 0.15);
-    border-color: rgba(225, 48, 108, 0.4);
-    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.3);
+/* Ensure consistent spacing */
+.download-card-header h3 {
+    margin-bottom: 1rem !important;
 }
 
-.dark .social-icon[title="YouTube"]:hover {
-    background-color: rgba(255, 0, 0, 0.15);
-    border-color: rgba(255, 0, 0, 0.4);
-    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+.download-card-tags span {
+    white-space: nowrap;
+}
+
+/* Prevent button from growing too much - Perfect centering */
+.download-card-footer a {
+    min-height: 3rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    box-sizing: border-box !important;
+}
+
+/* About section download buttons perfect centering */
+#about .btn-primary,
+#about .btn-secondary {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    min-height: 3rem !important;
+    box-sizing: border-box !important;
+}
+
+#about .btn-primary i,
+#about .btn-secondary i {
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Hero section buttons perfect centering */
+#hero .btn-primary,
+#hero .btn-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    line-height: 1 !important;
+    min-height: 3rem !important;
+    box-sizing: border-box !important;
 }
