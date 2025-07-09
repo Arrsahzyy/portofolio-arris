@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typedElement = document.getElementById('typed-text');
     if (typedElement && typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
-            strings: ['Problem Solver.', 'Inovator.', 'Pengembang Hardware.', 'Pecinta Robotika.', 'Future Engineer.'],
+            strings: ['Problem Solver.', 'Inovator.', 'Pengembang Software.', 'Pecinta Robotika.', 'Future Engineer, Machine Learning Learner.'],
             typeSpeed: 70,
             backSpeed: 40,
             loop: true,
