@@ -1,0 +1,1084 @@
+/* Custom styles untuk melengkapi Tailwind CSS */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+    background: rgba(17, 24, 39, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Styling untuk link navigasi */
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2dd4bf; /* teal-400 */
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link-mobile {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 0.375rem;
+    transition: all 0.3s ease;
+}
+
+.nav-link-mobile:hover {
+    background-color: rgba(209, 213, 219, 1); /* gray-300 */
+}
+
+.dark .nav-link-mobile:hover {
+    background-color: rgba(55, 65, 81, 1); /* gray-700 */
+}
+
+
+/* Judul Section */
+.section-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Tombol Utama & Sekunder */
+.btn-primary {
+    background-color: #14b8a6;
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    transform: translateZ(0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background-color: #0d9488;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #374151;
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    transform: translateZ(0);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+    transform: translateY(-2px);
+}
+
+/* Efek Glow pada Hero Section */
+.hero-glow {
+    box-shadow: 0 0 80px 20px #2dd4bf44;
+    animation: pulse-glow 4s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 80px 20px #2dd4bf44;
+    }
+    50% {
+        box-shadow: 0 0 100px 30px #2dd4bf66;
+    }
+}
+
+/* Kartu Keahlian (Skill Card) */
+.skill-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.dark .skill-card {
+    background-color: #1f2937;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.skill-card:hover::before {
+    left: 100%;
+}
+
+.skill-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(45, 212, 191, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+.skill-card:hover::after {
+    opacity: 1;
+}
+
+.skill-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+}
+
+.dark .skill-card:hover {
+    box-shadow: 0 20px 40px rgba(45, 212, 191, 0.2);
+    background: linear-gradient(145deg, #2d3748, #1a202c);
+}
+
+.skill-icon {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 2;
+    text-align: center !important;
+    flex-direction: column !important;
+}
+
+.skill-icon img {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: brightness(1);
+    display: none; /* Hide by default, show via JavaScript */
+    margin: 0 auto; /* Center the image */
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.skill-icon i {
+    width: 3rem;
+    height: 3rem;
+    color: #14b8a6;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative !important;
+    left: 0 !important;
+    transform: translateX(0) !important;
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.2) rotate(10deg);
+    filter: drop-shadow(0 8px 16px rgba(45, 212, 191, 0.3));
+}
+
+.skill-card:hover .skill-icon img {
+    filter: brightness(1.1) saturate(1.2);
+}
+
+.skill-card:hover .skill-icon i {
+    color: #0d9488;
+}
+
+.skill-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-card:hover .skill-title {
+    color: #0d9488;
+    transform: translateY(-2px);
+}
+
+.skill-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    margin-top: 0.25rem;
+}
+
+.dark .skill-desc {
+    color: #9ca3af;
+}
+
+.skill-card:hover .skill-desc {
+    color: #4b5563;
+    transform: translateY(2px);
+}
+
+.dark .skill-card:hover .skill-desc {
+    color: #d1d5db;
+}
+
+/* Animasi floating untuk skill cards */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.skill-card:nth-child(odd) {
+    animation: float 6s ease-in-out infinite;
+}
+
+.skill-card:nth-child(even) {
+    animation: float 6s ease-in-out infinite reverse;
+}
+
+.skill-card:hover {
+    animation: none;
+}
+
+
+/* Kartu Proyek (Project Card) */
+.project-card {
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dark .project-card {
+    background-color: #111827;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.dark .project-card:hover {
+    box-shadow: 0 20px 25px -5px rgb(45 212 191 / 0.2), 0 8px 10px -6px rgb(45 212 191 / 0.2);
+}
+
+.project-card img {
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.05);
+}
+
+.tech-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 9999px;
+}
+
+.project-link {
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Ikon Sosial Media */
+.social-icon {
+    color: #6b7280;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #2dd4bf;
+    transform: scale(1.2);
+}
+
+.dark .social-icon {
+    color: #9ca3af;
+}
+
+.dark .social-icon:hover {
+    color: #5eead4;
+}
+
+/* Social Media Icons using SVG/PNG */
+.social-icon img {
+    transition: all 0.3s ease;
+    filter: brightness(0.8);
+}
+
+.social-icon:hover img {
+    filter: brightness(1.2);
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Dark mode adjustments for social icons */
+.dark .social-icon img {
+    filter: brightness(1.2) invert(1);
+}
+
+.dark .social-icon:hover img {
+    filter: brightness(1.5) invert(1);
+}
+
+/* Specific colors for social media icons on hover */
+.social-icon[title="LinkedIn"]:hover {
+    background-color: rgba(0, 119, 181, 0.1);
+    border-color: rgba(0, 119, 181, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.2);
+}
+
+.social-icon[title="GitHub"]:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+    border-color: rgba(51, 51, 51, 0.3);
+    box-shadow: 0 8px 20px rgba(51, 51, 51, 0.2);
+}
+
+.social-icon[title="Instagram"]:hover {
+    background-color: rgba(225, 48, 108, 0.1);
+    border-color: rgba(225, 48, 108, 0.3);
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.2);
+}
+
+.social-icon[title="YouTube"]:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+}
+
+.dark .social-icon[title="LinkedIn"]:hover {
+    background-color: rgba(0, 119, 181, 0.15);
+    border-color: rgba(0, 119, 181, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.3);
+}
+
+.dark .social-icon[title="GitHub"]:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.dark .social-icon[title="Instagram"]:hover {
+    background-color: rgba(225, 48, 108, 0.15);
+    border-color: rgba(225, 48, 108, 0.4);
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.3);
+}
+
+.dark .social-icon[title="YouTube"]:hover {
+    background-color: rgba(255, 0, 0, 0.15);
+    border-color: rgba(255, 0, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+}
+
+/* Canvas untuk Partikel */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none; /* Mencegah canvas mengganggu interaksi */
+}
+
+/* Menyembunyikan elemen untuk animasi GSAP */
+.hero-content > * {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Perbaikan Layout dan Responsivitas */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Perbaikan untuk container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Perbaikan untuk mobile menu */
+#mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 40;
+}
+
+/* Perbaikan untuk hero section */
+#hero {
+    padding-top: 80px;
+}
+
+/* Perbaikan untuk images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Perbaikan untuk grid responsive */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem !important;
+    }
+    
+    .hero-content p {
+        font-size: 1rem !important;
+    }
+    
+    .skill-card {
+        padding: 1rem;
+    }
+    
+    .project-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Perbaikan untuk dark mode transition */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Memastikan z-index yang benar */
+.glass-effect {
+    position: relative;
+    z-index: 50;
+}
+
+main {
+    position: relative;
+    z-index: 10;
+}
+
+footer {
+    position: relative;
+    z-index: 10;
+}
+
+/* Perbaikan untuk animasi skill cards yang lebih smooth */
+.skill-card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.skill-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(45, 212, 191, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+.skill-card:hover::after {
+    opacity: 1;
+}
+
+/* Optimasi untuk performa animasi */
+.skill-card, .skill-icon, .skill-title, .skill-desc {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Perbaikan untuk mobile */
+@media (max-width: 768px) {
+    .skill-card:hover {
+        transform: translateY(-10px) scale(1.02);
+    }
+    
+    .skill-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .skill-icon img,
+    .skill-icon i {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+/* Import placeholder styles */
+@import url('assets/icons/placeholder-styles.css');
+
+/* Additional styles for better icon handling */
+.skill-icon img {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: brightness(1);
+}
+
+.skill-card:hover .skill-icon img {
+    filter: brightness(1.1) saturate(1.2);
+}
+
+/* Ensure icons are properly centered */
+.skill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-icon img,
+.skill-icon i,
+.skill-icon-placeholder {
+    flex-shrink: 0;
+}
+
+/* Animasi Interaktif untuk Foto About Section */
+.photo-container {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.photo-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(45, 212, 191, 0.3), transparent);
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.photo-container:hover::before {
+    opacity: 1;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.about-photo {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateZ(0);
+    position: relative;
+    z-index: 10;
+}
+
+.photo-container:hover .about-photo {
+    transform: scale(1.05) rotateY(5deg);
+    filter: brightness(1.1) contrast(1.1) saturate(1.2);
+}
+
+.photo-overlay {
+    background: linear-gradient(45deg, 
+        rgba(45, 212, 191, 0.1) 0%, 
+        rgba(20, 184, 166, 0.2) 50%, 
+        rgba(13, 148, 136, 0.1) 100%);
+    z-index: 5;
+}
+
+.photo-container:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-glow {
+    background: radial-gradient(circle at center, 
+        rgba(45, 212, 191, 0.4) 0%, 
+        rgba(45, 212, 191, 0.2) 30%, 
+        transparent 70%);
+    filter: blur(20px);
+    z-index: 2;
+}
+
+.photo-container:hover .photo-glow {
+    opacity: 1;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% { 
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+/* Efek Floating untuk Container */
+.photo-container {
+    animation: float-photo 6s ease-in-out infinite;
+}
+
+@keyframes float-photo {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+    }
+    33% { 
+        transform: translateY(-10px) rotate(1deg);
+    }
+    66% { 
+        transform: translateY(-5px) rotate(-1deg);
+    }
+}
+
+.photo-container:hover {
+    animation: none;
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(45, 212, 191, 0.3);
+}
+
+/* Efek Parallax untuk Foto */
+.photo-container:hover .about-photo {
+    transform: scale(1.05) translateZ(20px);
+}
+
+/* Responsive untuk Mobile */
+@media (max-width: 768px) {
+    .photo-container:hover {
+        transform: translateY(-10px) scale(1.01);
+    }
+    
+    .photo-container:hover .about-photo {
+        transform: scale(1.03);
+    }
+}
+
+/* Efek Shimmer */
+.photo-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    transition: left 0.5s ease;
+    z-index: 15;
+}
+
+.photo-container:hover::after {
+    left: 100%;
+}
+
+/* Download Section Styling */
+.download-card {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.download-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.dark .download-card:hover {
+    box-shadow: 0 20px 40px rgba(45, 212, 191, 0.1);
+}
+
+.download-card .btn-primary,
+.download-card .btn-secondary {
+    transition: all 0.3s ease;
+}
+
+.download-card .btn-primary:hover,
+.download-card .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Social Media Icons - Clean Implementation */
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba(45, 212, 191, 0.1);
+    border: 1px solid rgba(45, 212, 191, 0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon:hover {
+    background: rgba(45, 212, 191, 0.2);
+    border-color: rgba(45, 212, 191, 0.4);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 212, 191, 0.3);
+}
+
+.dark .social-icon {
+    background: rgba(45, 212, 191, 0.05);
+    border-color: rgba(45, 212, 191, 0.1);
+}
+
+.dark .social-icon:hover {
+    background: rgba(45, 212, 191, 0.15);
+    border-color: rgba(45, 212, 191, 0.3);
+    box-shadow: 0 8px 20px rgba(45, 212, 191, 0.2);
+}
+
+/* Social Icon Container */
+.social-icon-container {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.social-icon-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: all 0.3s ease;
+    filter: brightness(0.8);
+}
+
+.social-icon-container i {
+    width: 100%;
+    height: 100%;
+    color: #14b8a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.social-icon:hover .social-icon-container img {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+}
+
+.social-icon:hover .social-icon-container i {
+    color: #0d9488;
+    transform: scale(1.1);
+}
+
+/* Dark mode adjustments */
+.dark .social-icon-container img {
+    filter: brightness(1.2) invert(1);
+}
+
+.dark .social-icon:hover .social-icon-container img {
+    filter: brightness(1.5) invert(1);
+}
+
+.dark .social-icon-container i {
+    color: #5eead4;
+}
+
+.dark .social-icon:hover .social-icon-container i {
+    color: #2dd4bf;
+}
+
+/* Force display icons */
+i[data-lucide] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    stroke-width: 2;
+    stroke: currentColor;
+    fill: none;
+}
+
+/* Specific styling for social media icons */
+.social-icon i[data-lucide] {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+}
+
+/* Ensure icons in footer are visible */
+footer .social-icon i[data-lucide] {
+    display: flex !important;
+}
+
+/* Ensure icons in buttons are visible */
+.btn-primary i[data-lucide],
+.btn-secondary i[data-lucide] {
+    display: inline-flex !important;
+    flex-shrink: 0;
+}
+
+/* Fix for heart icon in footer */
+i[data-lucide="heart"] {
+    color: #ef4444 !important;
+    fill: currentColor !important;
+}
+
+/* Enhanced download card animations */
+.download-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.download-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(45, 212, 191, 0.1), transparent);
+    transition: transform 0.6s ease;
+    transform: rotate(45deg) translate(-100%, -100%);
+}
+
+.download-card:hover::before {
+    transform: rotate(45deg) translate(100%, 100%);
+}
+
+
+
+
+
+/* Theme toggle button styling */
+#theme-toggle {
+    position: relative;
+    overflow: hidden;
+}
+
+#theme-toggle svg {
+    transition: all 0.3s ease;
+    stroke-width: 2;
+    stroke: currentColor;
+}
+
+#theme-toggle-light-icon {
+    fill: none !important;
+    stroke: currentColor !important;
+    stroke-width: 2 !important;
+    stroke-linecap: round !important;
+    stroke-linejoin: round !important;
+}
+
+#theme-toggle-dark-icon {
+    fill: currentColor !important;
+}
+
+#theme-toggle:hover svg {
+    transform: scale(1.1);
+}
+
+/* Ensure theme toggle icons are properly displayed */
+#theme-toggle svg:not(.hidden) {
+    display: block !important;
+}
+
+/* Perfect positioning for skill icons */
+.skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1.5rem 1rem;
+}
+
+.skill-icon {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.skill-icon img,
+.skill-icon i {
+    display: block;
+    margin: 0 auto;
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+}
+
+.skill-title {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-desc {
+    margin-top: 0.25rem;
+}
+
+/* Hover adjustments */
+.skill-card:hover .skill-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.skill-card:hover .skill-icon i,
+.skill-card:hover .skill-icon img {
+    transform: none !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .skill-icon {
+        width: 3rem;
+        height: 3rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .skill-icon img,
+    .skill-icon i {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+/* Responsive design for social media icons */
+@media (max-width: 768px) {
+    .social-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    .social-icon-container {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+    
+    .social-icon-container i {
+        font-size: 1.25rem;
+    }
+}
+
+/* Platform-specific hover effects */
+.social-icon[title="LinkedIn"]:hover {
+    background-color: rgba(0, 119, 181, 0.1);
+    border-color: rgba(0, 119, 181, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.2);
+}
+
+.social-icon[title="GitHub"]:hover {
+    background-color: rgba(51, 51, 51, 0.1);
+    border-color: rgba(51, 51, 51, 0.3);
+    box-shadow: 0 8px 20px rgba(51, 51, 51, 0.2);
+}
+
+.social-icon[title="Instagram"]:hover {
+    background-color: rgba(225, 48, 108, 0.1);
+    border-color: rgba(225, 48, 108, 0.3);
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.2);
+}
+
+.social-icon[title="YouTube"]:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: rgba(255, 0, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.2);
+}
+
+.dark .social-icon[title="LinkedIn"]:hover {
+    background-color: rgba(0, 119, 181, 0.15);
+    border-color: rgba(0, 119, 181, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.3);
+}
+
+.dark .social-icon[title="GitHub"]:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.dark .social-icon[title="Instagram"]:hover {
+    background-color: rgba(225, 48, 108, 0.15);
+    border-color: rgba(225, 48, 108, 0.4);
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.3);
+}
+
+.dark .social-icon[title="YouTube"]:hover {
+    background-color: rgba(255, 0, 0, 0.15);
+    border-color: rgba(255, 0, 0, 0.4);
+    box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Skill Cards Animation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">Test Skill Cards Animation</h1>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Test Card 1 -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="assets/icons/microcontroller.png" alt="Microcontroller" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="skill-icon-placeholder" data-initial="M" style="display: none;"></div>
+                </div>
+                <h3 class="skill-title">Mikrokontroler</h3>
+                <p class="skill-desc">Arduino, ESP32, STM32</p>
+            </div>
+            
+            <!-- Test Card 2 -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="assets/icons/programming.png" alt="Programming" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="skill-icon-placeholder" data-initial="P" style="display: none;"></div>
+                </div>
+                <h3 class="skill-title">Pemrograman</h3>
+                <p class="skill-desc">C/C++, Python</p>
+            </div>
+            
+            <!-- Test Card 3 -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="assets/icons/pcb-design.png" alt="PCB Design" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="skill-icon-placeholder" data-initial="D" style="display: none;"></div>
+                </div>
+                <h3 class="skill-title">Desain PCB</h3>
+                <p class="skill-desc">Proteus, Eagle, KiCad</p>
+            </div>
+            
+            <!-- Test Card 4 -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="assets/icons/simulation.png" alt="Simulation" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="skill-icon-placeholder" data-initial="S" style="display: none;"></div>
+                </div>
+                <h3 class="skill-title">Simulasi</h3>
+                <p class="skill-desc">MATLAB, Simulink</p>
+            </div>
+
+
+            <!-- Test Card 5 -->
+            <div class="skill-card">
+                <div class="skill-icon">
+                    <img src="assets/icons/simulation.png" alt="Simulation" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="skill-icon-placeholder" data-initial="S" style="display: none;"></div>
+                </div>
+                <h3 class="skill-title">Simulasi</h3>
+                <p class="skill-desc">MATLAB, Simulink</p>
+            </div>
+        </div>
+        
+        <div class="mt-8 text-center">
+            <p class="text-gray-600">Hover over the cards to see the interactive animations!</p>
+        </div>
+    </div>
+    
+    <script>
+        // Simple animation test
+        const skillCards = document.querySelectorAll('.skill-card');
+        
+        skillCards.forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                const ripple = document.createElement('div');
+                const rect = card.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                ripple.classList.add('ripple-effect');
+                
+                card.appendChild(ripple);
+                
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = '';
+            });
+            
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `translateY(-15px) scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+        });
+        
+        // Add ripple effect styles
+        const rippleStyles = `
+            .ripple-effect {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(45, 212, 191, 0.3);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = rippleStyles;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>

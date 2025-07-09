@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Social Media Icons</title>
+    <style>
+        .icon-container {
+            display: flex;
+            gap: 20px;
+            margin: 20px;
+        }
+        .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .linkedin { background: #0077b5; }
+        .github { background: #333; }
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .youtube { background: #ff0000; }
+    </style>
+</head>
+<body>
+    <div class="icon-container">
+        <div class="icon linkedin">in</div>
+        <div class="icon github">git</div>
+        <div class="icon instagram">ig</div>
+        <div class="icon youtube">yt</div>
+    </div>
+    
+    <script>
+        // Simple text-based icons for fallback
+        console.log("Social media icons generated");
+    </script>
+</body>
+</html>
