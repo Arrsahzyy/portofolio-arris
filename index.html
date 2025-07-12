@@ -94,7 +94,7 @@
                         Mahasiswa Teknik Elektro & <span id="typed-text" class="text-teal-400"></span>
                     </p>
                     <p class="max-w-3xl mx-auto text-gray-600 dark:text-gray-400 mb-8">
-                        Saya memiliki minat yang kuat dalam merancang sirkuit, mengembangkan sistem tertanam atau IoT, dan Riset. Saat ini saya sedang menekuni bidang Tenaga Listrik atau yang biasa disebut Teknik Elekro, namun selain di perkuliahan saya juga sedang menempuh pembelajaran terkait bidang data seperti Machine Learning dan Komputasi Cloud .
+                        Saya memiliki minat yang kuat dalam merancang sirkuit, mengembangkan sistem tertanam atau IoT, dan Riset. Saat ini saya sedang menekuni bidang Tenaga Listrik atau yang biasa disebut Teknik Elektro, namun selain di perkuliahan saya juga sedang menempuh pembelajaran terkait bidang data seperti Machine Learning dan Komputasi Cloud .
                     </p>
                     <div class="flex justify-center space-x-4">
                         <a href="#projects" class="btn-primary">
@@ -253,7 +253,7 @@
                     </div>
 
 
-                    <div class="skill-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="skill-card" data-aos="zoom-in" data-aos-delay="800">
                         <div class="skill-icon">
                             <img src="assets/icons/github.png" alt="Sistem Kontrol" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <i data-lucide="brain-circuit" style="display: none;"></i>
@@ -262,7 +262,7 @@
                         <p class="skill-desc">Git, Github</p>
                     </div>
 
-                    <div class="skill-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="skill-card" data-aos="zoom-in" data-aos-delay="900">
                         <div class="skill-icon">
                             <img src="assets/icons/analisys.png" alt="Sistem Kontrol" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <i data-lucide="brain-circuit" style="display: none;"></i>
@@ -364,48 +364,72 @@
         <!-- Projects Section -->
         <section id="projects" class="py-20 bg-white dark:bg-gray-800">
             <div class="container mx-auto px-6">
-                <h2 class="section-title" data-aos="fade-up">Proyek Unggulan</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <div class="project-card" data-aos="fade-up">
-                        <img src="/assets/icons/raspberry-pi.png" alt="Gambar Proyek 1" class="w-full h-48 object-cover">
+                <h2 class="section-title flex flex-col items-center" data-aos="fade-up">Proyek Unggulan
+                </h2>
+                <div class="relative grid md:grid-cols-2 lg:grid-cols-3 gap-8 z-10">
+                    <!-- Project Card 1 -->
+                    <div class="project-card group relative overflow-hidden transition-transform duration-300" data-aos="fade-up" data-aos-delay="0">
+                        <img src="/assets/icons/raspberry-pi.png" alt="Gambar Proyek 1" class="w-full h-48 object-cover project-img transition-transform duration-500 group-hover:scale-105 group-hover:rotate-1">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2">Sistem Monitoring Suhu & Kelembaban Berbasis IoT</h3>
                             <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">Membuat prototipe untuk memonitor suhu dan kelembaban secara real-time menggunakan ESP32 dan sensor DHT11, dengan data yang ditampilkan pada sebuah web server.</p>
                             <div class="mb-4 flex flex-wrap gap-2">
-                                <span class="tech-tag bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200">ESP32</span>
-                                <span class="tech-tag bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200">Arduino IDE</span>
-                                <span class="tech-tag bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200">IoT</span>
+                                <span class="tech-tag bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200 transition-all duration-300">ESP32</span>
+                                <span class="tech-tag bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200 transition-all duration-300">Arduino IDE</span>
+                                <span class="tech-tag bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200 transition-all duration-300">IoT</span>
                             </div>
-                            <a href="#" class="project-link text-teal-500">Lihat di GitHub &rarr;</a>
+                            <a href="#" class="project-link text-teal-500 inline-flex items-center relative overflow-hidden">
+                                <span class="link-text">Lihat di GitHub</span>
+                                <span class="ml-1 arrow">&rarr;</span>
+                            </a>
+                        </div>
+                        <!-- Overlay for more info on hover (optional, can be expanded) -->
+                        <div class="project-overlay pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-400/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <!-- Timeline node -->
+                        <div class="hidden lg:block absolute -left-8 top-1/2 -translate-y-1/2 z-20">
+                          <div class="timeline-node w-5 h-5 rounded-full border-4 border-white dark:border-gray-800 bg-teal-400 shadow-lg transition-all duration-500 opacity-60"></div>
                         </div>
                     </div>
-
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                        <img src="/assets/icons/plc.png" alt="Gambar Proyek 2" class="w-full h-48 object-cover">
+                    <!-- Project Card 2 -->
+                    <div class="project-card group relative overflow-hidden transition-transform duration-300" data-aos="slide-left" data-aos-delay="200">
+                        <img src="/assets/icons/plc.png" alt="Gambar Proyek 2" class="w-full h-48 object-cover project-img transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-1">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2">Simulasi Inverter Satu Fasa dengan MATLAB/Simulink</h3>
                             <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">Merancang dan mensimulasikan rangkaian inverter gelombang sinus termodulasi (SPWM) untuk mengubah tegangan DC menjadi AC dengan THD rendah.</p>
                             <div class="mb-4 flex flex-wrap gap-2">
-                                <span class="tech-tag bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">MATLAB</span>
-                                <span class="tech-tag bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Simulink</span>
-                                <span class="tech-tag bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Elektronika Daya</span>
+                                <span class="tech-tag bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 transition-all duration-300">MATLAB</span>
+                                <span class="tech-tag bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 transition-all duration-300">Simulink</span>
+                                <span class="tech-tag bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 transition-all duration-300">Elektronika Daya</span>
                             </div>
-                            <a href="#" class="project-link text-blue-500">Lihat Laporan &rarr;</a>
+                            <a href="#" class="project-link text-blue-500 inline-flex items-center relative overflow-hidden">
+                                <span class="link-text">Lihat Laporan</span>
+                                <span class="ml-1 arrow">&rarr;</span>
+                            </a>
+                        </div>
+                        <div class="project-overlay pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="hidden lg:block absolute -left-8 top-1/2 -translate-y-1/2 z-20">
+                          <div class="timeline-node w-5 h-5 rounded-full border-4 border-white dark:border-gray-800 bg-blue-400 shadow-lg transition-all duration-500 opacity-60"></div>
                         </div>
                     </div>
-
-                    <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                        <img src="/assets/icons/electrician.png" alt="Gambar Proyek 3" class="w-full h-48 object-cover">
+                    <!-- Project Card 3 -->
+                    <div class="project-card group relative overflow-hidden transition-transform duration-300" data-aos="slide-right" data-aos-delay="400">
+                        <img src="/assets/icons/electrician.png" alt="Gambar Proyek 3" class="w-full h-48 object-cover project-img transition-transform duration-500 group-hover:scale-105 group-hover:rotate-2">
                         <div class="p-6">
                             <h3 class="text-xl font-bold mb-2">Robot Lengan Sederhana dengan Kontrol Servo</h3>
                             <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">Membangun robot lengan 3-axis menggunakan Arduino Uno dan beberapa motor servo, yang dapat dikontrol melalui potensiometer untuk tugas pick-and-place sederhana.</p>
                             <div class="mb-4 flex flex-wrap gap-2">
-                                <span class="tech-tag bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">Arduino</span>
-                                <span class="tech-tag bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">C++</span>
-                                <span class="tech-tag bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">Robotika</span>
+                                <span class="tech-tag bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 transition-all duration-300">Arduino</span>
+                                <span class="tech-tag bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 transition-all duration-300">C++</span>
+                                <span class="tech-tag bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 transition-all duration-300">Robotika</span>
                             </div>
-                            <a href="#" class="project-link text-purple-500">Tonton Demo &rarr;</a>
+                            <a href="#" class="project-link text-purple-500 inline-flex items-center relative overflow-hidden">
+                                <span class="link-text">Tonton Demo</span>
+                                <span class="ml-1 arrow">&rarr;</span>
+                            </a>
+                        </div>
+                        <div class="project-overlay pointer-events-none absolute inset-0 bg-gradient-to-br from-purple-400/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="hidden lg:block absolute -left-8 top-1/2 -translate-y-1/2 z-20">
+                          <div class="timeline-node w-5 h-5 rounded-full border-4 border-white dark:border-gray-800 bg-purple-400 shadow-lg transition-all duration-500 opacity-60"></div>
                         </div>
                     </div>
                 </div>
@@ -436,7 +460,7 @@
     <footer class="bg-gray-800 text-gray-400 py-6 relative z-10">
         <div class="container mx-auto px-6 text-center">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.linkedin.com/in/arris-ahmad-fadillah-772712272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-icon" title="LinkedIn">
+                <a href="http://www.linkedin.com/in/arrisahmadfadillah" target="_blank" class="social-icon" title="LinkedIn">
                     <div class="social-icon-container">
                         <img src="assets/icons/linkedin.png" alt="LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <i data-lucide="linkedin" style="display: none;"></i>
@@ -464,6 +488,38 @@
             <p>&copy; <span id="current-year"></span> Arris Ahmad Fadillah. <i data-lucide="heart" class="inline-block w-4 h-4 text-red-500 fill-current"></i> </p>
         </div>
     </footer>
+
+    <!-- Scroll Progress Bar -->
+<!-- SVG Circuit Progress Bar -->
+<svg id="scroll-circuit-progress" width="60" height="100vh" style="position:fixed; left:0; top:0; z-index:100; pointer-events:none;" viewBox="0 0 60 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="circuit-gradient" x1="30" y1="0" x2="30" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <!-- Background path (circuit) -->
+  <!-- Only one diagonal bend at download section (e.g., y=350 to y=420) -->
+  <!-- Glow effect for diagonal segment -->
+  <filter id="glow" x="-40" y="-40" width="200" height="200" filterUnits="userSpaceOnUse">
+    <feGaussianBlur stdDeviation="16" result="coloredBlur"/>
+    <feMerge>
+      <feMergeNode in="coloredBlur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+  <!-- Background path (circuit) -->
+  <path id="circuit-bg" d="M30 0 V350 L50 420 V1000" stroke="#334155" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- Glow underlay for diagonal -->
+  <path d="M30 350 L50 420" stroke="#2dd4bf" stroke-width="18" opacity="0.7" filter="url(#glow)"/>
+  <!-- Progress path (animated) -->
+  <path id="circuit-progress" d="M30 0 V350 L50 420 V1000" stroke="url(#circuit-gradient)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+</svg>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Kembali ke atas" style="display:none;" class="fixed bottom-6 right-6 z-[200] bg-gradient-to-br from-teal-400 to-blue-500 text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    </button>
 
     <!-- Lucide Icons -->
     <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/umd/lucide.js"></script>

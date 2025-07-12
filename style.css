@@ -1,3 +1,101 @@
+/* --- Project Section Upgrades --- */
+.project-card {
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.06);
+  border-radius: 1rem;
+  background: var(--tw-bg-opacity,1) #fff;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.dark .project-card {
+  background: #1e293b;
+}
+.project-card:hover, .project-card:focus-within {
+  box-shadow: 0 8px 32px 0 rgba(45,212,191,0.18), 0 2px 16px 0 rgba(0,0,0,0.10);
+  transform: translateY(-6px) scale(1.025);
+  z-index: 2;
+}
+.project-card .project-img {
+  border-radius: 1rem 1rem 0 0;
+  transition: transform 0.5s cubic-bezier(.4,2,.6,1);
+}
+.project-card:hover .project-img {
+  filter: brightness(1.08) saturate(1.1);
+}
+.project-overlay {
+  pointer-events: none;
+  z-index: 1;
+}
+/* Tech tag micro-interaction */
+.tech-tag {
+  cursor: pointer;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+}
+.tech-tag:hover, .tech-tag:focus {
+  box-shadow: 0 0 0 3px #2dd4bf44;
+  transform: scale(1.08) rotate(-2deg);
+  background: linear-gradient(90deg, #2dd4bf22 0%, #3b82f622 100%);
+}
+.dark .tech-tag:hover, .dark .tech-tag:focus {
+  background: linear-gradient(90deg, #2dd4bf33 0%, #6366f133 100%);
+}
+/* Project link underline and arrow animation */
+.project-link {
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s;
+}
+.project-link .arrow {
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+.project-link:hover .arrow, .project-link:focus .arrow {
+  transform: translateX(6px) scale(1.2) skewX(-10deg);
+}
+.project-link::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, #2dd4bf 0%, #3b82f6 100%);
+  opacity: 0;
+  transform: scaleX(0);
+  transition: opacity 0.2s, transform 0.3s cubic-bezier(.4,2,.6,1);
+}
+.project-link:hover::after, .project-link:focus::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+/* Back to Top Button Styles */
+#back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 200;
+  background: linear-gradient(135deg, #2dd4bf 60%, #3b82f6 100%);
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 24px 0 #2dd4bf55, 0 1.5px 8px 0 #3b82f655;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  outline: none;
+  display: none;
+}
+#back-to-top:hover, #back-to-top:focus {
+  transform: scale(1.12);
+  box-shadow: 0 8px 32px 0 #2dd4bf99, 0 3px 16px 0 #3b82f699;
+}
+@media (max-width: 600px) {
+  #back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+  }
+}
 /* Custom styles untuk melengkapi Tailwind CSS */
 body {
     font-family: 'Inter', sans-serif;
@@ -1295,4 +1393,52 @@ button, .btn-primary, .btn-secondary {
     line-height: 1 !important;
     min-height: 3rem !important;
     box-sizing: border-box !important;
+}
+
+/* Sembunyikan scrollbar default di semua browser */
+html, body {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+}
+
+
+/* Hide old progress bar */
+#scroll-progress-bar {
+  display: none !important;
+}
+
+/* SVG Circuit Progress Bar Styles */
+#scroll-circuit-progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 60px;
+  z-index: 100;
+  pointer-events: none;
+  background: transparent;
+}
+#circuit-bg {
+  stroke: #334155;
+  stroke-width: 6;
+  opacity: 0.3;
+}
+#circuit-progress {
+  stroke: url(#circuit-gradient);
+  stroke-width: 6;
+  filter: drop-shadow(0 0 8px #2dd4bf55);
+  transition: stroke-dashoffset 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+@media (max-width: 600px) {
+  #scroll-circuit-progress {
+    width: 36px;
+    min-width: 24px;
+  }
 }

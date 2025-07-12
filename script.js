@@ -1,3 +1,11 @@
+// --- Project Section Micro-interaction (Optional Tooltip for Tech Tag) ---
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.tech-tag').forEach(function(tag) {
+    tag.addEventListener('mouseenter', function() {
+      tag.setAttribute('title', tag.textContent);
+    });
+  });
+});
 // Menunggu hingga seluruh konten halaman dimuat
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -18,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typedElement = document.getElementById('typed-text');
     if (typedElement && typeof Typed !== 'undefined') {
         new Typed('#typed-text', {
-            strings: ['Problem Solver.', 'Inovator.', 'Pengembang Software.', 'Pecinta Robotika.', 'Future Engineer, Machine Learning Learner.'],
+            strings: ['Problem Solver.', 'Inovator.', 'Pengembang Software.', 'Pecinta Robotika.', 'Future Engineer.', 'Machine Learning Learner.'],
             typeSpeed: 70,
             backSpeed: 40,
             loop: true,
@@ -66,61 +74,95 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // =================================================================
-    // 3. EFEK PARTIKEL INTERAKTIF PADA CANVAS
+    // 3. EFEK PARTIKEL INTERAKTIF PADA CANVAS (UPGRADED)
     // =================================================================
 
     const canvas = document.getElementById('particle-canvas');
-    if (!canvas) return; // Exit if canvas not found
-    
+    if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    if (!ctx) return; // Exit if context not available
-    
-    // Fungsi untuk mengatur ukuran canvas
+    if (!ctx) return;
+
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-    
     resizeCanvas();
 
     let particlesArray = [];
-
-    // Objek untuk posisi mouse
     const mouse = {
         x: null,
         y: null,
-        radius: Math.min(canvas.height, canvas.width) / 80
-    }
+        radius: Math.min(canvas.height, canvas.width) / 10 // lebih besar agar efek repulse terasa
+    };
 
     window.addEventListener('mousemove', e => {
         mouse.x = e.x;
         mouse.y = e.y;
     });
+    window.addEventListener('mouseout', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
 
-    // Class untuk membuat satu partikel
+    // Tambah partikel saat klik (maksimal 10 partikel baru)
+    let addedParticles = 0;
+    canvas.addEventListener('click', e => {
+        if (addedParticles >= 10) return;
+        let color = document.documentElement.classList.contains('dark') ? 'rgba(45, 212, 190, 0.7)' : 'rgba(2, 58, 42, 0.9)';
+        let size = (Math.random() * 2) + 3;
+        let directionX = (Math.random() * 0.6) - 0.3;
+        let directionY = (Math.random() * 0.6) - 0.3;
+        particlesArray.push(new Particle(e.offsetX, e.offsetY, directionX, directionY, size, color));
+        addedParticles++;
+    });
+
     class Particle {
         constructor(x, y, directionX, directionY, size, color) {
             this.x = x;
             this.y = y;
             this.directionX = directionX;
             this.directionY = directionY;
+            this.baseSize = size;
             this.size = size;
             this.color = color;
         }
-        
         draw() {
+            ctx.save();
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            ctx.shadowColor = this.color;
+            ctx.shadowBlur = 12;
             ctx.fillStyle = this.color;
+            ctx.globalAlpha = 0.85;
             ctx.fill();
+            ctx.globalAlpha = 1;
+            ctx.shadowBlur = 0;
+            ctx.restore();
         }
-        
         update() {
-            if (this.x > canvas.width || this.x < 0) {
-                this.directionX = -this.directionX;
-            }
-            if (this.y > canvas.height || this.y < 0) {
-                this.directionY = -this.directionY;
+            // Bounce
+            if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+            if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+            // Interaksi mouse (repulse)
+            if (mouse.x && mouse.y) {
+                let dx = this.x - mouse.x;
+                let dy = this.y - mouse.y;
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < mouse.radius + this.size) {
+                    // Repulse
+                    let angle = Math.atan2(dy, dx);
+                    let force = (mouse.radius + this.size - dist) / mouse.radius;
+                    let moveX = Math.cos(angle) * force * 2.2;
+                    let moveY = Math.sin(angle) * force * 2.2;
+                    this.x += moveX;
+                    this.y += moveY;
+                    this.size = Math.min(this.baseSize * 2.2, this.size + 0.5); // Membesar saat dekat mouse
+                } else {
+                    // Smooth kembali ke ukuran awal
+                    this.size += (this.baseSize - this.size) * 0.1;
+                }
+            } else {
+                this.size += (this.baseSize - this.size) * 0.1;
             }
             this.x += this.directionX;
             this.y += this.directionY;
@@ -128,55 +170,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fungsi untuk inisialisasi partikel
     function initParticles() {
         particlesArray = [];
         if (canvas.width === 0 || canvas.height === 0) return;
-        
-        let numberOfParticles = Math.min(100, (canvas.height * canvas.width) / 9000);
-        let particleColor = document.documentElement.classList.contains('dark') ? 'rgba(45, 212, 191, 0.5)' : 'rgba(0, 0, 0, 0.3)';
-        
+        // OPTIMASI: Kurangi jumlah partikel agar ringan di device apapun
+        let numberOfParticles = Math.min(48, (canvas.height * canvas.width) / 12000);
+        let particleColor = document.documentElement.classList.contains('dark') ? 'rgba(45, 212, 190, 0.48)' : 'rgba(23, 160, 121, 0.58)';
         for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 2) + 1;
+            let size = (Math.random() * 2) + 2;
             let x = Math.random() * (canvas.width - size * 2) + size;
             let y = Math.random() * (canvas.height - size * 2) + size;
-            let directionX = (Math.random() * 0.4) - 0.2;
-            let directionY = (Math.random() * 0.4) - 0.2;
+            let directionX = (Math.random() * 0.5) - 0.25;
+            let directionY = (Math.random() * 0.5) - 0.25;
             particlesArray.push(new Particle(x, y, directionX, directionY, size, particleColor));
         }
     }
 
-    // Fungsi untuk menghubungkan partikel yang berdekatan
     function connectParticles() {
-        let lineColor = document.documentElement.classList.contains('dark') ? 'rgba(45, 212, 191, 0.1)' : 'rgba(0, 0, 0, 0.05)';
-        let maxDistance = Math.min(canvas.width, canvas.height) / 7;
-        
+        let lineColor = document.documentElement.classList.contains('dark') ? 'rgba(45, 212, 190, 0.38)' : 'rgba(23, 160, 121, 0.38)';
+        let glowColor = document.documentElement.classList.contains('dark') ? '#2dd4bf' : '#16a34a';
+        let maxDistance = Math.min(canvas.width, canvas.height) / 4.2;
+        // Batasi jumlah garis per partikel agar tidak O(n^2) penuh
+        const maxLinesPerParticle = 7;
         for (let a = 0; a < particlesArray.length; a++) {
+            let linesDrawn = 0;
             for (let b = a + 1; b < particlesArray.length; b++) {
-                let distance = Math.sqrt(
-                    Math.pow(particlesArray[a].x - particlesArray[b].x, 2) +
-                    Math.pow(particlesArray[a].y - particlesArray[b].y, 2)
-                );
-                
+                if (linesDrawn >= maxLinesPerParticle) break;
+                let dx = particlesArray[a].x - particlesArray[b].x;
+                let dy = particlesArray[a].y - particlesArray[b].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < maxDistance) {
+                    ctx.save();
                     ctx.strokeStyle = lineColor;
-                    ctx.lineWidth = 0.5;
+                    let alpha = 0.5 * (1 - (distance / maxDistance)) + 0.16;
+                    ctx.globalAlpha = Math.max(0.16, Math.min(1, alpha));
+                    ctx.shadowColor = glowColor;
+                    ctx.shadowBlur = 7; // Lebih kecil agar ringan
+                    ctx.lineWidth = 2.1 - (distance / maxDistance) * 1.1;
                     ctx.beginPath();
                     ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                     ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
                     ctx.stroke();
+                    // Highlight tipis
+                    if (distance < maxDistance * 0.6) {
+                        ctx.strokeStyle = document.documentElement.classList.contains('dark') ? 'rgba(45,212,190,0.10)' : 'rgba(23,160,121,0.10)';
+                        ctx.globalAlpha = 0.13;
+                        ctx.shadowBlur = 3;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                    ctx.globalAlpha = 1;
+                    ctx.shadowBlur = 0;
+                    ctx.restore();
+                    linesDrawn++;
                 }
             }
         }
     }
 
-    // Loop animasi
     function animateParticles() {
         if (!ctx || !canvas) return;
-        
         requestAnimationFrame(animateParticles);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
         if (particlesArray.length > 0) {
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
@@ -184,15 +242,13 @@ document.addEventListener('DOMContentLoaded', function() {
             connectParticles();
         }
     }
-    
-    // Event listener untuk resize window
+
     window.addEventListener('resize', () => {
         resizeCanvas();
-        mouse.radius = Math.min(canvas.height, canvas.width) / 80;
+        mouse.radius = Math.min(canvas.height, canvas.width) / 10;
         initParticles();
     });
 
-    // Inisialisasi dan mulai animasi partikel
     initParticles();
     animateParticles();
 
@@ -932,4 +988,129 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Jalankan optimasi animasi skill cards
     initSmoothSkillAnimations();
+
+    // Scroll Progress Bar Logic
+
+// SVG Circuit Progress Bar Logic
+function updateCircuitProgressBar() {
+  const path = document.getElementById('circuit-progress');
+  if (!path) return;
+  const totalLength = path.getTotalLength();
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) : 0;
+  path.style.strokeDasharray = totalLength;
+  path.style.strokeDashoffset = totalLength - (progress * totalLength);
+}
+
+window.addEventListener('scroll', updateCircuitProgressBar);
+window.addEventListener('resize', updateCircuitProgressBar);
+document.addEventListener('DOMContentLoaded', updateCircuitProgressBar);
+
+  // --- Animasi SVG Circuit di Section Projects ---
+  // SVG Circuit Animation
+  const circuitPath = document.getElementById('circuit-path');
+  const circuitDot = document.getElementById('circuit-dot');
+  if (circuitPath && circuitDot) {
+    const length = circuitPath.getTotalLength();
+    circuitPath.style.strokeDasharray = length;
+    circuitPath.style.strokeDashoffset = length;
+    circuitDot.style.opacity = 0.3;
+    function animateCircuit() {
+      circuitPath.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.77,0,.18,1)';
+      circuitPath.style.strokeDashoffset = 0;
+      setTimeout(() => {
+        circuitDot.style.transition = 'opacity 0.5s';
+        circuitDot.style.opacity = 1;
+      }, 900);
+    }
+    // Trigger when #projects in viewport
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) animateCircuit();
+        });
+      }, { threshold: 0.3 });
+      observer.observe(projectsSection);
+    }
+  }
+
+  // Timeline node highlight on scroll
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  if (timelineNodes.length) {
+    const cards = document.querySelectorAll('.project-card');
+    function highlightTimeline() {
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.7 && rect.bottom > 0) {
+          timelineNodes[i].classList.add('opacity-100', 'scale-110');
+          timelineNodes[i].classList.remove('opacity-60');
+        } else {
+          timelineNodes[i].classList.remove('opacity-100', 'scale-110');
+          timelineNodes[i].classList.add('opacity-60');
+        }
+      });
+    }
+    window.addEventListener('scroll', highlightTimeline);
+    highlightTimeline();
+  }
+
+  // Project card glow effect on hover/tap
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach(card => {
+    // Hover (desktop)
+    card.addEventListener('mouseenter', () => {
+      card.style.boxShadow = '0 0 0 4px #2dd4bf55, 0 8px 32px #2dd4bf33';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.boxShadow = '';
+    });
+    // Touch (mobile)
+    card.addEventListener('touchstart', (e) => {
+      card.classList.add('z-30');
+      card.style.boxShadow = '0 0 0 4px #2dd4bf99, 0 8px 32px #2dd4bf33';
+      // Show overlay info
+      const overlay = card.querySelector('.project-overlay');
+      if (overlay) overlay.style.opacity = 1;
+      // Hide overlays on other cards
+      projectCards.forEach(other => {
+        if (other !== card) {
+          other.style.boxShadow = '';
+          other.classList.remove('z-30');
+          const ov = other.querySelector('.project-overlay');
+          if (ov) ov.style.opacity = 0;
+        }
+      });
+      e.stopPropagation();
+    });
+  });
+  // Hide overlays on tap outside
+  document.addEventListener('touchstart', (e) => {
+    if (![...projectCards].some(card => card.contains(e.target))) {
+      projectCards.forEach(card => {
+        card.style.boxShadow = '';
+        card.classList.remove('z-30');
+        const overlay = card.querySelector('.project-overlay');
+        if (overlay) overlay.style.opacity = 0;
+      });
+    }
+  });
+
+  // Back to Top Button Logic
+  const backToTopBtn = document.getElementById('back-to-top');
+  function toggleBackToTop() {
+    if (window.scrollY > window.innerHeight * 0.5) {
+      backToTopBtn.style.display = 'block';
+    } else {
+      backToTopBtn.style.display = 'none';
+    }
+  }
+  window.addEventListener('scroll', toggleBackToTop);
+  backToTopBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  // Initial state
+  toggleBackToTop();
+
 });
