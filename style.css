@@ -52,32 +52,41 @@ html, body {
 
 /* Enhanced border visibility for light mode */
 .project-card {
-  /* Add subtle inner shadow to enhance border perception */
+  /* Add stronger border visibility and subtle glow for light mode */
   box-shadow: 
     0 4px 20px 0 rgba(0,0,0,0.08),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+    inset 0 0 0 1px rgba(45, 212, 191, 0.08),
+    0 0 8px rgba(45, 212, 191, 0.06);
+  border: 1px solid rgba(45, 212, 191, 0.2); /* More visible border */
 }
 
 .dark .project-card {
-  /* Remove inner shadow for dark mode */
-  box-shadow: 0 4px 20px 0 rgba(0,0,0,0.3);
+  /* Enhanced border for dark mode with subtle glow */
+  box-shadow: 
+    0 4px 20px 0 rgba(0,0,0,0.3),
+    0 0 10px rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.25);
 }
 
 /* Simplified hover effect */
 .project-card:hover, .project-card:focus-within {
   box-shadow: 
-    0 15px 35px 0 rgba(45,212,191,0.2), 
-    0 8px 20px 0 rgba(0,0,0,0.1);
+    0 15px 35px 0 rgba(45,212,191,0.25), 
+    0 8px 20px 0 rgba(0,0,0,0.1),
+    0 0 25px rgba(45, 212, 191, 0.2),
+    0 0 50px rgba(45, 212, 191, 0.1);
   transform: translateY(-8px) scale(1.01); /* Reduced scale */
-  border: 1px solid rgba(45, 212, 191, 0.2); /* Enhanced border on hover */
+  border: 1px solid rgba(45, 212, 191, 0.5); /* Enhanced border on hover */
   z-index: 10;
 }
 
 .dark .project-card:hover {
   box-shadow: 
-    0 15px 35px 0 rgba(45,212,191,0.3), 
-    0 8px 20px 0 rgba(0,0,0,0.2);
-  border: 1px solid rgba(45, 212, 191, 0.3); /* Enhanced border on hover for dark mode */
+    0 15px 35px 0 rgba(45,212,191,0.35), 
+    0 8px 20px 0 rgba(0,0,0,0.2),
+    0 0 30px rgba(45, 212, 191, 0.25),
+    0 0 60px rgba(45, 212, 191, 0.15);
+  border: 1px solid rgba(45, 212, 191, 0.6); /* Enhanced border on hover for dark mode */
 }
 
 /* Enhanced border on focus for accessibility */
@@ -380,17 +389,34 @@ html, body {
   will-change: transform, box-shadow;
 }
 
-/* Mobile optimizations */
+/* Mobile optimizations - Fix scroll trigger issues */
 @media (max-width: 768px) {
   .project-card {
     backdrop-filter: none;
     max-width: 100%;
     overflow: hidden; /* Prevent content overflow */
+    /* Disable zoom animation on mobile to prevent scroll conflicts */
+    transform: none !important;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
   }
   
   .project-card:hover {
-    transform: translateY(-4px) scale(1.01);
-    transition: all 0.2s ease;
+    transform: none !important; /* Completely disable transform on mobile */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(45, 212, 191, 0.3) !important;
+  }
+  
+  /* Disable project card animations that interfere with scrolling */
+  .project-card.in-view {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  /* Improve scroll performance */
+  .projects-section {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-behavior: smooth !important;
   }
   
   #circuit-path,
@@ -400,7 +426,7 @@ html, body {
   }
   
   .project-card.enable-float {
-    animation-duration: 8s; /* Preserve but optimize floating */
+    animation: none !important; /* Disable floating animation on mobile */
   }
   
   /* Optimize grid layouts for mobile */
@@ -416,6 +442,12 @@ html, body {
     height: auto;
     object-fit: contain;
   }
+  
+  /* Prevent touch conflicts with scroll */
+  .project-card * {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
 }
 
 /* Smooth scroll behavior for project section */
@@ -428,15 +460,25 @@ html, body {
   text-shadow: 0 0 8px currentColor;
 }
 
-/* Additional mobile optimizations */
+/* Additional mobile optimizations - Prevent animation conflicts */
 @media (max-width: 640px) {
   .project-card {
     border-radius: 1rem;
     margin-bottom: 1rem;
+    transform: none !important; /* Force disable all transforms */
+    will-change: auto !important; /* Disable GPU acceleration that might interfere */
   }
   
   .project-card:hover {
-    transform: translateY(-6px) scale(1.01);
+    transform: none !important; /* No transform on small screens */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+  }
+  
+  /* Disable scroll-triggered animations on mobile */
+  .project-card.in-view {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
   }
   
   .tech-tag {
@@ -446,6 +488,18 @@ html, body {
   
   .project-link {
     font-size: 0.9rem;
+  }
+  
+  /* Improve scroll behavior for project section */
+  #projects {
+    scroll-behavior: smooth !important;
+    overflow: visible !important;
+  }
+  
+  /* Ensure smooth scrolling without animation interference */
+  .projects-container {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
   }
 }
 
@@ -1545,17 +1599,19 @@ footer {
     height: 100% !important;
     min-height: 500px !important;
     position: relative;
-    border: 1px solid rgba(45, 212, 191, 0.1);
+    border: 1px solid rgba(45, 212, 191, 0.25);
     box-shadow: 
         0 4px 20px rgba(0, 0, 0, 0.08),
-        0 0 0 1px rgba(45, 212, 191, 0.05);
+        0 0 0 1px rgba(45, 212, 191, 0.15),
+        0 0 10px rgba(45, 212, 191, 0.08);
 }
 
 .dark .download-card {
-    border: 1px solid rgba(45, 212, 191, 0.2);
+    border: 1px solid rgba(45, 212, 191, 0.3);
     box-shadow: 
         0 4px 20px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(45, 212, 191, 0.1);
+        0 0 0 1px rgba(45, 212, 191, 0.2),
+        0 0 15px rgba(45, 212, 191, 0.12);
 }
 
 /* Ensure grid items have equal height */
@@ -1572,19 +1628,21 @@ footer {
 
 .download-card:hover {
     transform: translateY(-10px);
-    border: 1px solid rgba(45, 212, 191, 0.4);
+    border: 1px solid rgba(45, 212, 191, 0.6);
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(45, 212, 191, 0.3),
-        0 0 15px rgba(45, 212, 191, 0.15);
+        0 0 0 1px rgba(45, 212, 191, 0.5),
+        0 0 25px rgba(45, 212, 191, 0.25),
+        0 0 50px rgba(45, 212, 191, 0.1);
 }
 
 .dark .download-card:hover {
-    border: 1px solid rgba(45, 212, 191, 0.6);
+    border: 1px solid rgba(45, 212, 191, 0.8);
     box-shadow: 
         0 20px 40px rgba(45, 212, 191, 0.1),
-        0 0 0 1px rgba(45, 212, 191, 0.4),
-        0 0 20px rgba(45, 212, 191, 0.25);
+        0 0 0 1px rgba(45, 212, 191, 0.6),
+        0 0 30px rgba(45, 212, 191, 0.35),
+        0 0 60px rgba(45, 212, 191, 0.15);
 }
 
 /* Download card content layout */
@@ -1726,6 +1784,47 @@ footer {
     line-height: 1 !important;
     min-height: 3.5rem !important;
     box-sizing: border-box !important;
+}
+
+/* Mobile specific centering for contact section */
+@media (max-width: 768px) {
+    #copy-email-btn {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+    
+    #contact {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    #contact .container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    /* Ensure button container is perfectly centered */
+    #contact > .container > div {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
 }
 
 #copy-email-btn span {
@@ -2050,8 +2149,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   
   /* Reduce particle canvas load on small screens */
   #particle-canvas {
-    opacity: 0.4;
-    pointer-events: none;
+    opacity: 0.3 !important;
+    pointer-events: none !important;
   }
   
   /* Ensure grid items don't overflow */
@@ -2088,4 +2187,243 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   .dark .project-card {
     backdrop-filter: blur(10px); /* Reduced from 20px */
   }
+}
+
+/* Mobile Navigation Fix - Ensure navbar stays visible */
+@media (max-width: 768px) {
+    /* Fix navbar visibility */
+    #navbar, nav, header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 9999 !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .dark #navbar, .dark nav, .dark header {
+        background: rgba(17, 24, 39, 0.95) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Ensure mobile menu button is visible and functional */
+    #menu-btn, .mobile-menu-button, .hamburger, .menu-toggle {
+        z-index: 10000 !important;
+        position: relative !important;
+        display: block !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+    }
+    
+    /* Ensure mobile menu dropdown is visible */
+    #mobile-menu, .mobile-menu, .nav-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 9998 !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .dark #mobile-menu, .dark .mobile-menu, .dark .nav-menu {
+        background: rgba(17, 24, 39, 0.95) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Add padding to body to account for fixed navbar */
+    body {
+        padding-top: 4rem !important;
+    }
+}
+
+/* Mobile Project Section Scroll Fix */
+@media (max-width: 768px) {
+    /* Disable hover effects on mobile to prevent scroll interference */
+    .project-card:hover {
+        transform: none !important;
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.08) !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .dark .project-card:hover {
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.3) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    
+    /* Enable smooth touch scrolling */
+    #projects {
+        -webkit-overflow-scrolling: touch !important;
+        overflow-y: auto !important;
+        scroll-behavior: smooth !important;
+        touch-action: pan-y !important;
+    }
+    
+    /* Prevent zoom on tap for project cards */
+    .project-card {
+        touch-action: manipulation !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        pointer-events: auto !important;
+    }
+    
+    /* Allow text selection for readability */
+    .project-card h3,
+    .project-card p,
+    .project-card .tech-tag {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        user-select: text !important;
+    }
+    
+    /* Disable transform animations that interfere with scrolling */
+    .project-card,
+    .project-card .project-img {
+        transition: none !important;
+        transform: none !important;
+        will-change: auto !important;
+    }
+    
+    /* Ensure project grid doesn't interfere with scroll */
+    .project-card {
+        position: relative !important;
+        z-index: 1 !important;
+    }
+    
+    /* Remove any pointer events that might interfere */
+    .project-card::before,
+    .project-card::after {
+        display: none !important;
+    }
+}
+
+/* Mobile Touch Optimization */
+@media (max-width: 768px) {
+    /* Optimize scrolling performance */
+    html {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    body {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+    /* Prevent horizontal scroll issues */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Ensure containers don't cause horizontal scroll */
+    .container {
+        max-width: 100%;
+        overflow-x: hidden;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Grid responsiveness */
+    .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Fix any wide elements */
+    img, video, iframe {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* Advanced Mobile Performance Optimization */
+@media (max-width: 768px) {
+    /* GPU acceleration for smooth performance */
+    .project-card,
+    .skill-card,
+    .download-card {
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        perspective: 1000px !important;
+        -webkit-perspective: 1000px !important;
+    }
+    
+    /* Reduce animation complexity on mobile */
+    .project-card .project-img {
+        transition: none !important;
+        transform: none !important;
+    }
+    
+    /* Optimize background effects */
+    .hero-glow,
+    .photo-glow {
+        display: none !important;
+    }
+    
+    /* Simplify particle canvas for mobile */
+    #particle-canvas {
+        opacity: 0.3 !important;
+        pointer-events: none !important;
+    }
+    
+    /* Reduce backdrop blur for better performance */
+    .glass-effect {
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+    }
+    
+    /* Optimize AOS animations for mobile */
+    [data-aos] {
+        transition-duration: 0.3s !important;
+    }
+    
+    /* Prevent layout shifts */
+    .container {
+        contain: layout style paint !important;
+    }
+    
+    /* Optimize font rendering */
+    body {
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        text-rendering: optimizeSpeed !important;
+    }
+    
+    /* Reduce shadow complexity */
+    .project-card,
+    .skill-card,
+    .download-card {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Optimize gradients */
+    .bg-gradient-to-r,
+    .bg-gradient-to-br {
+        background: #f8fafc !important;
+    }
+    
+    .dark .bg-gradient-to-r,
+    .dark .bg-gradient-to-br {
+        background: #1f2937 !important;
+    }
 }
