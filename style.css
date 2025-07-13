@@ -588,15 +588,48 @@ html, body {
   outline: none;
   display: none;
 }
+
 #back-to-top:hover, #back-to-top:focus {
   transform: scale(1.12);
   box-shadow: 0 8px 32px 0 #2dd4bf99, 0 3px 16px 0 #3b82f699;
 }
-@media (max-width: 600px) {
+
+/* Mobile: Enhanced visibility for light mode */
+@media (max-width: 768px) {
   #back-to-top {
     bottom: 1rem;
     right: 1rem;
-    padding: 0.5rem;
+    padding: 0.625rem;
+    /* Enhanced background with stronger contrast for light mode */
+    background: linear-gradient(135deg, #14b8a6 60%, #2563eb 100%);
+    box-shadow: 
+      0 4px 20px rgba(20, 184, 166, 0.4),
+      0 2px 8px rgba(37, 99, 235, 0.3),
+      0 0 0 1px rgba(8, 72, 75, 0.8);
+    border: 2px solid rgba(0, 196, 176, 0.9);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  /* Force icon visibility on mobile */
+  #back-to-top svg {
+    color: #007a74 !important;
+    fill: none !important;
+    stroke: #00c79c !important;
+    stroke-width: 3 !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+  }
+  
+  #back-to-top:hover, #back-to-top:focus {
+    transform: scale(1.12);
+    box-shadow: 
+      0 8px 30px rgba(20, 184, 166, 0.6),
+      0 4px 15px rgba(37, 99, 235, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 1);
+    background: linear-gradient(135deg, #0f766e 60%, #1d4ed8 100%);
+  }
+  
+  #back-to-top:hover svg {
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.8));
   }
 }
 /* Custom styles untuk melengkapi Tailwind CSS */
