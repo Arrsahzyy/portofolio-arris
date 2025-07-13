@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mobile Fixes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 dark:bg-gray-900">
+    <!-- Test Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 p-4">
+        <div class="flex justify-between items-center">
+            <div class="text-xl font-bold">Test Header</div>
+            <div class="flex items-center">
+                <button id="theme-toggle" class="p-2 rounded-full">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"/>
+                    </svg>
+                </button>
+                <button id="menu-btn" class="md:hidden ml-4 p-2">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Test Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20">
+        <div class="hero-content text-center">
+            <div class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-br from-teal-400 to-blue-500 hero-glow mb-6 flex items-center justify-center">
+                <img src="assets/icons/arrisahmad.jpg" alt="Test Photo" class="w-[90%] h-[90%] rounded-full object-cover">
+            </div>
+            <h1 class="text-4xl font-bold">Test Hero Section</h1>
+            <p class="text-lg mt-4">This is a test to verify mobile fixes</p>
+        </div>
+    </section>
+
+    <!-- Test Social Icons -->
+    <section class="py-10 text-center">
+        <h2 class="text-2xl font-bold mb-6">Test Social Icons</h2>
+        <div class="flex justify-center space-x-4">
+            <a href="#" class="social-icon" title="LinkedIn">
+                <div class="social-icon-container">
+                    <img src="assets/icons/linkedin.png" alt="LinkedIn">
+                </div>
+            </a>
+            <a href="#" class="social-icon" title="GitHub">
+                <div class="social-icon-container">
+                    <img src="assets/icons/github.png" alt="GitHub">
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Test Download Section -->
+    <section class="py-10 bg-gray-50 dark:bg-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold mb-6">Test Download Section</h2>
+            <div class="download-card bg-white dark:bg-gray-700 p-6 rounded-lg max-w-md mx-auto">
+                <h3 class="text-xl font-semibold mb-4">Test Download Card</h3>
+                <a href="#" class="btn-primary">Download Test</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/umd/lucide.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

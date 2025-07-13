@@ -989,179 +989,231 @@ document.addEventListener('DOMContentLoaded', function() {
     // Jalankan optimasi animasi skill cards
     initSmoothSkillAnimations();
 
+    // Scroll Progress Bar Logic
 
-    // =================================================================
-    // 14. OPTIMIZED PROJECT SECTION ANIMATIONS
-    // =================================================================
-    
-    function initOptimizedProjectAnimations() {
-        // Optimized circuit animation with reduced complexity
-        const circuitPath = document.getElementById('circuit-path');
-        const circuitDot = document.getElementById('circuit-dot');
-        const circuitBackground = document.getElementById('circuit-background');
-        
-        if (circuitPath && circuitDot && circuitBackground) {
-            const length = circuitPath.getTotalLength();
-            circuitPath.style.strokeDasharray = length;
-            circuitPath.style.strokeDashoffset = length;
-            
-            function animateCircuit() {
-                circuitPath.style.transition = 'stroke-dashoffset 2s ease-in-out';
-                circuitPath.style.strokeDashoffset = 0;
-                
-                setTimeout(() => {
-                    circuitDot.style.transition = 'all 0.5s ease';
-                    circuitDot.style.opacity = 1;
-                }, 1000);
-            }
-            
-            // Trigger animation when projects section is in viewport
-            const projectsSection = document.getElementById('projects');
-            if (projectsSection) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            animateCircuit();
-                            circuitBackground.style.opacity = '0.2';
-                        }
-                    });
-                }, { threshold: 0.1 });
-                observer.observe(projectsSection);
-            }
-        }
-        
-        // Optimized timeline node animations with throttling
-        const timelineNodes = document.querySelectorAll('.timeline-node');
-        const projectCards = document.querySelectorAll('.project-card');
-        
-        if (timelineNodes.length && projectCards.length) {
-            let isScrolling = false;
-            
-            function updateTimelineNodes() {
-                if (isScrolling) return;
-                isScrolling = true;
-                
-                requestAnimationFrame(() => {
-                    projectCards.forEach((card, index) => {
-                        const rect = card.getBoundingClientRect();
-                        const isVisible = rect.top < window.innerHeight * 0.7 && rect.bottom > window.innerHeight * 0.3;
-                        
-                        if (timelineNodes[index]) {
-                            if (isVisible) {
-                                timelineNodes[index].classList.add('active');
-                                timelineNodes[index].style.transform = 'scale(1.1)';
-                                timelineNodes[index].style.opacity = '1';
-                            } else {
-                                timelineNodes[index].classList.remove('active');
-                                timelineNodes[index].style.transform = 'scale(1)';
-                                timelineNodes[index].style.opacity = '0.6';
-                            }
-                        }
-                    });
-                    isScrolling = false;
-                });
-            }
-            
-            // Throttled scroll listener
-            let scrollTimeout;
-            window.addEventListener('scroll', () => {
-                if (scrollTimeout) clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(updateTimelineNodes, 50);
-            });
-            
-            updateTimelineNodes();
-        }
-        
-        // Simplified project card interactions
-        projectCards.forEach((card, index) => {
-            // Enable floating animation only when not interacting
-            card.classList.add('enable-float');
-            
-            // Optimized hover effects
-            card.addEventListener('mouseenter', function() {
-                this.style.zIndex = '15';
-                this.classList.remove('enable-float');
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.zIndex = '';
-                // Re-enable floating after delay
-                setTimeout(() => {
-                    this.classList.add('enable-float');
-                }, 500);
-            });
-            
-            // Touch interactions for mobile - FIXED for better scrolling
-            if (window.innerWidth <= 768) {
-                // Remove problematic touch events that prevent scrolling
-                card.style.touchAction = 'pan-y'; // Allow only vertical scrolling
-                card.style.pointerEvents = 'auto';
-                
-                // Use simple click instead of touchstart to avoid scroll conflicts
-                card.addEventListener('click', function(e) {
-                    // Only add subtle feedback without preventing default behavior
-                    this.style.boxShadow = '0 8px 25px rgba(45, 212, 191, 0.2)';
-                    setTimeout(() => {
-                        this.style.boxShadow = '';
-                    }, 200);
-                });
-            } else {
-                // Desktop touch interactions (if needed)
-                card.addEventListener('touchstart', function(e) {
-                    this.classList.toggle('active-mobile');
-                    
-                    // Remove active from other cards
-                    projectCards.forEach(otherCard => {
-                        if (otherCard !== this) {
-                            otherCard.classList.remove('active-mobile');
-                        }
-                    });
-                });
-            }
-            
-            // Intersection observer for performance
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                        
-                        // Staggered reveal with reduced delay
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    }
-                });
-            }, {
-                threshold: 0.2,
-                rootMargin: '20px'
-            });
-            
-            cardObserver.observe(card);
-        });
-        
-        // Optimized tech tag interactions
-        const techTags = document.querySelectorAll('.tech-tag');
-        techTags.forEach(tag => {
-            tag.addEventListener('mouseenter', function() {
-                this.style.transform = 'scale(1.05) translateY(-1px)';
-            });
-            
-            tag.addEventListener('mouseleave', function() {
-                this.style.transform = '';
-            });
-        });
-        
-        // Performance monitoring
-        if (window.performance && window.performance.mark) {
-            performance.mark('project-animations-initialized');
-        }
-        
-        console.log('Optimized project animations initialized');
+// SVG Circuit Progress Bar Logic
+function updateCircuitProgressBar() {
+  const path = document.getElementById('circuit-progress');
+  if (!path) return;
+  const totalLength = path.getTotalLength();
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) : 0;
+  path.style.strokeDasharray = totalLength;
+  path.style.strokeDashoffset = totalLength - (progress * totalLength);
+}
+
+window.addEventListener('scroll', updateCircuitProgressBar);
+window.addEventListener('resize', updateCircuitProgressBar);
+document.addEventListener('DOMContentLoaded', updateCircuitProgressBar);
+
+  // --- Animasi SVG Circuit di Section Projects ---
+  // SVG Circuit Animation
+  const circuitPath = document.getElementById('circuit-path');
+  const circuitDot = document.getElementById('circuit-dot');
+  if (circuitPath && circuitDot) {
+    const length = circuitPath.getTotalLength();
+    circuitPath.style.strokeDasharray = length;
+    circuitPath.style.strokeDashoffset = length;
+    circuitDot.style.opacity = 0.3;
+    function animateCircuit() {
+      circuitPath.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(.77,0,.18,1)';
+      circuitPath.style.strokeDashoffset = 0;
+      setTimeout(() => {
+        circuitDot.style.transition = 'opacity 0.5s';
+        circuitDot.style.opacity = 1;
+      }, 900);
     }
+  // Enhanced Project Section Animations
+  const projectsSection = document.getElementById('projects');
+  if (projectsSection) {
+    const sectionTitle = projectsSection.querySelector('.section-title');
+    const gridContainer = projectsSection.querySelector('.grid');
+    const projectCards = document.querySelectorAll('.project-card');
     
-    // Initialize optimized project animations
-    initOptimizedProjectAnimations();
+    // Intersection Observer for section animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate section title
+          if (sectionTitle) {
+            sectionTitle.classList.add('animate');
+          }
+          
+          // Animate grid container
+          if (gridContainer) {
+            setTimeout(() => {
+              gridContainer.classList.add('animate');
+            }, 300);
+          }
+          
+          // Trigger circuit animation if it exists
+          if (typeof animateCircuit === 'function') {
+            animateCircuit();
+          }
+          
+          // Animate project cards with stagger
+          projectCards.forEach((card, index) => {
+            setTimeout(() => {
+              card.style.animationDelay = `${index * 0.2}s`;
+              card.classList.add('animate-in');
+            }, 500 + (index * 100));
+          });
+        }
+      });
+    }, { 
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    });
+    
+    observer.observe(projectsSection);
+  }
+
+  // Enhanced Timeline node highlight on scroll
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  if (timelineNodes.length) {
+    const cards = document.querySelectorAll('.project-card');
+    function highlightTimeline() {
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.7 && rect.bottom > 0;
+        
+        if (timelineNodes[i]) {
+          if (isVisible) {
+            timelineNodes[i].classList.add('opacity-100', 'scale-110');
+            timelineNodes[i].classList.remove('opacity-60');
+          } else {
+            timelineNodes[i].classList.remove('opacity-100', 'scale-110');
+            timelineNodes[i].classList.add('opacity-60');
+          }
+        }
+      });
+    }
+    window.addEventListener('scroll', highlightTimeline);
+    highlightTimeline();
+  }
+
+  // Enhanced Project card interactions
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach((card, index) => {
+    // Remove loading state after animation
+    setTimeout(() => {
+      card.classList.remove('loading');
+    }, 1000 + (index * 200));
+    
+    // Enhanced hover effects
+    card.addEventListener('mouseenter', () => {
+      // Add glow effect
+      card.style.setProperty('--glow-opacity', '1');
+      
+      // Pause floating animation
+      card.style.animationPlayState = 'paused';
+      
+      // Add subtle transform to other cards
+      projectCards.forEach((otherCard, otherIndex) => {
+        if (otherCard !== card) {
+          otherCard.style.transform = 'scale(0.95) translateZ(0)';
+          otherCard.style.opacity = '0.7';
+        }
+      });
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      // Remove glow effect
+      card.style.setProperty('--glow-opacity', '0');
+      
+      // Resume floating animation
+      card.style.animationPlayState = 'running';
+      
+      // Reset other cards
+      projectCards.forEach((otherCard) => {
+        otherCard.style.transform = '';
+        otherCard.style.opacity = '';
+      });
+    });
+    
+    // Touch interactions for mobile
+    card.addEventListener('touchstart', (e) => {
+      card.classList.add('touched');
+      
+      // Remove touched class from other cards
+      projectCards.forEach(otherCard => {
+        if (otherCard !== card) {
+          otherCard.classList.remove('touched');
+        }
+      });
+      
+      e.stopPropagation();
+    });
+    
+    // Enhanced tech tag interactions
+    const techTags = card.querySelectorAll('.tech-tag');
+    techTags.forEach(tag => {
+      tag.addEventListener('mouseenter', () => {
+        // Add tooltip or enhanced effect
+        tag.style.zIndex = '1000';
+      });
+      
+      tag.addEventListener('mouseleave', () => {
+        tag.style.zIndex = '';
+      });
+    });
+  });
+  
+  // Remove touched class on outside tap
+  document.addEventListener('touchstart', (e) => {
+    if (!e.target.closest('.project-card')) {
+      projectCards.forEach(card => {
+        card.classList.remove('touched');
+      });
+    }
+  });
+  
+  // Parallax effect for project images
+  if (window.innerWidth > 768) {
+    window.addEventListener('scroll', () => {
+      projectCards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const img = card.querySelector('.project-img');
+        
+        if (img && rect.top < window.innerHeight && rect.bottom > 0) {
+          const scrolled = window.pageYOffset;
+          const rate = scrolled * -0.5;
+          img.style.transform = `translateY(${rate * 0.1}px) scale(1)`;
+        }
+      });
+    });
+  }
+    // Touch (mobile)
+    card.addEventListener('touchstart', (e) => {
+      card.classList.add('z-30');
+      card.style.boxShadow = '0 0 0 4px #2dd4bf99, 0 8px 32px #2dd4bf33';
+      // Show overlay info
+      const overlay = card.querySelector('.project-overlay');
+      if (overlay) overlay.style.opacity = 1;
+      // Hide overlays on other cards
+      projectCards.forEach(other => {
+        if (other !== card) {
+          other.style.boxShadow = '';
+          other.classList.remove('z-30');
+          const ov = other.querySelector('.project-overlay');
+          if (ov) ov.style.opacity = 0;
+        }
+      });
+      e.stopPropagation();
+    });
+  });
+  // Hide overlays on tap outside
+  document.addEventListener('touchstart', (e) => {
+    if (![...projectCards].some(card => card.contains(e.target))) {
+      projectCards.forEach(card => {
+        card.style.boxShadow = '';
+        card.classList.remove('z-30');
+        const overlay = card.querySelector('.project-overlay');
+        if (overlay) overlay.style.opacity = 0;
+      });
+    }
+  });
 
   // Back to Top Button Logic
   const backToTopBtn = document.getElementById('back-to-top');
@@ -1179,64 +1231,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial state
   toggleBackToTop();
 
-});    // =================================================================
-    // 15. FINAL PROJECT SECTION OPTIMIZATIONS
-    // =================================================================
-    
-    function finalOptimizations() {
-        // Ensure Lucide icons are rendered
-        if (typeof lucide !== 'undefined' && lucide.createIcons) {
-            lucide.createIcons();
-        }
-        
-        // Initialize project cards with staggered loading
-        const projectCards = document.querySelectorAll('.project-card');
-        projectCards.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add('loaded');
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, index * 100);
-        });
-        
-        // Optimize performance for low-end devices
-        const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
-                              /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
-        if (isLowEndDevice) {
-            // Disable heavy animations on low-end devices
-            document.documentElement.style.setProperty('--animation-duration', '0.2s');
-            
-            projectCards.forEach(card => {
-                card.classList.remove('enable-float');
-                card.style.animation = 'none';
-            });
-            
-            // Disable circuit animations
-            const circuitPath = document.getElementById('circuit-path');
-            const circuitDot = document.getElementById('circuit-dot');
-            if (circuitPath) circuitPath.style.animation = 'none';
-            if (circuitDot) circuitDot.style.animation = 'none';
-        }
-        
-        // Add keyboard navigation
-        projectCards.forEach((card, index) => {
-            card.setAttribute('tabindex', '0');
-            card.setAttribute('role', 'article');
-            card.setAttribute('aria-label', `Project ${index + 1}`);
-            
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    card.focus();
-                    card.click();
-                }
-            });
-        });
-        
-        // Performance monitoring
-        console.log('Project section optimized for performance');
-    }
-    
-    // Run final optimizations
-    setTimeout(finalOptimizations, 500);
+  // Tech tag tooltips and interactions
+  document.querySelectorAll('.tech-tag').forEach(function(tag) {
+    tag.addEventListener('mouseenter', function() {
+      tag.setAttribute('title', tag.textContent);
+    });
+  });
+});
