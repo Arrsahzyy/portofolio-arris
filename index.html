@@ -18,6 +18,19 @@
     <script>
         tailwind.config = {
             darkMode: 'class',
+            theme: {
+                extend: {
+                    keyframes: {
+                        shine: {
+                            '0%': { 'background-position': '100%' },
+                            '100%': { 'background-position': '-100%' },
+                        },
+                    },
+                    animation: {
+                        shine: 'shine 5s linear infinite',
+                    },
+                },
+            },
         }
     </script>
     
@@ -31,6 +44,55 @@
     
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Custom Shine Animation Styles -->
+    <style>
+        .shine-text {
+            color: #2dd4bf; /* teal-400 base color */
+            background: linear-gradient(120deg, rgba(45, 212, 191, 0.6) 40%, rgba(45, 212, 191, 1) 50%, rgba(45, 212, 191, 0.6) 60%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+            text-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+            position: relative;
+        }
+        
+        .shine-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(120deg, transparent 40%, rgba(45, 212, 191, 0.4) 50%, transparent 60%);
+            background-size: 200% 100%;
+            animation: shine-glow 5s linear infinite;
+            border-radius: 4px;
+            z-index: -1;
+            filter: blur(8px);
+        }
+        
+        .dark .shine-text {
+            color: #2dd4bf; /* teal-400 for dark mode */
+            text-shadow: 0 0 15px rgba(45, 212, 191, 0.5);
+        }
+        
+        .dark .shine-text::before {
+            background: linear-gradient(120deg, transparent 40%, rgba(45, 212, 191, 0.6) 50%, transparent 60%);
+            background-size: 200% 100%;
+        }
+        
+        @keyframes shine {
+            0% { background-position: 100%; }
+            100% { background-position: -100%; }
+        }
+        
+        @keyframes shine-glow {
+            0% { background-position: 100%; }
+            100% { background-position: -100%; }
+        }
+    </style>
 
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
@@ -41,7 +103,9 @@
     <!-- Header / Navbar -->
     <header id="navbar" class="glass-effect fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-wider text-teal-400">Portofolio Arris Ahmad Fadillah</a>
+            <a href="#" class="text-xl font-bold tracking-wider shine-text">
+                Portofolio Arris Ahmad Fadillah
+            </a>
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#hero" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">Tentang Saya</a>
@@ -126,7 +190,7 @@
                             Saat ini saya menempuh semester 5 di jurusan Teknik Elektro dengan fokus pada Sistem Tenaga, Arus Kuat dan Sistem Kendali. Saya sangat tertarik pada persimpangan antara perangkat keras dan perangkat lunak, dan selalu antusias untuk belajar hal baru.
                         </p>
                         <p class="mb-6">
-                            Di luar akademis, saya aktif mengembangkan kemampuan praktis melalui berbagai kegiatan: sebagai anggota tim robotika (UROTERA) dan tim pengembangan UAV (Swarnakasa), saya mengasah keterampilan kerja tim, manajemen proyek, dan pemecahan masalah. Selain itu, keterlibatan saya di Dewan Energi Lampung memperkuat kemampuan saya dalam riset dan kolaborasi tim untuk mengkaji potensi energi di wilayah Lampung.
+                            Di luar akademis, saya aktif mengembangkan kemampuan praktis melalui berbagai kegiatan: sebagai anggota tim Robotika dan tim pengembangan UAV (Swarnakasa), saya mengasah keterampilan kerja tim, manajemen proyek, dan pemecahan masalah. Selain itu, keterlibatan saya di Dewan Energi Lampung memperkuat kemampuan saya dalam riset dan kolaborasi tim untuk mengkaji potensi energi di wilayah Lampung.
                         </p>
                         <div class="flex space-x-4 mb-6">
 
