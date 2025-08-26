@@ -7,7 +7,6 @@
   "scripts": {
     "setup": "node setup.js",
     "create": "node blog/generators/blog-generator.js create",
-    "build": "echo 'Build completed - static site ready'",
     "list": "node blog/generators/blog-generator.js list",
     "optimize": "node blog/generators/blog-generator.js optimize-images",
     "dev": "npx http-server . -p 3000 -o",
