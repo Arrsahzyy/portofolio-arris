@@ -1,0 +1,438 @@
+/* Mobile Experience Enhancements CSS */
+/* Maintains original design while optimizing for touch */
+
+/* Touch Feedback Styles */
+.touch-active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* Ripple Effect Animation */
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Context Menu Animations */
+@keyframes contextMenuShow {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+@keyframes contextMenuHide {
+    from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px) scale(0.9);
+    }
+}
+
+/* Mobile Context Menu Styles */
+.mobile-context-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .mobile-context-menu {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.context-menu-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.context-option {
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.context-option:hover {
+    background: #f3f4f6;
+}
+
+.context-option:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.context-option:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.dark .context-option {
+    color: #d1d5db;
+}
+
+.dark .context-option:hover {
+    background: #374151;
+}
+
+/* Enhanced Touch Targets for Mobile */
+@media (max-width: 768px) {
+    /* Ensure minimum touch target sizes */
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .nav-link,
+    .social-icon,
+    .tech-tag {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Improve spacing between interactive elements */
+    .nav-link + .nav-link {
+        margin-top: 8px;
+    }
+
+    .tech-tag + .tech-tag {
+        margin-left: 8px;
+        margin-bottom: 8px;
+    }
+
+    /* Enhanced focus indicators for touch */
+    button:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-secondary:focus-visible,
+    .nav-link:focus-visible {
+        outline: 3px solid rgba(45, 212, 191, 0.5);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 6px rgba(45, 212, 191, 0.1);
+    }
+
+    /* Improve card interactions */
+    .project-card,
+    .skill-card,
+    .blog-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card.touch-active,
+    .skill-card.touch-active,
+    .blog-card.touch-active {
+        transform: scale(0.98);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Prevent text selection on touch interactions */
+    .project-card,
+    .skill-card,
+    .tech-tag,
+    button,
+    .btn-primary,
+    .btn-secondary {
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Optimize scroll performance */
+    .container {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Improve navbar for mobile */
+    #navbar.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .dark #navbar.scrolled {
+        background: rgba(31, 41, 55, 0.95);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mobile-optimized animations */
+    @media (prefers-reduced-motion: no-preference) {
+        .hero-content,
+        .project-card,
+        .skill-card {
+            animation-duration: 0.3s;
+        }
+    }
+
+    /* Disable animations for users who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+        .touch-active {
+            transform: none;
+        }
+        
+        .loading-spinner {
+            animation: none;
+            border-top-color: transparent;
+        }
+        
+        .skeleton {
+            animation: none;
+        }
+    }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-glow,
+    .photo-glow {
+        filter: blur(12px);
+    }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .hero-content .w-32 {
+        width: 6rem;
+        height: 6rem;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* Fix viewport height issues */
+    .min-h-screen {
+        min-height: -webkit-fill-available;
+    }
+    
+    /* Improve scroll momentum */
+    body {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Fix input zoom on focus */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        font-size: 16px;
+    }
+}
+
+/* Android Chrome specific fixes */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    /* Improve rendering performance */
+    .project-card,
+    .skill-card {
+        transform: translateZ(0);
+        will-change: transform;
+    }
+}
+
+/* Foldable device optimizations */
+@media (max-width: 280px) {
+    .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    
+    .error-toast {
+        left: 5px;
+        right: 5px;
+    }
+}
+
+/* Large mobile device optimizations */
+@media (min-width: 414px) and (max-width: 768px) {
+    .error-toast {
+        max-width: 380px;
+        right: 15px;
+    }
+    
+    .error-modal {
+        max-width: 380px;
+    }
+}
+
+/* Tablet specific optimizations */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .touch-active {
+        transform: scale(0.99);
+    }
+    
+    .mobile-context-menu {
+        min-width: 150px;
+    }
+}
+
+/* Dark mode mobile optimizations */
+.dark {
+    /* Improve contrast for mobile reading */
+    --mobile-text-primary: #f9fafb;
+    --mobile-text-secondary: #e5e7eb;
+    --mobile-bg-primary: #111827;
+    --mobile-bg-secondary: #1f2937;
+}
+
+@media (max-width: 768px) {
+    .dark body {
+        background-color: var(--mobile-bg-primary);
+        color: var(--mobile-text-primary);
+    }
+    
+    .dark .bg-white {
+        background-color: var(--mobile-bg-secondary);
+    }
+    
+    .dark .text-gray-600,
+    .dark .text-gray-700,
+    .dark .text-gray-800 {
+        color: var(--mobile-text-secondary);
+    }
+}
+
+/* Error state styles for mobile */
+.resource-error {
+    opacity: 0.5;
+    border: 2px dashed #ef4444;
+    border-radius: 4px;
+}
+
+.image-placeholder {
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    user-select: none;
+}
+
+.dark .image-placeholder {
+    border-color: #374151;
+    background: #1f2937;
+    color: #9ca3af;
+}
+
+/* Form error states */
+input.error,
+textarea.error,
+select.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Success states */
+.success {
+    background-color: #10b981 !important;
+    color: white !important;
+}
+
+.success:hover {
+    background-color: #059669 !important;
+}
+
+/* Performance optimizations for older devices */
+@media (max-width: 768px) {
+    /* Reduce expensive operations on mobile */
+    .hero-glow,
+    .photo-glow {
+        display: none;
+    }
+    
+    /* Simplify gradients for better performance */
+    .bg-gradient-to-br {
+        background: var(--color-primary);
+    }
+    
+    /* Reduce shadow complexity */
+    .shadow-lg,
+    .shadow-xl {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    /* Larger focus indicators */
+    *:focus-visible {
+        outline-width: 3px;
+        outline-offset: 3px;
+    }
+    
+    /* Better error message visibility */
+    .error-toast {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    /* Improve button text clarity */
+    button,
+    .btn-primary,
+    .btn-secondary {
+        font-weight: 600;
+        letter-spacing: 0.025em;
+    }
+}
+
+/* Progressive enhancement for modern mobile browsers */
+@supports (backdrop-filter: blur(10px)) {
+    .mobile-context-menu {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+    }
+    
+    .dark .mobile-context-menu {
+        background: rgba(31, 41, 55, 0.9);
+    }
+    
+    #navbar.scrolled {
+        backdrop-filter: blur(20px);
+    }
+}
+
+@supports (overscroll-behavior: contain) {
+    .mobile-context-menu,
+    .error-modal {
+        overscroll-behavior: contain;
+    }
+}
+
+/* Print styles for mobile */
+@media print {
+    .error-toast,
+    .error-overlay,
+    .mobile-context-menu,
+    .offline-banner,
+    .loading-overlay {
+        display: none !important;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .loading-spinner {
+        animation: none;
+        border: 3px solid #e5e7eb;
+        border-top: 3px solid #0d9488;
+    }
+}

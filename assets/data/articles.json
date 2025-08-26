@@ -1,0 +1,99 @@
+[
+  {
+    "title": "Otomasi Industri dengan PLC Siemens",
+    "slug": "otomasi-industri-dengan-plc-siemens",
+    "filename": "blog-otomasi-industri-dengan-plc-siemens.html",
+    "category": "automation",
+    "description": "Panduan lengkap implementasi sistem otomasi industri menggunakan PLC Siemens",
+    "author": "Arris Ahmad Fadillah",
+    "tags": [
+      "plc",
+      "siemens",
+      "automation"
+    ],
+    "difficulty": "Advanced",
+    "publishDate": "August 23, 2025",
+    "publishDateISO": "2025-08-23T16:42:51.666Z",
+    "created": "2025-08-23T16:42:51.669Z",
+    "wordCount": 36,
+    "readTime": 1,
+    "featuredImage": "/assets/blog/otomasi-industri-dengan-plc-siemens-featured.webp",
+    "url": "https://arrisahmad.dev/blog-otomasi-industri-dengan-plc-siemens.html"
+  },
+  {
+    "title": "Predictive Maintenance dengan Machine Learning",
+    "slug": "predictive-maintenance-dengan-machine-learning",
+    "filename": "blog-predictive-maintenance-dengan-machine-learning.html",
+    "category": "machine-learning",
+    "description": "Implementasi machine learning untuk predictive maintenance pada sistem electrical",
+    "author": "Arris Ahmad Fadillah",
+    "tags": [
+      "python",
+      "machine-learning",
+      "predictive",
+      "maintenance"
+    ],
+    "difficulty": "Intermediate",
+    "publishDate": "August 23, 2025",
+    "publishDateISO": "2025-08-23T16:37:28.201Z",
+    "created": "2025-08-23T16:37:28.206Z",
+    "wordCount": 218,
+    "readTime": 2,
+    "featuredImage": "/assets/blog/predictive-maintenance-dengan-machine-learning-featured.webp",
+    "url": "https://arrisahmad.dev/blog-predictive-maintenance-dengan-machine-learning.html"
+  },
+  {
+    "title": "Complete Guide to ESP32 Development: From Setup to IoT Project",
+    "slug": "esp32-guide",
+    "filename": "blog-esp32-guide.html",
+    "category": "iot",
+    "description": "Learn how to set up ESP32 development environment, understand pin configurations, and build a complete IoT monitoring system with web interface and real-time data visualization.",
+    "author": "Arris Ahmad Fadillah",
+    "tags": [
+      "ESP32",
+      "Arduino",
+      "IoT"
+    ],
+    "difficulty": "Intermediate",
+    "publishDate": "August 10, 2025",
+    "created": "2025-08-10T00:00:00.000Z",
+    "wordCount": 250,
+    "readTime": 8
+  },
+  {
+    "title": "Understanding SPWM Inverters: Theory, Design, and MATLAB Implementation",
+    "slug": "spwm-inverters",
+    "filename": "blog-spwm-inverters.html",
+    "category": "power-systems",
+    "description": "Deep dive into Sinusoidal Pulse Width Modulation techniques for power electronics applications. Includes mathematical analysis, design considerations, and complete MATLAB/Simulink implementation.",
+    "author": "Arris Ahmad Fadillah",
+    "tags": [
+      "MATLAB",
+      "Simulink",
+      "Power Electronics"
+    ],
+    "difficulty": "Advanced",
+    "publishDate": "August 5, 2025",
+    "created": "2025-08-05T00:00:00.000Z",
+    "wordCount": 350,
+    "readTime": 12
+  },
+  {
+    "title": "Machine Learning for Predictive Maintenance in Electrical Systems",
+    "slug": "ml-electrical",
+    "filename": "blog-ml-electrical.html",
+    "category": "machine-learning",
+    "description": "Research findings on implementing ML algorithms for predicting equipment failures in power distribution systems. Includes data preprocessing, feature engineering, and model deployment strategies.",
+    "author": "Arris Ahmad Fadillah",
+    "tags": [
+      "Python",
+      "TensorFlow",
+      "Predictive"
+    ],
+    "difficulty": "Advanced",
+    "publishDate": "July 28, 2025",
+    "created": "2025-07-28T00:00:00.000Z",
+    "wordCount": 420,
+    "readTime": 15
+  }
+]

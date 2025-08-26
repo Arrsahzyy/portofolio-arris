@@ -1,0 +1,135 @@
+{
+  "name": "Arris Ahmad Fadillah - Blog",
+  "short_name": "Arris Blog",
+  "description": "Electrical Engineering, IoT, and Technology Articles by Arris Ahmad Fadillah",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "technology", "engineering"],
+  "screenshots": [
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Arris Ahmad Blog - Desktop View"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Arris Ahmad Blog - Mobile View"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "72x72",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "96x96",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "128x128",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "144x144",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "152x152",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "384x384",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/arrisahmad.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Latest Articles",
+      "short_name": "Latest",
+      "description": "View the latest blog articles",
+      "url": "/blog.html",
+      "icons": [
+        {
+          "src": "/assets/icons/arrisahmad.jpg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "IoT Articles",
+      "short_name": "IoT",
+      "description": "Browse IoT and embedded systems articles",
+      "url": "/blog.html?category=iot",
+      "icons": [
+        {
+          "src": "/assets/icons/iot.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Electronics",
+      "short_name": "Electronics",
+      "description": "Explore electronics and circuit design",
+      "url": "/blog.html?category=electronics",
+      "icons": [
+        {
+          "src": "/assets/icons/electrical-panel.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Programming",
+      "short_name": "Code",
+      "description": "Programming tutorials and guides",
+      "url": "/blog.html?category=programming",
+      "icons": [
+        {
+          "src": "/assets/icons/coding.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  }
+}

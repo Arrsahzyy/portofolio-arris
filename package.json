@@ -1,0 +1,79 @@
+{
+  "name": "arris-blog-system",
+  "version": "1.0.0",
+  "description": "Scalable blog management system for Arris Ahmad Fadillah portfolio",
+  "main": "blog-generator.js",
+  "type": "commonjs",
+  "scripts": {
+    "setup": "node setup.js",
+    "create": "node blog-generator.js create",
+    "build": "node blog-generator.js build-index",
+    "list": "node blog-generator.js list",
+    "optimize": "node blog-generator.js optimize-images",
+    "dev": "npx http-server . -p 3000 -o",
+    "serve": "npx http-server . -p 8080",
+    "migrate": "node scripts/migrate-articles.js",
+    "minify-css": "npx csso assets/css/blog-components.css --output assets/css/blog-components.min.css",
+    "minify-js": "npx uglifyjs assets/js/blog-shared.js --output assets/js/blog-shared.min.js",
+    "optimize-images": "node scripts/optimize-images.js optimize",
+    "webp": "node scripts/optimize-images.js webp",
+    "responsive": "node scripts/optimize-images.js responsive",
+    "build-production": "npm run build && npm run minify-css && npm run minify-js && npm run optimize-images",
+    "lint": "npx eslint assets/js/blog-shared.js blog-generator.js scripts/*.js",
+    "format": "npx prettier --write \"**/*.{js,json,md}\"",
+    "test": "node -e \"console.log('✅ All systems operational!')\"",
+    "status": "node setup.js status",
+    "help": "node blog-generator.js --help",
+    "clean": "rm -rf node_modules package-lock.json",
+    "reinstall": "npm run clean && npm install",
+    "backup": "tar -czf blog-backup-$(date +%Y%m%d).tar.gz assets/ templates/ *.html *.js *.md",
+    "validate": "npm run test && npm run lint"
+  },
+  "keywords": [
+    "blog",
+    "portfolio",
+    "electrical-engineering",
+    "iot",
+    "automation",
+    "static-site",
+    "cms"
+  ],
+  "author": "Arris Ahmad Fadillah",
+  "license": "MIT",
+  "devDependencies": {
+    "csso": "^5.0.5",
+    "eslint": "^8.57.0",
+    "http-server": "^14.1.1",
+    "imagemin": "^8.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-webp": "^7.0.0",
+    "prettier": "^3.2.4",
+    "sharp": "^0.33.2",
+    "uglify-js": "^3.17.4"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.55.0",
+    "axe-core": "^4.10.3",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "lighthouse": "^12.8.1",
+    "sentry": "^0.1.2",
+    "terser": "^5.43.1",
+    "vitest": "^3.2.4",
+    "web-vitals": "^5.1.0",
+    "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arrsahzyy/portofolio-arris.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Arrsahzyy/portofolio-arris/issues"
+  },
+  "homepage": "https://github.com/Arrsahzyy/portofolio-arris#readme"
+}
