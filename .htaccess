@@ -1,0 +1,19 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Remove .html extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Redirect .html URLs to clean URLs
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1? [NC,L,R=301]
+
+# Specific rewrites for blog pages
+RewriteRule ^blog/?$ /blog/blog.html [NC,L]
+RewriteRule ^blog/articles/google-student-ambassador/?$ /blog/articles/blog-GoogleStudentAmbassador\ .html [NC,L]
+
+# Force HTTPS (optional)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

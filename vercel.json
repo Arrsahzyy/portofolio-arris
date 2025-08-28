@@ -1,3 +1,14 @@
 {
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "/blog/blog.html"
+    },
+    {
+      "source": "/blog/articles/google-student-ambassador",
+      "destination": "/blog/articles/blog-GoogleStudentAmbassador .html"
+    }
+  ],
+  "cleanUrls": true
 }
