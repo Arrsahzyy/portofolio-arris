@@ -1,0 +1,17 @@
+{
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "installCommand": null,
+  "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "/blog/blog.html"
+    },
+    {
+      "source": "/blog/articles/google-student-ambassador",
+      "destination": "/blog/articles/blog-GoogleStudentAmbassador .html"
+    }
+  ],
+  "cleanUrls": true
+}

@@ -1,0 +1,25 @@
+{
+  "name": "portofolio-arris",
+  "version": "1.0.0",
+  "description": "Portfolio website for Arris Ahmad Fadillah - Electrical Engineer",
+  "scripts": {
+    "dev": "npx http-server . -p 3000 -o",
+    "serve": "npx http-server . -p 8080",
+    "start": "node server.js",
+    "build": "echo 'Static site, no build needed'"
+  },
+  "keywords": ["portfolio", "electrical-engineer", "blog", "iot"],
+  "author": "Arris Ahmad Fadillah",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arrsahzyy/portofolio-arris.git"
+  },
+  "homepage": "https://portofolio-arris.vercel.app",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

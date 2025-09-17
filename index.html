@@ -18,6 +18,19 @@
     <script>
         tailwind.config = {
             darkMode: 'class',
+            theme: {
+                extend: {
+                    keyframes: {
+                        shine: {
+                            '0%': { 'background-position': '100%' },
+                            '100%': { 'background-position': '-100%' },
+                        },
+                    },
+                    animation: {
+                        shine: 'shine 5s linear infinite',
+                    },
+                },
+            },
         }
     </script>
     
@@ -29,8 +42,77 @@
     <!-- Animate On Scroll (AOS) Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
+    <!-- Performance optimization -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q136JZELGC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q136JZELGC', {
+        page_title: 'Portofolio Arris Ahmad Fadillah - Mahasiswa Teknik Elektro',
+        page_location: window.location.href,
+        send_page_view: true
+      });
+    </script>
+    
     <!-- Custom CSS File -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Mobile Experience Enhancements -->
+    <link rel="stylesheet" href="assets/css/mobile-enhancements.css">
+    
+    <!-- Custom Shine Animation Styles -->
+    <style>
+        .shine-text {
+            color: #2dd4bf; /* teal-400 base color */
+            background: linear-gradient(120deg, rgba(45, 212, 191, 0.6) 40%, rgba(45, 212, 191, 1) 50%, rgba(45, 212, 191, 0.6) 60%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+            text-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+            position: relative;
+        }
+        
+        .shine-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(120deg, transparent 40%, rgba(45, 212, 191, 0.4) 50%, transparent 60%);
+            background-size: 200% 100%;
+            animation: shine-glow 5s linear infinite;
+            border-radius: 4px;
+            z-index: -1;
+            filter: blur(8px);
+        }
+        
+        .dark .shine-text {
+            color: #2dd4bf; /* teal-400 for dark mode */
+            text-shadow: 0 0 15px rgba(45, 212, 191, 0.5);
+        }
+        
+        .dark .shine-text::before {
+            background: linear-gradient(120deg, transparent 40%, rgba(45, 212, 191, 0.6) 50%, transparent 60%);
+            background-size: 200% 100%;
+        }
+        
+        @keyframes shine {
+            0% { background-position: 100%; }
+            100% { background-position: -100%; }
+        }
+        
+        @keyframes shine-glow {
+            0% { background-position: 100%; }
+            100% { background-position: -100%; }
+        }
+    </style>
 
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
@@ -41,13 +123,17 @@
     <!-- Header / Navbar -->
     <header id="navbar" class="glass-effect fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold tracking-wider text-teal-400">Portofolio Arris Ahmad Fadillah</a>
+            <a href="#" class="text-xl font-bold tracking-wider shine-text">
+                Portofolio Arris Ahmad Fadillah
+            </a>
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#hero" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">Tentang Saya</a>
-                <a href="#download" class="nav-link">Download</a>
+                <a href="#experience" class="nav-link">Pengalaman</a>
                 <a href="#skills" class="nav-link">Keahlian</a>
                 <a href="#projects" class="nav-link">Proyek</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#download" class="nav-link">Download</a>
                 <a href="#contact" class="nav-link">Kontak</a>
             </nav>
             <div class="flex items-center">
@@ -66,37 +152,72 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-200 dark:bg-gray-800">
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-200 dark:bg-gray-800" data-mobile-enhanced="true">
             <div class="flex flex-col items-center py-4 space-y-4">
-                <a href="#hero" class="nav-link-mobile">Home</a>
-                <a href="#about" class="nav-link-mobile">Tentang Saya</a>
-                <a href="#download" class="nav-link-mobile">Download</a>
-                <a href="#skills" class="nav-link-mobile">Keahlian</a>
-                <a href="#projects" class="nav-link-mobile">Proyek</a>
-                <a href="#contact" class="nav-link-mobile">Kontak</a>
+                <a href="#hero" class="nav-link-mobile" data-mobile-enhanced="true">Home</a>
+                <a href="#about" class="nav-link-mobile" data-mobile-enhanced="true">Tentang Saya</a>
+                <a href="#experience" class="nav-link-mobile" data-mobile-enhanced="true">Pengalaman</a>
+                <a href="#skills" class="nav-link-mobile" data-mobile-enhanced="true">Keahlian</a>
+                <a href="#projects" class="nav-link-mobile" data-mobile-enhanced="true">Proyek</a>
+                <a href="#blog" class="nav-link-mobile" data-mobile-enhanced="true">Blog</a>
+                <a href="#download" class="nav-link-mobile" data-mobile-enhanced="true">Download</a>
+                <a href="#contact" class="nav-link-mobile" data-mobile-enhanced="true">Kontak</a>
             </div>
         </div>
     </header>
 
     <main class="relative z-10">
         <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center justify-center text-center overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="hero-content">
-                    <div class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full bg-gradient-to-br from-teal-400 to-blue-500 hero-glow mb-6 flex items-center justify-center">
+        <section id="hero" class="min-h-screen py-20 flex items-center justify-center text-center overflow-hidden">
+            <div class="container mx-auto px-6 py-12">
+                <div class="hero-content space-y-6">
+                    <div class="w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full bg-gradient-to-br from-teal-400 to-blue-500 hero-glow mb-6 flex items-center justify-center">
                         <!-- Ganti dengan URL foto Anda -->
-                        <img src="/assets/icons/arrisahmad.jpg" alt="Foto Profil" class="w-[90%] h-[90%] rounded-full object-cover">
+                        <img src="assets/icons/arrisahmad.jpg" alt="Foto Profil" class="w-[90%] h-[90%] rounded-full object-cover">
                     </div>
-                    <h1 class="text-4xl md:text-6xl font-extrabold mb-2">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4">
                         Halo, saya <span class="text-teal-400">Arris Ahmad Fadillah</span>
                     </h1>
-                    <p class="text-lg md:text-2xl font-medium mb-4">
+                    <p class="text-lg md:text-2xl font-medium mb-6">
                         Mahasiswa Teknik Elektro & <span id="typed-text" class="text-teal-400"></span>
                     </p>
                     <p class="max-w-3xl mx-auto text-gray-600 dark:text-gray-400 mb-8">
-                        Saya memiliki minat yang kuat dalam merancang sirkuit, mengembangkan sistem tertanam atau IoT, dan Riset. Saat ini saya sedang menekuni bidang Tenaga Listrik atau yang biasa disebut Teknik Elektro, namun selain di perkuliahan saya juga sedang menempuh pembelajaran terkait bidang data seperti Machine Learning dan Komputasi Cloud .
+                        Saya memiliki minat yang kuat dalam merancang sirkuit, mengembangkan sistem tertanam atau IoT, dan Riset. Saat ini saya sedang menekuni bidang Tenaga Listrik atau yang biasa disebut Teknik Elektro, namun selain di perkuliahan saya juga sedang menempuh pembelajaran mandiri terkait bidang seperti Machine Learning dan Cloud Computing .
                     </p>
-                    <div class="flex justify-center space-x-4">
+                    
+                    <!-- Philosophy Quote -->
+                    <div class="max-w-4xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6 border border-teal-200 dark:border-gray-600 shadow-lg">
+                            <!-- Quote Icon -->
+                            <div class="absolute -top-4 left-8">
+                                <div class="w-8 h-8 bg-teal-400 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <!-- Quote Text -->
+                            <blockquote class="text-center">
+                                <p class="text-base md:text-lg font-semibold text-gray-800 dark:text-gray-200 italic leading-snug">
+                                    "Good enough to do <span class="text-teal-500 font-bold">anything</span>, 
+                                    but being <span class="text-blue-500 font-bold">irreplaceable</span> 
+                                    for doing <span class="text-teal-500 font-bold">one thing</span>"
+                                </p>
+                                <footer class="mt-3">
+                                    <cite class="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                                        My Motto in Engineering
+                                    </cite>
+                                </footer>
+                            </blockquote>
+                            
+                            <!-- Decorative Elements -->
+                            <div class="absolute top-4 right-4 w-2 h-2 bg-teal-300 rounded-full opacity-60"></div>
+                            <div class="absolute bottom-4 left-4 w-3 h-3 bg-blue-300 rounded-full opacity-40"></div>
+                            <div class="absolute bottom-6 right-6 w-1 h-1 bg-teal-400 rounded-full opacity-80"></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-4 mt-8">
                         <a href="#projects" class="btn-primary">
                             Lihat Proyek Saya
                         </a>
@@ -116,7 +237,7 @@
                     <div class="md:w-1/3" data-aos="fade-right">
                         <div class="photo-container relative p-2 bg-gradient-to-br from-teal-400 to-blue-500 rounded-lg shadow-lg">
                             <div class="photo-overlay absolute inset-0 bg-gradient-to-br from-teal-400/20 to-blue-500/20 rounded-lg opacity-0 transition-opacity duration-300"></div>
-                            <img src="/assets/icons/arris foto.png" alt="Foto Tentang Saya" class="about-photo rounded-lg w-full relative z-10">
+                            <img src="assets/icons/arris foto.png" alt="Foto Tentang Saya" class="about-photo rounded-lg w-full relative z-10">
                             <div class="photo-glow absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300"></div>
                         </div>
                     </div>
@@ -126,11 +247,11 @@
                             Saat ini saya menempuh semester 5 di jurusan Teknik Elektro dengan fokus pada Sistem Tenaga, Arus Kuat dan Sistem Kendali. Saya sangat tertarik pada persimpangan antara perangkat keras dan perangkat lunak, dan selalu antusias untuk belajar hal baru.
                         </p>
                         <p class="mb-6">
-                            Di luar akademis, saya aktif mengembangkan kemampuan praktis melalui berbagai kegiatan: sebagai anggota tim robotika (UROTERA) dan tim pengembangan UAV (Swarnakasa), saya mengasah keterampilan kerja tim, manajemen proyek, dan pemecahan masalah. Selain itu, keterlibatan saya di Dewan Energi Lampung memperkuat kemampuan saya dalam riset dan kolaborasi tim untuk mengkaji potensi energi di wilayah Lampung.
+                            Di luar akademis, saya aktif mengembangkan kemampuan praktis melalui berbagai kegiatan: sebagai anggota tim Robotika dan tim pengembangan UAV (Swarnakasa), saya mengasah keterampilan kerja tim, manajemen proyek, dan pemecahan masalah. Selain itu, keterlibatan saya di Dewan Energi Lampung memperkuat kemampuan saya dalam riset dan kolaborasi tim untuk mengkaji potensi energi di wilayah Lampung.
                         </p>
                         <div class="flex space-x-4 mb-6">
 
-                            <a href="https://www.linkedin.com/in/arris-ahmad-fadillah-772712272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-icon" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/arrisahmadfadillah" target="_blank" class="social-icon" title="LinkedIn">
                                 <div class="social-icon-container">
                                     <img src="assets/icons/linkedin.png" alt="LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                                     <i data-lucide="linkedin" style="display: none;"></i>
@@ -158,14 +279,211 @@
                         
                         <!-- Download Section -->
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="/assets/cv/CV_Arris_Ahmad_Fadillah.pdf" download class="btn-primary flex items-center justify-center">
+                            <a href="/assets/cv/CV_Arris_Ahmad_Fadillah.pdf" download class="btn-primary flex items-center justify-center" data-mobile-enhanced="true" aria-label="Download CV Arris Ahmad Fadillah">
                                 <i data-lucide="download" class="w-5 h-5 mr-2"></i>
                                 Download CV
                             </a>
-                            <a href="/assets/certificates/Sertifikat_Arris_Ahmad.pdf" download class="btn-secondary flex items-center justify-center">
+                            <a href="/assets/certificates/Sertifikat_Arris_Ahmad.pdf" download class="btn-secondary flex items-center justify-center" data-mobile-enhanced="true" aria-label="Download Sertifikat Arris Ahmad Fadillah">
                                 <i data-lucide="award" class="w-5 h-5 mr-2"></i>
                                 Download Sertifikat
                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Awards Section -->
+        <section id="experience" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title" data-aos="fade-up">Pengalaman & Pencapaian</h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <!-- Educational Background -->
+                    <div class="mb-16" data-aos="fade-up" data-aos-delay="100">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+                                <i data-lucide="graduation-cap" class="w-6 h-6 mr-3 text-teal-500"></i>
+                                Latar Belakang Pendidikan
+                            </h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <!-- Current Education -->
+                            <div class="border-l-4 border-teal-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Mahasiswa Teknik Elektro</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">2023 - Sekarang</span>
+                                </div>
+                                <p class="text-lg text-teal-600 dark:text-teal-400 font-medium mb-2">Institut Teknologi Sumatera</p>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Saat ini menempuh semester 5 dengan fokus pada Sistem Tenaga, Arus Kuat dan Sistem Kendali. Aktif dalam penelitian dan pengembangan proyek berbasis Arduino dan IoT.
+                                </p>
+                            </div>
+
+                            <!-- Previous Education -->
+                            <div class="border-l-4 border-blue-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Lulusan SMK Teknik Komputer dan Jaringan</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Lulus 2022</span>
+                                </div>
+                                <p class="text-lg text-blue-600 dark:text-blue-400 font-medium mb-2">SMK Negeri 1 Bandar Lampung</p>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Menguasai dasar-dasar sistem administrator dan jaringan komputer dengan prestasi tingkat provinsi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Practical Experience -->
+                    <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+                                <i data-lucide="briefcase" class="w-6 h-6 mr-3 text-blue-500"></i>
+                                Pengalaman Praktis
+                            </h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <!-- Internship -->
+                            <div class="border-l-4 border-purple-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Network Installation Intern</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">2022</span>
+                                </div>
+                                <p class="text-lg text-purple-600 dark:text-purple-400 font-medium mb-2">PT Araz Inti Line </p>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-3">
+                                    Pengalaman hands-on dalam implementasi infrastruktur jaringan telekomunikasi:
+                                </p>
+                                <ul class="text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside space-y-1">
+                                    <li>Pemasangan jaringan fiber optik di area Rajabasa, Bandar Lampung</li>
+                                    <li>Implementasi sistem distribusi jaringan NOC (Network Operations Center)</li>
+                                    <li>Konfigurasi dan pemasangan infrastruktur WiFi untuk klien</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Organizational Experience -->
+                    <div class="mb-16" data-aos="fade-up" data-aos-delay="300">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+                                <i data-lucide="users" class="w-6 h-6 mr-3 text-green-500"></i>
+                                Pengalaman Organisasi & Riset
+                            </h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <!-- Robotics Team -->
+                            <div class="border-l-4 border-orange-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Anggota Tim Robotika</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Sekarang</span>
+                                </div>
+                                <p class="text-lg text-orange-600 dark:text-orange-400 font-medium mb-2">Swarnakasa UAV Development</p>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Berkontribusi dalam pengembangan sistem UAV (Unmanned Aerial Vehicle) dengan fokus pada perancangan sistem elektronika dan kontrol otomatis untuk aplikasi teknologi pada UAV.
+                                </p>
+                            </div>
+
+                            <!-- Research Team -->
+                            <div class="border-l-4 border-emerald-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Research Associate</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Sekarang</span>
+                                </div>
+                                <p class="text-lg text-emerald-600 dark:text-emerald-400 font-medium mb-2">Dewan Energi Lampung</p>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Melakukan riset kolaboratif untuk menganalisis potensi kelistrikan dan kebijakan energi di region Lampung, dengan fokus pada pengembangan strategi energi berkelanjutan.
+                                </p>
+
+                            </div>
+                            <div class="border-l-4 border-violet-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Asisten Praktikum</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Sekarang</span>
+                                </div>
+                                <p class="text-lg text-violet-600 dark:text-emerald-400 font-medium mb-2">Lab Teknik Elektro ITERA</p>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Melakukan asistensi dalam praktikum berupa pengajaran dan pembelajaran di laboratorium, termasuk pengembangan modul dan bimbingan praktikan.
+                                </p>
+                                
+                            </div>
+                            <div class="border-l-4 border-sky-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Tim Lomba KRTI 2025 Divisi Riset Technology Development</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Sekarang</span>
+                                </div>
+                                <p class="text-lg text-sky-600 dark:text-emerald-400 font-medium mb-2">Swarnakasa ITERA</p>
+                                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                                    Melakukan penelitian dan pengembangan dalam bidang teknologi energi terbarukan, dengan fokus pada inovasi dan penerapan solusi teknologi untuk meningkatkan efisiensi energi pada pesawat UAV dengan menggunakan solar panel PV yang dimonitoring secara real-time menggunakan sistem IoT Web Dashboard.
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills & Achievements -->
+                    <div data-aos="fade-up" data-aos-delay="400">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
+                                <i data-lucide="award" class="w-6 h-6 mr-3 text-amber-500"></i>
+                                Keahlian Teknis & Pencapaian
+                            </h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <!-- Programming & Development -->
+                            <div class="border-l-4 border-indigo-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Programming & IoT Development</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Aktif mengembangkan</span>
+                                </div>
+                                <p class="text-lg text-indigo-600 dark:text-indigo-400 font-medium mb-3">Teknologi yang dikuasai:</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <ul class="text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside space-y-1">
+                                        <li>Pemrograman C/C++ untuk Arduino dan mikrocontroller</li>
+                                        <li>Implementasi Web Dashboard dalam proyek IoT di Lomba KRTI 2025</li>
+                                        <li>Pengembangan sistem embedded dan sensor integration</li>
+                                    </ul>
+                                    <ul class="text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside space-y-1">
+                                        <li>Cloud Computing dengan Google Cloud Platform</li>
+                                    
+                                        <li>Network administration dan sistem operasi</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Research & Innovation -->
+                            <div class="border-l-4 border-pink-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Research & Innovation</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Ongoing Projects</span>
+                                </div>
+                                <p class="text-lg text-pink-600 dark:text-pink-400 font-medium mb-3">Pencapaian akademik dan riset:</p>
+                                <ul class="text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside space-y-1">
+                                    <li><strong>Program Penelitian Mahasiswa (PKM) 2025:</strong> Berhasil lolos seleksi internal untuk bidang Karya Cipta</li>
+                                    <li><strong>Bootcamp Teknologi:</strong> Menyelesaikan pelatihan intensif Google Cloud, AI, dan ETG</li>
+                                    <li><strong>Proyek Arduino & IoT:</strong> Mengimplementasikan solusi berbasis microcontroller untuk aplikasi real-world</li>
+                                    <li><strong>Network Infrastructure:</strong> Hands-on experience dalam instalasi dan konfigurasi jaringan LAN & WAN</li>
+                                    <li><strong>Program Kreatifitas Kewirausahaan Mahasiswa (PKKM) 2025:</strong> Hands-on experience dalam tim pengembangan produk MALINGKAPOK: Sistem Keamanan Proaktif Hemat Energi Berbasis Sensor dan GPS untuk Melacak dan Menghentikan Aksi Curanmor secara Real-Time</li>
+                                </ul>
+                            </div>
+
+                            <!-- Certifications & Training -->
+                            <div class="border-l-4 border-cyan-500 pl-6 pb-6">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                                    <h4 class="text-xl font-semibold text-gray-800 dark:text-white">Continuous Learning</h4>
+                                    <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">Lifelong Learning</span>
+                                </div>
+                                <p class="text-lg text-cyan-600 dark:text-cyan-400 font-medium mb-3">Komitmen dalam pengembangan diri:</p>
+                                <ul class="text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside space-y-1">
+                                    <li>Aktif mengikuti bootcamp dan workshop teknologi terkini</li>
+                                    <li>Berkontribusi dalam proyek tim robotika dan UAV development</li>
+                                    <li>Mengembangkan soft skills melalui pengalaman organisasi dan riset kolaboratif</li>
+                                    
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -180,7 +498,7 @@
                 <h2 class="section-title" data-aos="fade-up">Skill Set Yang Sedang Dikembangkan</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     
-                    <div class="skill-card" data-aos="zoom-in">
+                    <div class="skill-card" data-aos="zoom-in" data-mobile-enhanced="true">
                         <div class="skill-icon">
                             <img src="assets/icons/microcontroller.png" alt="Mikrokontroler" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <i data-lucide="cpu" style="display: none;"></i>
@@ -189,7 +507,7 @@
                         <p class="skill-desc">Arduino, ESP32, Raspberry Pi Pico</p>
                     </div>
                     
-                    <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="skill-card" data-aos="zoom-in" data-aos-delay="100" data-mobile-enhanced="true">
                         <div class="skill-icon">
                             <img src="assets/icons/programming.png" alt="Pemrograman" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                             <i data-lucide="code" style="display: none;"></i>
@@ -275,92 +593,6 @@
             </div>
         </section>
 
-        <!-- Download Section -->
-        <section id="download" class="download-section py-20 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-title" data-aos="fade-up">Download Dokumen</h2>
-                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">
-                    Unduh CV dan sertifikat saya untuk melihat lebih detail tentang pengalaman, pencapaian, dan kualifikasi yang saya miliki.
-                </p>
-                
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <!-- CV Card -->
-                    <div class="download-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                        <div class="download-card-content">
-                            <div class="download-card-header">
-                                <div class="download-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                                    <img src="assets/icons/cv.png" alt="CV Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-12 h-12 object-contain">
-                                    <i data-lucide="file-text" class="w-12 h-12 text-teal-600 dark:text-teal-400" style="display: none;"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Curriculum Vitae</h3>
-                            </div>
-                            <div class="download-card-body">
-                                <div class="download-card-description">
-                                    <p class="text-gray-600 dark:text-gray-400">
-                                        Dokumen lengkap yang berisi informasi tentang pengalaman pendidikan, organisasi, proyek, dan keterampilan saya.
-                                    </p>
-                                </div>
-                                <div class="download-card-tags">
-                                    <span class="inline-block bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-sm font-medium mr-2">PDF</span>
-                                    <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">2 Halaman</span>
-                                </div>
-                                <div class="download-card-footer">
-                                    <a href="/assets/cv/CV_Arris_Ahmad_Fadillah.pdf" download class="btn-primary w-full">
-                                        <i data-lucide="download" class="w-5 h-5 mr-2"></i>
-                                        Download CV
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Sertifikat Card -->
-                    <div class="download-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
-                        <div class="download-card-content">
-                            <div class="download-card-header">
-                                <div class="download-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                                    <img src="assets/icons/sertifikat.png" alt="Certificate Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-12 h-12 object-contain">
-                                    <i data-lucide="award" class="w-12 h-12 text-purple-600 dark:text-purple-400" style="display: none;"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Sertifikat & Pencapaian</h3>
-                            </div>
-                            <div class="download-card-body">
-                                <div class="download-card-description">
-                                    <p class="text-gray-600 dark:text-gray-400">
-                                        Kumpulan sertifikat dari berbagai pelatihan, workshop, dan kompetisi yang telah saya ikuti dan raih.
-                                    </p>
-                                </div>
-                                <div class="download-card-tags">
-                                    <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium mr-2">ZIP</span>
-                                    <span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Multiple Files</span>
-                                </div>
-                                <div class="download-card-footer">
-                                    <a href="/assets/certificates/Sertifikat_Arris_Ahmad.pdf" download class="btn-secondary w-full">
-                                        <i data-lucide="award" class="w-5 h-5 mr-2"></i>
-                                        Download Sertifikat
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Additional Info -->
-                <div class="mt-12 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
-                    <div class="flex items-center justify-center mb-4">
-                        <i data-lucide="info" class="w-6 h-6 text-blue-500 mr-2"></i>
-                        <span class="text-lg font-medium text-gray-800 dark:text-gray-200">Informasi Tambahan</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">
-                        Dokumen akan diunduh dalam format PDF dan ZIP. Jika Anda mengalami kesulitan dalam mengunduh, silakan hubungi saya melalui email atau media sosial.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-
-
-
         <!-- Projects Section -->
         <section id="projects" class="py-20 bg-white dark:bg-gray-800 relative">
             <div class="container mx-auto px-6">
@@ -389,9 +621,9 @@
                 
                 <div class="relative grid md:grid-cols-2 lg:grid-cols-3 gap-8 z-10 projects-container">
                     <!-- Project Card 1 -->
-                    <div class="project-card group relative transition-all duration-300 ease-out" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card group relative transition-all duration-300 ease-out" data-aos="fade-up" data-aos-delay="100" data-mobile-enhanced="true">
                         <div class="relative rounded-t-lg overflow-hidden">
-                            <img src="/assets/icons/raspberry-pi.png" alt="IoT Temperature Monitoring System" class="w-full h-48 object-cover project-img transition-all duration-500 group-hover:scale-105">
+                            <img src="assets/icons/raspberry-pi.png" alt="IoT Temperature Monitoring System" class="w-full h-48 object-cover project-img transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-tr from-teal-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div class="p-6 relative">
@@ -425,9 +657,9 @@
                         </div>
                     </div>
                     <!-- Project Card 2 -->
-                    <div class="project-card group relative transition-all duration-300 ease-out" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card group relative transition-all duration-300 ease-out" data-aos="fade-up" data-aos-delay="200" data-mobile-enhanced="true">
                         <div class="relative rounded-t-lg overflow-hidden">
-                            <img src="/assets/icons/plc.png" alt="MATLAB Inverter Simulation" class="w-full h-48 object-cover project-img transition-all duration-500 group-hover:scale-105">
+                            <img src="assets/icons/plc.png" alt="MATLAB Inverter Simulation" class="w-full h-48 object-cover project-img transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div class="p-6 relative">
@@ -461,9 +693,9 @@
                         </div>
                     </div>
                     <!-- Project Card 3 -->
-                    <div class="project-card group relative transition-all duration-300 ease-out" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card group relative transition-all duration-300 ease-out" data-aos="fade-up" data-aos-delay="300" data-mobile-enhanced="true">
                         <div class="relative rounded-t-lg overflow-hidden">
-                            <img src="/assets/icons/electrician.png" alt="Arduino Robotic Arm" class="w-full h-48 object-cover project-img transition-all duration-500 group-hover:scale-105">
+                            <img src="assets/icons/electrician.png" alt="Arduino Robotic Arm" class="w-full h-48 object-cover project-img transition-all duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                         <div class="p-6 relative">
@@ -496,6 +728,229 @@
                           </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog/Articles Section -->
+        <section id="blog" class="py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title" data-aos="fade-up">Blog & Technical Articles</h2>
+                <p class="max-w-3xl mx-auto text-center text-gray-600 dark:text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    Sharing knowledge through technical articles, tutorials, and research findings in electrical engineering and technology.
+                </p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Blog Card 1 -->
+                    <article class="blog-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-image relative h-48 overflow-hidden">
+                            <img src="assets/blog/esp32.webp" alt="ESP32 Development Board" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">IoT Tutorial</span>
+                            </div>
+                            <div class="absolute top-4 right-4 z-10">
+                                <span class="bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs shadow-lg">5 min read</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
+                                <span>August 10, 2025</span>
+                                <span class="mx-2">•</span>
+                                <i data-lucide="tag" class="w-4 h-4 mr-1"></i>
+                                <span>IoT</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3 hover:text-teal-600 dark:hover:text-teal-400 transition-colors cursor-pointer">
+                                Getting Started with ESP32: A Complete Guide
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                                Comprehensive tutorial covering ESP32 setup, programming basics, and building your first IoT project with real-world examples.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-xs bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-2 py-1 rounded">ESP32</span>
+                                    <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">Arduino</span>
+                                </div>
+                                <a href="blog/articles/blog-esp32-guide.html" class="text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 font-medium text-sm flex items-center transition-colors">
+                                    Read More
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card 2 -->
+                    <article class="blog-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                        <div class="blog-image relative h-48 overflow-hidden">
+                            <img src="assets/blog/komponen.jfif" alt="Pengenalan Komponen Elekronika Dasar" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">Electronics</span>
+                            </div>
+                            <div class="absolute top-4 right-4 z-10">
+                                <span class="bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs shadow-lg">10 min read</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
+                                <span>August 26, 2025</span>
+                                <span class="mx-2">•</span>
+                                <i data-lucide="tag" class="w-4 h-4 mr-1"></i>
+                                <span>Introduction</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3 hover:text-purple-600 dark:hover:text-purple-400 transition-colors cursor-pointer">
+                                Pengenalan Komponen Elektonika Dasar
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                                Pengenalan dasar tentang komponen elektronik, termasuk resistor, kapasitor, dan induktor.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded">Basic Component</span>
+                                    <span class="text-xs bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-2 py-1 rounded">Elektronika</span>
+                                </div>
+                                <a href="blog/articles/blog-pengenalan-elektronika-dasar.html" class="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium text-sm flex items-center transition-colors">
+                                    Read More
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card 3 -->
+                    <article class="blog-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                        <div class="blog-image relative h-48 overflow-hidden">
+                            <img src="assets/blog/machine learning.jpg" alt="Machine Learning Neural Network" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
+                            <div class="absolute top-4 left-4 z-10">
+                                <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">Machine Learning</span>
+                            </div>
+                            <div class="absolute top-4 right-4 z-10">
+                                <span class="bg-black bg-opacity-70 text-white px-2 py-1 rounded text-xs shadow-lg">12 min read</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
+                                <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
+                                <span>July 28, 2025</span>
+                                <span class="mx-2">•</span>
+                                <i data-lucide="tag" class="w-4 h-4 mr-1"></i>
+                                <span>Research</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3 hover:text-green-600 dark:hover:text-green-400 transition-colors cursor-pointer">
+                                Machine Learning for Predictive Maintenance in Electrical Systems
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                                Research findings on implementing ML algorithms for predicting equipment failures in power distribution systems.
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">Python</span>
+                                    <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded">TensorFlow</span>
+                                </div>
+                                <a href="blog/articles/blog-ml-electrical.html" class="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 font-medium text-sm flex items-center transition-colors">
+                                    Read More
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- View All Articles Button -->
+                <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="500">
+                    <a href="blog/blog.html" class="btn-primary inline-flex items-center">
+                        <i data-lucide="book-open" class="w-5 h-5 mr-2"></i>
+                        View All Articles
+                    </a>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-3">
+                        Eksplore lebih banyak artikel dan tutorial teknis
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="download-section py-20 bg-gradient-to-r from-teal-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="section-title" data-aos="fade-up">Download Dokumen</h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 mb-12" data-aos="fade-up" data-aos-delay="100">
+                    Unduh CV dan sertifikat saya untuk melihat lebih detail tentang pengalaman, pencapaian, dan kualifikasi yang saya miliki.
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- CV Card -->
+                    <div class="download-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="download-card-content">
+                            <div class="download-card-header">
+                                <div class="download-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                                    <img src="assets/icons/cv.png" alt="CV Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-12 h-12 object-contain">
+                                    <i data-lucide="file-text" class="w-12 h-12 text-teal-600 dark:text-teal-400" style="display: none;"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Curriculum Vitae</h3>
+                            </div>
+                            <div class="download-card-body">
+                                <div class="download-card-description">
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Dokumen lengkap yang berisi informasi tentang pengalaman pendidikan, organisasi, proyek, dan keterampilan saya.
+                                    </p>
+                                </div>
+                                <div class="download-card-tags">
+                                    <span class="inline-block bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-3 py-1 rounded-full text-sm font-medium mr-2">PDF</span>
+                                    <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm font-medium">2 Halaman</span>
+                                </div>
+                                <div class="download-card-footer">
+                                    <a href="/assets/cv/CV_Arris_Ahmad_Fadillah.pdf" download class="btn-primary w-full" data-mobile-enhanced="true" aria-label="Download CV Arris Ahmad Fadillah">
+                                        <i data-lucide="download" class="w-5 h-5 mr-2"></i>
+                                        Download CV
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sertifikat Card -->
+                    <div class="download-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                        <div class="download-card-content">
+                            <div class="download-card-header">
+                                <div class="download-icon w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                                    <img src="assets/icons/sertifikat.png" alt="Certificate Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-12 h-12 object-contain">
+                                    <i data-lucide="award" class="w-12 h-12 text-purple-600 dark:text-purple-400" style="display: none;"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">Sertifikat & Pencapaian</h3>
+                            </div>
+                            <div class="download-card-body">
+                                <div class="download-card-description">
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Kumpulan sertifikat dari berbagai pelatihan, workshop, dan kompetisi yang telah saya ikuti dan raih.
+                                    </p>
+                                </div>
+                                <div class="download-card-tags">
+                                    <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm font-medium mr-2">ZIP</span>
+                                    <span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm font-medium">Multiple Files</span>
+                                </div>
+                                <div class="download-card-footer">
+                                    <a href="/assets/certificates/Sertifikat_Arris_Ahmad.pdf" download class="btn-secondary w-full" data-mobile-enhanced="true" aria-label="Download Sertifikat Arris Ahmad Fadillah">
+                                        <i data-lucide="award" class="w-5 h-5 mr-2"></i>
+                                        Download Sertifikat
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Info -->
+                <div class="mt-12 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex items-center justify-center mb-4">
+                        <i data-lucide="info" class="w-6 h-6 text-blue-500 mr-2"></i>
+                        <span class="text-lg font-medium text-gray-800 dark:text-gray-200">Informasi Tambahan</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        Dokumen akan diunduh dalam format PDF dan ZIP. Jika Anda mengalami kesulitan dalam mengunduh, silakan hubungi saya melalui email atau media sosial.
+                    </p>
                 </div>
             </div>
         </section>
@@ -570,5 +1025,243 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- Custom JS File -->
     <script src="script.js" defer></script>
+    
+    <!-- Easter Egg Interactions -->
+    <script>
+        // Easter Egg 1: Konami Code (↑↑↓↓←→←→BA)
+        let konamiCode = [];
+        const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.code);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+                activateSecretMode();
+            }
+        });
+        
+        function activateSecretMode() {
+            // Rainbow effect on all text
+            document.body.classList.add('rainbow-mode');
+            
+            // Add CSS for rainbow effect
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes rainbow {
+                    0% { color: #ff0000; }
+                    16.66% { color: #ff8000; }
+                    33.33% { color: #ffff00; }
+                    50% { color: #00ff00; }
+                    66.66% { color: #0080ff; }
+                    83.33% { color: #8000ff; }
+                    100% { color: #ff0000; }
+                }
+                .rainbow-mode h1, .rainbow-mode h2, .rainbow-mode h3 {
+                    animation: rainbow 2s linear infinite !important;
+                }
+                .rainbow-mode .shine-text {
+                    animation: rainbow 1s linear infinite !important;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Show easter egg message
+            showEasterEggMessage('🎉 Secret Rainbow Mode Activated! 🌈');
+            
+            // Auto disable after 10 seconds
+            setTimeout(() => {
+                document.body.classList.remove('rainbow-mode');
+                document.head.removeChild(style);
+            }, 10000);
+        }
+        
+        // Easter Egg 2: Click sequence on logo
+        let logoClicks = 0;
+        const logo = document.querySelector('.shine-text');
+        if (logo) {
+            logo.addEventListener('click', function() {
+                logoClicks++;
+                if (logoClicks === 5) {
+                    triggerMatrixEffect();
+                    logoClicks = 0;
+                }
+                
+                // Reset counter after 3 seconds
+                setTimeout(() => {
+                    logoClicks = 0;
+                }, 3000);
+            });
+        }
+        
+        function triggerMatrixEffect() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Matrix characters
+            const matrix = "ARRIS0123456789@#$%^&*()";
+            const drops = [];
+            
+            // Initialize drops
+            for (let x = 0; x < canvas.width / 20; x++) {
+                drops[x] = 1;
+            }
+            
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#0F0';
+                ctx.font = '15px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = matrix[Math.floor(Math.random() * matrix.length)];
+                    ctx.fillText(text, i * 20, drops[i] * 20);
+                    
+                    if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            
+            const matrixInterval = setInterval(drawMatrix, 35);
+            showEasterEggMessage('💊 Welcome to the Matrix! 💊');
+            
+            // Stop matrix effect after 5 seconds
+            setTimeout(() => {
+                clearInterval(matrixInterval);
+            }, 5000);
+        }
+        
+        // Easter Egg 3: Type secret word "ELEKTRO"
+        let typedKeys = '';
+        document.addEventListener('keydown', function(e) {
+            typedKeys += e.key.toLowerCase();
+            if (typedKeys.length > 7) {
+                typedKeys = typedKeys.substr(typedKeys.length - 7);
+            }
+            
+            if (typedKeys === 'elektro') {
+                triggerElektroEffect();
+                typedKeys = '';
+            }
+        });
+        
+        function triggerElektroEffect() {
+            // Add electric sparks to all skill cards
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.boxShadow = '0 0 30px #00ffff, 0 0 60px #00ffff, 0 0 90px #00ffff';
+                    card.style.transform = 'scale(1.05) rotateY(10deg)';
+                    
+                    setTimeout(() => {
+                        card.style.boxShadow = '';
+                        card.style.transform = '';
+                    }, 1000);
+                }, index * 100);
+            });
+            
+            showEasterEggMessage('⚡ ELEKTRO POWER ACTIVATED! ⚡');
+        }
+        
+        // Easter Egg 4: Double click on profile photo
+        const profilePhoto = document.querySelector('.about-photo');
+        if (profilePhoto) {
+            profilePhoto.addEventListener('dblclick', function() {
+                triggerPortfolioGlitch();
+            });
+        }
+        
+        function triggerPortfolioGlitch() {
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes glitch {
+                    0%, 100% { transform: translate(0); }
+                    20% { transform: translate(-2px, 2px); }
+                    40% { transform: translate(-2px, -2px); }
+                    60% { transform: translate(2px, 2px); }
+                    80% { transform: translate(2px, -2px); }
+                }
+                .glitch-mode * {
+                    animation: glitch 0.3s infinite !important;
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.classList.add('glitch-mode');
+            
+            showEasterEggMessage('🔧 SYSTEM GLITCH DETECTED! 🔧');
+            
+            setTimeout(() => {
+                document.body.classList.remove('glitch-mode');
+                document.head.removeChild(style);
+            }, 3000);
+        }
+        
+        // Universal easter egg message function
+        function showEasterEggMessage(message) {
+            const easterEggDiv = document.createElement('div');
+            easterEggDiv.innerHTML = message;
+            easterEggDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                color: white;
+                padding: 20px 40px;
+                border-radius: 15px;
+                font-size: 1.5rem;
+                font-weight: bold;
+                z-index: 9999;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                animation: easterEggPop 0.5s ease-out;
+            `;
+            
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes easterEggPop {
+                    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+                    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(easterEggDiv);
+            
+            // Remove message after 3 seconds
+            setTimeout(() => {
+                easterEggDiv.style.animation = 'easterEggPop 0.5s ease-out reverse';
+                setTimeout(() => {
+                    if (easterEggDiv.parentNode) {
+                        document.body.removeChild(easterEggDiv);
+                    }
+                    if (style.parentNode) {
+                        document.head.removeChild(style);
+                    }
+                }, 500);
+            }, 3000);
+            
+            // Track easter egg activation in analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'easter_egg_activated', {
+                    'event_category': 'engagement',
+                    'event_label': message
+                });
+            }
+        }
+    </script>
+    
+    <!-- Mobile Experience Enhancements -->
+    <script src="assets/js/mobile-compatibility.js" defer></script>
+    <script src="assets/js/mobile-attributes.js" defer></script>
+    <script src="assets/js/mobile-enhancements.js" defer></script>
+    <script src="assets/js/loading-states.js" defer></script>
+    <script src="assets/js/error-handler.js" defer></script>
 </body>
 </html>

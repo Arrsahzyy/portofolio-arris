@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics Verification</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q136JZELGC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q136JZELGC');
+    </script>
+</head>
+<body>
+    <h1>Google Analytics Verification Page</h1>
+    <p>This page is used to verify that Google Analytics is working correctly.</p>
+    
+    <script>
+        // Test event to verify GA is working
+        setTimeout(() => {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'test_page_loaded', {
+                    event_category: 'verification',
+                    event_label: 'GA Test'
+                });
+                console.log('Google Analytics test event sent successfully!');
+            } else {
+                console.error('Google Analytics not loaded properly');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
+</conten

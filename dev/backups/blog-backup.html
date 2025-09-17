@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Arris Ahmad Fadillah | Technical Articles & Tutorials</title>
+    <meta name="description" content="Technical blog by Arris Ahmad Fadillah covering IoT, electrical engineering, machine learning, and embedded systems tutorials.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/icons/arrisahmad.jpg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    keyframes: {
+                        shine: {
+                            '0%': { 'background-position': '100%' },
+                            '100%': { 'background-position': '-100%' },
+                        },
+                    },
+                    animation: {
+                        shine: 'shine 5s linear infinite',
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        /* Enhanced Category Filter Styling */
+        .category-filter {
+            position: relative;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: inline-block !important; /* Force visibility */
+            visibility: visible !important;   /* Force visibility */
+            opacity: 1 !important;           /* Force visibility */
+        }
+        
+        .category-filter:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-filter.active {
+            background: linear-gradient(135deg, #0d9488, #06b6d4) !important;
+            color: white !important;
+            border-color: #0d9488;
+            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .category-filter.active:hover {
+            background: linear-gradient(135deg, #0f766e, #0891b2) !important;
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
+        }
+        
+        /* Dark mode adjustments */
+        .dark .category-filter.active {
+            background: linear-gradient(135deg, #0d9488, #06b6d4) !important;
+            border-color: #14b8a6;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
+        
+        /* Filter animation */
+        .filter-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Performance optimization -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q136JZELGC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q136JZELGC', {
+            page_title: 'Blog - Arris Ahmad Fadillah | Technical Articles & Tutorials',
+            page_location: window.location.href,
+            send_page_view: true
+        });
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .shine-text {
+            color: #2dd4bf;
+            background: linear-gradient(120deg, rgba(45, 212, 191, 0.6) 40%, rgba(45, 212, 191, 1) 50%, rgba(45, 212, 191, 0.6) 60%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+            text-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+        }
+        
+        @keyframes shine {
+            0% { background-position: 100%; }
+            100% { background-position: -100%; }
+        }
+        
+        .blog-card {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .dark .blog-card:hover {
+            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.1);
+        }
+        </style>
+    </head><body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+
+    <!-- Header -->
+    <header id="navbar" class="glass-effect fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold tracking-wider shine-text">
+                Arris Ahmad Fadillah
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#projects" class="nav-link">Projects</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="flex items-center">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <!-- Moon Icon (for dark mode toggle) -->
+                    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <!-- Sun Icon (for light mode toggle) -->
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+                <button id="menu-btn" class="md:hidden ml-4 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- Hero Section -->
+        <section class="py-20 bg-gradient-to-br from-teal-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up">
+                    Technical <span class="text-teal-400">Blog</span>
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+                    Sharing knowledge about electrical engineering, IoT, machine learning, and embedded systems through in-depth articles and practical tutorials.
+                </p>
+                
+                <!-- Search Bar -->
+                <div class="max-w-md mx-auto" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative">
+                        <input type="text" id="search-input" placeholder="Search articles..." 
+                               class="w-full px-4 py-3 pl-12 pr-16 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200">
+                        <svg class="absolute left-4 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <button id="search-button" class="absolute right-2 top-2 p-2 text-gray-400 hover:text-teal-500 transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 rounded-md group">
+                            <svg class="w-5 h-5 transition-transform duration-200 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Search Results Counter -->
+                    <div id="search-results" class="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center opacity-0 transition-opacity duration-300"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <section class="py-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
+                    <button class="category-filter active px-6 py-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-teal-100 dark:hover:bg-teal-900" data-category="all">
+                        All Articles
+                    </button>
+                    <button class="category-filter px-6 py-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-teal-100 dark:hover:bg-teal-900" data-category="iot">
+                        IoT & Embedded
+                    </button>
+                    <button class="category-filter px-6 py-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-teal-100 dark:hover:bg-teal-900" data-category="power">
+                        Power Systems
+                    </button>
+                    <button class="category-filter px-6 py-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-teal-100 dark:hover:bg-teal-900" data-category="ml">
+                        Machine Learning
+                    </button>
+                    <button class="category-filter px-6 py-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-teal-100 dark:hover:bg-teal-900" data-category="tutorial">
+                        Tutorials
+                    </button>
+                </div>
+                <!-- Filter Results Counter -->
+                <div id="filter-results" class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400 opacity-0 transition-all duration-300">
+                    <span id="filter-count">3</span> articles found
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Grid -->
+        <section class="py-20">
+            <div class="container mx-auto px-6">
+                <div id="articles-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+
+                                    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-up">
+                                        <img src="/assets/images/blog/python-untuk-otomasi-iot-featured.jpg" alt="Python untuk Otomasi IoT" class="w-full h-48 object-cover">
+                                        <div class="p-6">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                    Programming
+                                                </span>
+                                                <span class="text-sm text-gray-500 dark:text-gray-400">1 min read</span>
+                                            </div>
+                                            <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                                <a href="/blog-python-untuk-otomasi-iot.html">Python untuk Otomasi IoT</a>
+                                            </h3>
+                                            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Belajar menggunakan Python untuk mengotomatisasi sistem IoT</p>
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-500">
+                                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    August 23, 2025
+                                                </div>
+                                                <a href="/blog-python-untuk-otomasi-iot.html" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
+                                                    Read More
+                                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+            
+                                    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-up">
+                                        <img src="/assets/images/blog/setting-vs-code-untuk-coding-pemula-dan-top-ekstensi-yang-sering-digunakan-featured.jpg" alt="Setting VS Code Untuk Coding Pemula dan Top Ekstensi Yang Sering Digunakan" class="w-full h-48 object-cover">
+                                        <div class="p-6">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                    Programming
+                                                </span>
+                                                <span class="text-sm text-gray-500 dark:text-gray-400">1 min read</span>
+                                            </div>
+                                            <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                                <a href="/blog-setting-vs-code-untuk-coding-pemula-dan-top-ekstensi-yang-sering-digunakan.html">Setting VS Code Untuk Coding Pemula dan Top Ekstensi Yang Sering Digunakan</a>
+                                            </h3>
+                                            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Learn How To Set Your VS Code For Coding</p>
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-500">
+                                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    August 23, 2025
+                                                </div>
+                                                <a href="/blog-setting-vs-code-untuk-coding-pemula-dan-top-ekstensi-yang-sering-digunakan.html" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
+                                                    Read More
+                                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+            
+                                    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300" data-aos="fade-up">
+                                        <img src="/assets/images/blog/test-article-with-generator-featured.jpg" alt="Test Article with Generator" class="w-full h-48 object-cover">
+                                        <div class="p-6">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200">
+                                                    IoT & Embedded Systems
+                                                </span>
+                                                <span class="text-sm text-gray-500 dark:text-gray-400">2 min read</span>
+                                            </div>
+                                            <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                                <a href="/blog-test-article-with-generator.html">Test Article with Generator</a>
+                                            </h3>
+                                            <p class="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">Testing the blog generator system</p>
+                                            <div class="flex items-center justify-between">
+                                                <div class="flex items-center text-sm text-gray-500 dark:text-gray-500">
+                                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    August 23, 2025
+                                                </div>
+                                                <a href="/blog-test-article-with-generator.html" class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium">
+                                                    Read More
+                                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </article>
+            
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-12" data-aos="fade-up">
+                    <button id="load-more" class="btn-primary">
+                        Load More Articles
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-400 py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Arris Ahmad Fadillah. All rights reserved.</p>
+            <div class="mt-4">
+                <a href="index.html" class="text-teal-400 hover:text-teal-300 mx-2">Home</a>
+                <a href="index.html#about" class="text-teal-400 hover:text-teal-300 mx-2">About</a>
+                <a href="index.html#contact" class="text-teal-400 hover:text-teal-300 mx-2">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/umd/lucide.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            lightIcon.classList.add('hidden');
+            darkIcon.classList.remove('hidden');
+        }
+
+        themeToggle.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                localStorage.setItem('theme', 'light');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            }
+        });
+
+        // Simple and reliable category filtering
+        const categoryFilters = document.querySelectorAll('.category-filter');
+        const articles = document.querySelectorAll('article[data-category]'); // More specific selector for articles only
+        const filterResults = document.getElementById('filter-results');
+        const filterCount = document.getElementById('filter-count');
+
+        console.log('Filter buttons found:', categoryFilters.length);
+        console.log('Articles found:', articles.length);
+
+        // Debug: List all found elements
+        categoryFilters.forEach((filter, index) => {
+            console.log(`Filter button ${index + 1}:`, filter.textContent.trim(), filter.dataset.category);
+        });
+        
+        articles.forEach((article, index) => {
+            console.log(`Article ${index + 1}:`, article.dataset.category);
+        });
+
+        // Initialize with all articles count
+        if (filterCount) {
+            filterCount.textContent = articles.length;
+            if (filterResults) filterResults.style.opacity = '1';
+        }
+
+        // CRITICAL: Force all filter buttons to be visible on page load
+        function ensureFilterButtonsVisible() {
+            categoryFilters.forEach(filter => {
+                filter.style.display = 'inline-block';
+                filter.style.visibility = 'visible';
+                filter.style.opacity = '1';
+            });
+        }
+        
+        // Call immediately and set interval to ensure buttons stay visible
+        ensureFilterButtonsVisible();
+        setInterval(ensureFilterButtonsVisible, 1000); // Check every second
+
+        categoryFilters.forEach((filter, index) => {
+            console.log(`Filter ${index + 1}:`, filter.dataset.category);
+            
+            filter.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const category = this.dataset.category;
+                console.log('Filter clicked:', category);
+                
+                // Make sure all filter buttons remain visible and clickable - CRITICAL FIX
+                categoryFilters.forEach(f => {
+                    // Force visibility - these should NEVER be hidden
+                    f.style.display = 'inline-block !important';
+                    f.style.visibility = 'visible !important';
+                    f.style.opacity = '1 !important';
+                    f.classList.remove('active');
+                });
+                
+                // Set active state
+                this.classList.add('active');
+                
+                // IMPORTANT: Only filter articles, NOT filter buttons
+                let visibleCount = 0;
+                
+                articles.forEach(article => {
+                    // Double-check this is actually an article, not a button
+                    if (article.tagName.toLowerCase() === 'article') {
+                        const articleCategories = article.dataset.category;
+                        let shouldShow = false;
+                        
+                        if (category === 'all') {
+                            shouldShow = true;
+                        } else {
+                            shouldShow = articleCategories.includes(category);
+                        }
+                        
+                        if (shouldShow) {
+                            article.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            article.style.display = 'none';
+                        }
+                    }
+                });
+                
+                // Update counter
+                if (filterCount) {
+                    filterCount.textContent = visibleCount;
+                }
+                
+                console.log(`Showing ${visibleCount} articles for category: ${category}`);
+                
+                // Analytics tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'blog_filter', {
+                        'event_category': 'blog',
+                        'event_label': category,
+                        'value': visibleCount
+                    });
+                }
+            });
+        });
+
+        // Enhanced search functionality
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const searchResults = document.getElementById('search-results');
+        
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+            
+            articles.forEach(article => {
+                const titleElement = article.querySelector('h3');
+                const contentElement = article.querySelector('p');
+                const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                const content = contentElement ? contentElement.textContent.toLowerCase() : '';
+                const tags = article.dataset.category ? article.dataset.category.toLowerCase() : '';
+                
+                const matchesSearch = searchTerm === '' || 
+                                    title.includes(searchTerm) || 
+                                    content.includes(searchTerm) || 
+                                    tags.includes(searchTerm);
+                
+                if (matchesSearch) {
+                    article.style.display = 'block';
+                    article.classList.add('fade-in');
+                    if (searchTerm !== '') visibleCount++;
+                } else {
+                    article.style.display = 'none';
+                    article.classList.remove('fade-in');
+                }
+            });
+            
+            // Update search results counter
+            if (searchResults) {
+                if (searchTerm === '') {
+                    searchResults.style.opacity = '0';
+                    searchResults.textContent = '';
+                } else {
+                    searchResults.style.opacity = '1';
+                    searchResults.textContent = `Found ${visibleCount} article${visibleCount !== 1 ? 's' : ''} matching "${searchTerm}"`;
+                    
+                    // Track search in analytics
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'blog_search', {
+                            'event_category': 'blog',
+                            'event_label': searchTerm,
+                            'value': visibleCount
+                        });
+                    }
+                }
+            }
+            
+            // Add visual feedback to search button
+            if (searchButton) {
+                searchButton.classList.add('text-teal-500');
+                setTimeout(() => {
+                    searchButton.classList.remove('text-teal-500');
+                }, 300);
+            }
+        }
+        
+        // Initialize search functionality
+        if (searchInput) {
+            // Real-time search as user types
+            searchInput.addEventListener('input', performSearch);
+            
+            // Search on Enter key press
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    performSearch();
+                    this.blur();
+                }
+            });
+        }
+        
+        // Search button click
+        if (searchButton) {
+            searchButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                performSearch();
+                if (searchInput) searchInput.blur();
+            });
+        }
+
+        // Load more functionality (placeholder)
+        document.getElementById('load-more').addEventListener('click', function() {
+            // In a real implementation, this would load more articles via AJAX
+            alert('More articles would be loaded here!');
+            
+            // Track load more in analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'load_more_articles', {
+                    'event_category': 'blog',
+                    'event_label': 'load_more_clicked'
+                });
+            }
+        });
+
+        // Track article clicks
+        document.querySelectorAll('.blog-card h3, .blog-card a').forEach(link => {
+            link.addEventListener('click', function() {
+                const articleTitle = this.closest('.blog-card').querySelector('h3').textContent;
+                
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'article_click', {
+                        'event_category': 'blog',
+                        'event_label': articleTitle
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

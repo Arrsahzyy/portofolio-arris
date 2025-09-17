@@ -1,0 +1,40 @@
+{
+  "articles": [
+    {
+      "title": "Complete Guide to ESP32 Development: From Setup to IoT Project",
+      "url": "/blog-esp32-guide.html",
+      "excerpt": "Learn how to set up ESP32 development environment, understand pin configurations, and build a complete IoT monitoring system with web interface and real-time data visualization.",
+      "content": "",
+      "tags": [
+        "ESP32",
+        "Arduino",
+        "IoT"
+      ],
+      "category": "iot"
+    },
+    {
+      "title": "Understanding SPWM Inverters: Theory, Design, and MATLAB Implementation",
+      "url": "/blog-spwm-inverters.html",
+      "excerpt": "Deep dive into Sinusoidal Pulse Width Modulation techniques for power electronics applications. Includes mathematical analysis, design considerations, and complete MATLAB/Simulink implementation.",
+      "content": "",
+      "tags": [
+        "MATLAB",
+        "Simulink",
+        "Power Electronics"
+      ],
+      "category": "power-systems"
+    },
+    {
+      "title": "Machine Learning for Predictive Maintenance in Electrical Systems",
+      "url": "/blog-ml-electrical.html",
+      "excerpt": "Research findings on implementing ML algorithms for predicting equipment failures in power distribution systems. Includes data preprocessing, feature engineering, and model deployment strategies.",
+      "content": "",
+      "tags": [
+        "Python",
+        "TensorFlow",
+        "Predictive"
+      ],
+      "category": "machine-learning"
+    }
+  ]
+}

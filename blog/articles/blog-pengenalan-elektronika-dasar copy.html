@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengenalan Komponen Elektronika Dasar - Blog | Arris Ahmad Fadillah</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/icons/arrisahmad.jpg">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    keyframes: {
+                        shine: {
+                            '0%': { 'background-position': '100%' },
+                            '100%': { 'background-position': '-100%' },
+                        },
+                    },
+                    animation: {
+                        shine: 'shine 5s linear infinite',
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Animate On Scroll (AOS) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q136JZELGC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q136JZELGC');
+    </script>
+    
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="../../style.css">
+    
+    <!-- Mobile Article Fix CSS -->
+    <link rel="stylesheet" href="../../assets/css/mobile-article-fix.css">
+    
+    <!-- Enhanced Article Layout CSS -->
+    <link rel="stylesheet" href="../../assets/css/article-layout-enhanced.css">
+    
+    <!-- Prism.js for Code Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+    <!-- Custom Blog Article Styles -->
+    <style>
+        .article-content {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+        }
+        
+        .article-content h1, .article-content h2, .article-content h3, .article-content h4 {
+            color: #9333ea;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .dark .article-content h1, .dark .article-content h2, .dark .article-content h3, .dark .article-content h4 {
+            color: #c084fc;
+        }
+        
+        .article-content h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .article-content h2 { font-size: 2rem; margin-top: 3rem; }
+        .article-content h3 { font-size: 1.5rem; }
+        .article-content h4 { font-size: 1.25rem; }
+        
+        .article-content p {
+            margin: 1.5rem 0;
+            color: #374151;
+        }
+        
+        .dark .article-content p {
+            color: #d1d5db;
+        }
+        
+        .article-content img {
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .article-content code {
+            background-color: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            color: #e11d48;
+        }
+        
+        .dark .article-content code {
+            background-color: #374151;
+            color: #fbbf24;
+        }
+        
+        .article-content pre {
+            background-color: #1e293b !important;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #10b981;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: #6b7280;
+        }
+        
+        .dark .article-content blockquote {
+            color: #9ca3af;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        
+        .article-content li {
+            margin: 0.5rem 0;
+            color: #374151;
+        }
+        
+        .dark .article-content li {
+            color: #d1d5db;
+        }
+        
+        .table-of-contents {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 1px solid #a7f3d0;
+        }
+        
+        .dark .table-of-contents {
+            background: linear-gradient(135deg, #052e16 0%, #065f46 100%);
+            border: 1px solid #10b981;
+        }
+        
+        .shine-text {
+            color: #10b981;
+            background: linear-gradient(120deg, rgba(16, 185, 129, 0.6) 40%, rgba(16, 185, 129, 1) 50%, rgba(16, 185, 129, 0.6) 60%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+        
+        @keyframes shine {
+            0% { background-position: 100%; }
+            100% { background-position: -100%; }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+    
+    <!-- Header / Navbar -->
+    <header class="glass-effect fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../index.html" class="text-xl font-bold tracking-wider shine-text">
+                Arris Ahmad Fadillah
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="/index.html" class="nav-link">Home</a>
+                <a href="/blog/blog.html" class="nav-link">Blog</a>
+                <a href="../../index.html#about" class="nav-link">About</a>
+                <a href="../../index.html#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="flex items-center">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="m12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                </button>
+                <button id="menu-btn" class="md:hidden ml-4 p-2">
+                    <img src="/assets/icons/electrician.png" alt="Menu" class="menu-icon w-6 h-6">
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-200 dark:bg-gray-800">
+            <div class="flex flex-col items-center py-4 space-y-4">
+                <a href="index.html" class="nav-link-mobile">Home</a>
+                <a href="blog.html" class="nav-link-mobile">Blog</a>
+                <a href="index.html#about" class="nav-link-mobile">About</a>
+                <a href="index.html#contact" class="nav-link-mobile">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Breadcrumb -->
+        <section class="bg-gray-50 dark:bg-gray-800 py-8">
+            <div class="container mx-auto px-6">
+                <nav class="flex items-center space-x-2 text-sm" data-aos="fade-up">
+                    <a href="index.html" class="text-green-600 dark:text-green-400 hover:underline">Home</a>
+                    <span class="text-gray-400">/</span>
+                    <a href="blog.html" class="text-green-600 dark:text-green-400 hover:underline">Blog</a>
+                    <span class="text-gray-400">/</span>
+                    <span class="text-gray-600 dark:text-gray-300">Elektronika Dasar</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Article Header -->
+        <section class="py-12 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center" data-aos="fade-up">
+                    <!-- Category Badge -->
+                    <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                        Electronics
+                    </span>
+                    
+                    <!-- Article Title -->
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                        Pengenalan Komponen Elektronika Dasar
+                    </h1>
+                    
+                    <!-- Article Subtitle/Description -->
+                    <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        Memahami komponen elektronika dasar seperti resistor, kapasitor, dan induktor yang menjadi fondasi dalam setiap rangkaian elektronik.
+                    </p>
+                    
+                    <!-- Article Meta -->
+                    <div class="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
+                        <div class="flex items-center">
+                            <i data-lucide="calendar" class="w-4 h-4 mr-2"></i>
+                            <span>August 26, 2025</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                            <span>10 min read</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-lucide="user" class="w-4 h-4 mr-2"></i>
+                            <span>Arris Ahmad Fadillah</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Image -->
+        <section class="py-8">
+            <div class="container mx-auto px-6 max-w-4xl" data-aos="fade-up">
+                <div class="relative rounded-xl overflow-hidden shadow-xl">
+                    <div class="w-full h-64 md:h-96 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                        <i data-lucide="cpu" class="w-32 h-32 text-white opacity-80"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Content -->
+        <section class="py-12">
+            <div class="blog-article-container">
+                <div class="article-grid">
+                    
+                    <!-- Table of Contents (Sidebar) -->
+                    <div class="md:col-span-1">
+                        <div class="sticky top-24">
+                            <div class="table-of-contents rounded-lg p-6" data-aos="fade-right">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                                    <i data-lucide="list" class="w-5 h-5 inline mr-2"></i>
+                                    Daftar Isi
+                                </h3>
+                                <nav class="space-y-2">
+                                    <a href="#introduction" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">1. Pengenalan Elektronika</a>
+                                    <a href="#resistor" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">2. Resistor</a>
+                                    <a href="#kapasitor" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">3. Kapasitor</a>
+                                    <a href="#induktor" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">4. Induktor</a>
+                                    <a href="#dioda" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">5. Dioda</a>
+                                    <a href="#transistor" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">6. Transistor</a>
+                                    <a href="#conclusion" class="block text-sm text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">7. Kesimpulan</a>
+                                </nav>
+                                
+                                <!-- Share Buttons -->
+                                <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                                    <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-3">Share Article</h4>
+                                    <div class="flex space-x-2">
+                                        <button class="p-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors text-xs">
+                                            <i data-lucide="facebook" class="w-3 h-3"></i>
+                                        </button>
+                                        <button class="p-2 bg-blue-400 text-white rounded-full hover:bg-blue-500 transition-colors text-xs">
+                                            <i data-lucide="twitter" class="w-3 h-3"></i>
+                                        </button>
+                                        <button class="p-2 bg-blue-700 text-white rounded-full hover:bg-blue-800 transition-colors text-xs">
+                                            <i data-lucide="linkedin" class="w-3 h-3"></i>
+                                        </button>
+                                        <button class="p-2 bg-gray-600 text-white rounded-full hover:bg-gray-700 transition-colors text-xs" onclick="copyToClipboard()">
+                                            <i data-lucide="link" class="w-3 h-3"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Main Article Content -->
+                    <div class="md:col-span-3">
+                        <article class="article-content prose prose-lg max-w-none" data-aos="fade-left">
+                            
+                            <!-- Introduction Section -->
+                            <section id="introduction">
+                                <h2>Pengenalan Elektronika Dasar</h2>
+                                <p>
+                                    Elektronika adalah cabang ilmu fisika dan teknik yang mempelajari tentang aliran elektron dalam berbagai media, terutama dalam semikonduktor, gas, dan ruang hampa. Pemahaman komponen elektronika dasar merupakan fondasi penting dalam mempelajari rangkaian elektronik yang lebih kompleks.
+                                </p>
+                                
+                                <p>
+                                    Dalam artikel ini, kita akan membahas komponen-komponen elektronika dasar yang paling umum digunakan dalam berbagai rangkaian elektronik, mulai dari yang paling sederhana hingga yang lebih kompleks.
+                                </p>
+                                
+                                <blockquote>
+                                    <p>� Memahami karakteristik dan fungsi komponen elektronika dasar adalah kunci untuk dapat merancang dan memahami rangkaian elektronik yang lebih kompleks.</p>
+                                </blockquote>
+                            </section>
+
+                            <!-- Resistor Section -->
+                            <section id="resistor">
+                                <h2>Resistor</h2>
+                                
+                                <h3>Definisi dan Fungsi</h3>
+                                <p>
+                                    Resistor adalah komponen elektronika pasif yang berfungsi untuk membatasi aliran arus listrik dalam suatu rangkaian. Resistor memiliki nilai hambatan yang dinyatakan dalam satuan ohm (Ω).
+                                </p>
+                                
+                                <h4>Jenis-jenis Resistor</h4>
+                                <ul>
+                                    <li><strong>Resistor Tetap:</strong> Memiliki nilai hambatan yang tidak dapat diubah</li>
+                                    <li><strong>Resistor Variable (Potensiometer):</strong> Nilai hambatan dapat diatur sesuai kebutuhan</li>
+                                    <li><strong>Resistor Khusus:</strong> LDR, Thermistor, Varistor</li>
+                                </ul>
+                                
+                                <h4>Kode Warna Resistor</h4>
+                                <p>
+                                    Resistor menggunakan kode warna untuk menentukan nilai hambatannya:
+                                </p>
+                                <ul>
+                                    <li>Hitam = 0, Coklat = 1, Merah = 2, Oranye = 3, Kuning = 4</li>
+                                    <li>Hijau = 5, Biru = 6, Ungu = 7, Abu-abu = 8, Putih = 9</li>
+                                    <li>Emas = 5% toleransi, Perak = 10% toleransi</li>
+                                </ul>
+                                
+                                <figure class="my-8">
+                                    <div class="w-full bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-gray-800 dark:to-gray-700 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 p-6">
+                                        <img src="../../assets/blog/kodewarnaresistor.png" 
+                                             alt="Simbol resistor dan kode warna" 
+                                             class="w-full h-auto rounded-lg shadow-md mx-auto"
+                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                        
+                                        <!-- Fallback content if image fails to load -->
+                                        <div class="hidden text-center py-8">
+                                            <div class="w-16 h-16 bg-yellow-100 dark:bg-yellow-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                <i data-lucide="image" class="w-8 h-8 text-yellow-600 dark:text-yellow-400"></i>
+                                            </div>
+                                            <p class="text-gray-600 dark:text-gray-400">Gambar: Simbol Resistor dan Kode Warna</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                                                Silakan tambahkan file: <code>resistor-symbol-colorcode.jpg</code><br>
+                                                ke folder: <code>assets/blog/</code>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <figcaption class="text-center text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                        Gambar 1: Simbol resistor dan kode warna
+                                    </figcaption>
+                                </figure>
+                            </section>
+
+                            <!-- Kapasitor Section -->
+                            <section id="kapasitor">
+                                <h2>Kapasitor</h2>
+                                
+                                <h3>Definisi dan Prinsip Kerja</h3>
+                                <p>
+                                    Kapasitor adalah komponen elektronika yang dapat menyimpan muatan listrik dalam medan elektrik. Kapasitor terdiri dari dua pelat konduktor yang dipisahkan oleh bahan dielektrik.
+                                </p>
+                                
+                                <h4>Jenis-jenis Kapasitor</h4>
+                                <ul>
+                                    <li><strong>Kapasitor Keramik:</strong> Untuk frekuensi tinggi, nilai kecil</li>
+                                    <li><strong>Kapasitor Elektrolit:</strong> Untuk nilai kapasitansi besar, memiliki polaritas</li>
+                                    <li><strong>Kapasitor Tantalum:</strong> Stabilitas tinggi, ukuran kecil</li>
+                                    <li><strong>Kapasitor Film:</strong> Toleransi rendah, stabil</li>
+                                </ul>
+                                                                <h4>Fungsi dalam Rangkaian</h4>
+                                <ul>
+                                    <li>Filter dalam power supply</li>
+                                    <li>Coupling dan decoupling sinyal</li>
+                                    <li>Timing dalam rangkaian oscillator</li>
+                                    <li>Penyimpan energi sementara</li>
+                                </ul>
+                            </section>
+
+                            <!-- Induktor Section -->
+                            <section id="induktor">
+                                <h2>Induktor</h2>
+                                
+                                <h3>Definisi dan Karakteristik</h3>
+                                <p>
+                                    Induktor adalah komponen pasif yang dapat menyimpan energi dalam bentuk medan magnet. Induktor terbuat dari kumparan kawat yang dililitkan pada inti tertentu.
+                                </p>
+                                
+                                <h4>Jenis-jenis Induktor</h4>
+                                <ul>
+                                    <li><strong>Induktor Udara:</strong> Tanpa inti, untuk frekuensi tinggi</li>
+                                    <li><strong>Induktor Inti Besi:</strong> Untuk frekuensi rendah, induktansi besar</li>
+                                    <li><strong>Induktor Toroidal:</strong> Efisiensi tinggi, interferensi rendah</li>
+                                    <li><strong>Induktor Variable:</strong> Nilai induktansi dapat diatur</li>
+                                </ul>
+                                                          <!-- Dioda Section -->
+                            <section id="dioda">
+                                <h2>Dioda</h2>
+                                
+                                <h3>Pengertian dan Prinsip Kerja</h3>
+                                <p>
+                                    Dioda adalah komponen semikonduktor yang memiliki dua terminal (anoda dan katoda) dan hanya dapat menghantarkan arus dalam satu arah. Dioda terbuat dari material semikonduktor dengan sambungan P-N.
+                                </p>
+                                
+                                <h4>Jenis-jenis Dioda</h4>
+                                <ul>
+                                    <li><strong>Dioda Rectifier:</strong> Untuk penyearah arus AC ke DC</li>
+                                    <li><strong>Dioda Zener:</strong> Sebagai voltage regulator</li>
+                                    <li><strong>LED (Light Emitting Diode):</strong> Mengubah energi listrik menjadi cahaya</li>
+                                    <li><strong>Dioda Schottky:</strong> Switching cepat, drop voltage rendah</li>
+                                </ul>
+                                
+                                <h4>Aplikasi Dioda</h4>
+                                <ul>
+                                    <li>Rectifier dalam power supply</li>
+                                    <li>Protection circuit (reverse polarity)</li>
+                                    <li>Voltage clamping dan clipping</li>
+                                    <li>Signal detection dan demodulation</li>
+                                </ul>
+                                
+                                <figure class="my-8">
+                                    <div class="w-full bg-gradient-to-br from-red-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 p-6">
+                                        <img src="../../assets/blog/simboldioda.webp" 
+                                             alt="Karakteristik dan simbol dioda" 
+                                             class="w-full h-auto rounded-lg shadow-md mx-auto"
+                                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                        
+                                        <!-- Fallback content if image fails to load -->
+                                        <div class="hidden text-center py-8">
+                                            <div class="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                <i data-lucide="image" class="w-8 h-8 text-red-600 dark:text-red-400"></i>
+                                            </div>
+                                            <p class="text-gray-600 dark:text-gray-400">Gambar: Karakteristik dan Simbol Dioda</p>
+                                            <p class="text-sm text-gray-500 dark:text-gray-500 mt-2">
+                                                Silakan tambahkan file: <code>diode-characteristics-symbols.jpg</code><br>
+                                                ke folder: <code>assets/blog/</code>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <figcaption class="text-center text-sm text-gray-600 dark:text-gray-400 mt-2">
+                                        Gambar 2: Karakteristik dan simbol dioda
+                                    </figcaption>
+                                </figure>
+                            </section>
+
+                            <!-- Transistor Section -->
+                            <section id="transistor">
+                                <h2>Transistor</h2>
+                                
+                                <h3>Definisi dan Fungsi</h3>
+                                <p>
+                                    Transistor adalah komponen semikonduktor dengan tiga terminal yang dapat berfungsi sebagai amplifier (penguat) atau switch (saklar elektronik). Transistor merupakan komponen fundamental dalam elektronika modern.
+                                </p>
+                                
+                                <h4>Jenis-jenis Transistor</h4>
+                                
+                                <h5>1. Bipolar Junction Transistor (BJT)</h5>
+                                <ul>
+                                    <li><strong>NPN Transistor:</strong> Collector positif terhadap emitter</li>
+                                    <li><strong>PNP Transistor:</strong> Collector negatif terhadap emitter</li>
+                                </ul>
+                                
+                                <h5>2. Field Effect Transistor (FET)</h5>
+                                <ul>
+                                    <li><strong>JFET:</strong> Junction Field Effect Transistor</li>
+                                    <li><strong>MOSFET:</strong> Metal Oxide Semiconductor FET</li>
+                                </ul>
+                                
+                                <h4>Mode Operasi Transistor</h4>
+                                <ul>
+                                    <li><strong>Cut-off:</strong> Transistor dalam kondisi off (tidak menghantar)</li>
+                                    <li><strong>Active/Linear:</strong> Transistor berfungsi sebagai amplifier</li>
+                                    <li><strong>Saturation:</strong> Transistor dalam kondisi on penuh (switch)</li>
+                                </ul>
+                                
+                                <h4>Aplikasi Transistor</h4>
+                                <ul>
+                                    <li>Amplifier audio dan RF</li>
+                                    <li>Digital switching circuits</li>
+                                    <li>Voltage dan current regulators</li>
+                                    <li>Oscillator dan timer circuits</li>
+                                </ul>
+                            </section>
+                            <!-- Conclusion Section -->
+                            <section id="conclusion">
+                                <h2>Kesimpulan</h2>
+                                
+                                <p>
+                                    Komponen elektronika dasar yang telah kita bahas - resistor, kapasitor, induktor, dioda, dan transistor - merupakan building blocks fundamental dalam setiap rangkaian elektronik. Memahami karakteristik dan fungsi masing-masing komponen adalah langkah pertama yang penting dalam mempelajari elektronika.
+                                </p>
+                                
+                                <h3>Ringkasan Fungsi Komponen</h3>
+                                <ul>
+                                    <li><strong>Resistor:</strong> Membatasi arus dan membagi tegangan</li>
+                                    <li><strong>Kapasitor:</strong> Menyimpan muatan dan filter sinyal</li>
+                                    <li><strong>Induktor:</strong> Menyimpan energi magnetik dan filter</li>
+                                    <li><strong>Dioda:</strong> Rectifier dan protection</li>
+                                    <li><strong>Transistor:</strong> Amplifikasi dan switching</li>
+                                </ul>
+                                
+                                <blockquote>
+                                    <p>Dengan memahami komponen dasar ini, Anda dapat melanjutkan ke topik yang lebih advanced seperti rangkaian analog, digital, microcontroller, dan sistem embedded.</p>
+                                </blockquote>
+                                
+                                <h3>Langkah Selanjutnya</h3>
+                                <p>
+                                    Setelah memahami komponen dasar, langkah selanjutnya adalah:
+                                </p>
+                                <ol>
+                                    <li>Mempelajari hukum-hukum dasar elektronika (Ohm, Kirchhoff)</li>
+                                    <li>Menganalisis rangkaian sederhana (seri, paralel)</li>
+                                    <li>Memahami konsep AC dan DC analysis</li>
+                                    <li>Praktik hands-on dengan breadboard dan multimeter</li>
+                                </ol>
+                            </section>
+        
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Tags Section -->
+                <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700" data-aos="fade-up">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Tags</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-3 py-1 rounded-full text-sm">Elektronika</span>
+                        <span class="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-3 py-1 rounded-full text-sm">Komponen Dasar</span>
+                        <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">Resistor</span>
+                        <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">Kapasitor</span>
+                        <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm">Induktor</span>
+                        <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-3 py-1 rounded-full text-sm">Dioda</span>
+                        <span class="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-3 py-1 rounded-full text-sm">Transistor</span>
+                    </div>
+                </div>
+
+                <!-- Navigation to other articles -->
+                <div class="mt-12 grid md:grid-cols-2 gap-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Artikel Sebelumnya</h4>
+                        <a href="blog-esp32-guide.html" class="text-purple-600 dark:text-purple-400 hover:underline">Getting Started with ESP32: A Complete Guide</a>
+                    </div>
+                    <div class="p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 dark:text-white mb-2">Artikel Selanjutnya</h4>
+                        <a href="blog-ml-electrical.html" class="text-purple-600 dark:text-purple-400 hover:underline">Machine Learning for Electrical Systems</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Share this article Section -->
+        <section class="py-8 bg-white dark:bg-gray-900">
+            <div class="blog-article-container">
+                <h2 class="text-xl font-semibold mb-6 text-gray-900 dark:text-white" data-aos="fade-up">Share this article:</h2>
+                <div class="flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="100">
+                    <button onclick="shareToFacebook()" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                        Facebook
+                    </button>
+                    <button onclick="shareToLinkedIn()" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </button>
+                    <button onclick="copyToClipboard()" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                            <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                        </svg>
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Articles -->
+        <section class="py-16 bg-gray-50 dark:bg-gray-800">
+            <div class="blog-article-container">
+                <h2 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Related Articles</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Related Article 1 -->
+                    <article class="bg-white dark:bg-gray-900 rounded-lg shadow-lg border-2 border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                <a href="blog-esp32-guide.html">Complete Guide to ESP32 Development: From Setup to IoT Project</a>
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Learn how to set up ESP32 development environment and build complete IoT projects</p>
+                            <span class="inline-block bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-2 py-1 rounded text-xs">IoT</span>
+                        </div>
+                    </article>
+                    
+                    <!-- Related Article 2 -->
+                    <article class="bg-white dark:bg-gray-900 rounded-lg shadow-lg border-2 border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                <a href="blog-spwm-inverters.html">Understanding SPWM Inverters: Theory, Design, and MATLAB Implementation</a>
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Deep dive into Sinusoidal Pulse Width Modulation techniques for power electronics applications</p>
+                            <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded text-xs">Power Systems</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 dark:bg-gray-950">
+        <div class="blog-article-container">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- About Section -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Arris Ahmad Fadillah</h3>
+                    <p class="text-gray-400 mb-4">Electrical Engineer passionate about IoT, automation, and cutting-edge technology solutions.</p>
+                    <div class="flex space-x-3">
+                        <a href="https://twitter.com/arrisahmad" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/arris-ahmad-fadillah-772712272" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/Arrsahzyy" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Categories -->
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="blog.html?category=iot" class="text-gray-400 hover:text-white transition-colors">IoT & Embedded Systems</a></li>
+                        <li><a href="blog.html?category=power-systems" class="text-gray-400 hover:text-white transition-colors">Power Systems</a></li>
+                        <li><a href="blog.html?category=machine-learning" class="text-gray-400 hover:text-white transition-colors">Machine Learning</a></li>
+                        <li><a href="blog.html?category=automation" class="text-gray-400 hover:text-white transition-colors">Automation</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Credit -->
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center">
+                <p class="text-sm text-gray-500">Arris Ahmad Fadillah 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Kembali ke atas" style="display:none;" class="fixed bottom-6 right-6 z-50 bg-gradient-to-br from-green-400 to-blue-500 text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-200">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/umd/lucide.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <!-- Mobile Article Fix Script -->
+    <script src="assets/js/mobile-article-fix.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Check for saved theme preference or default to light mode
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        } else {
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            
+            if (isDark) {
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Share functions
+        function shareToFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent('Pengenalan Komponen Elektronika Dasar - Arris Ahmad Fadillah');
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function shareToLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent('Pengenalan Komponen Elektronika Dasar');
+            const summary = encodeURIComponent('Pelajari komponen elektronika dasar seperti resistor, kapasitor, induktor, dioda, dan transistor');
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        // Smooth scrolling for table of contents
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

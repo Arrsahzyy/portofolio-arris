@@ -1,0 +1,9 @@
+# Netlify redirects and rewrites
+/blog /blog/blog.html 200
+/blog/articles/google-student-ambassador /blog/articles/blog-GoogleStudentAmbassador\ .html 200
+
+# Clean URLs - remove .html extension
+/*.html /:splat 301
+
+# Force HTTPS
+http://arrisahmadfadillah.engineer/* https://arrisahmadfadillah.engineer/:splat 301
