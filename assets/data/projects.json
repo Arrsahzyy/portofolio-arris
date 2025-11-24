@@ -1,0 +1,72 @@
+[
+    {
+        "id": "iot-monitoring",
+        "title": "Sistem Monitoring Suhu & Kelembaban Berbasis IoT",
+        "description": "Membuat prototipe untuk memonitor suhu dan kelembaban secara real-time menggunakan ESP32 dan sensor DHT11, dengan data yang ditampilkan pada sebuah web server.",
+        "image": "assets/blog/esp32.webp",
+        "category": "IoT Project",
+        "categoryColor": "teal",
+        "icon": "cpu",
+        "tags": ["ESP32", "Arduino IDE", "IoT"],
+        "link": "#",
+        "linkText": "Lihat di GitHub",
+        "featured": true,
+        "date": "2025-01-15"
+    },
+    {
+        "id": "inverter-simulation",
+        "title": "Simulasi Inverter Satu Fasa dengan MATLAB/Simulink",
+        "description": "Merancang dan mensimulasikan rangkaian inverter gelombang sinus termodulasi (SPWM) untuk mengubah tegangan DC menjadi AC dengan THD rendah.",
+        "image": "assets/blog/spwm.jpg",
+        "category": "Simulation",
+        "categoryColor": "blue",
+        "icon": "zap",
+        "tags": ["MATLAB", "Simulink", "Elektronika Daya"],
+        "link": "#",
+        "linkText": "Lihat Laporan",
+        "featured": true,
+        "date": "2024-11-20"
+    },
+    {
+        "id": "robotic-arm",
+        "title": "Robot Lengan Sederhana dengan Kontrol Servo",
+        "description": "Membangun robot lengan 3-axis menggunakan Arduino Uno dan beberapa motor servo, yang dapat dikontrol melalui potensiometer untuk tugas pick-and-place sederhana.",
+        "image": "assets/icons/microcontroller.png",
+        "category": "Robotics",
+        "categoryColor": "purple",
+        "icon": "settings",
+        "tags": ["Arduino", "C++", "Robotika"],
+        "link": "#",
+        "linkText": "Tonton Demo",
+        "featured": true,
+        "date": "2024-10-05"
+    },
+    {
+        "id": "portfolio-website",
+        "title": "Modern Personal Portfolio Website",
+        "description": "A responsive, interactive portfolio website built with HTML, Tailwind CSS, and JavaScript, featuring dark mode, animations, and optimized performance.",
+        "image": "assets/icons/coding.png",
+        "category": "Web Development",
+        "categoryColor": "sky",
+        "icon": "globe",
+        "tags": ["HTML/CSS", "Tailwind", "JS"],
+        "link": "#",
+        "linkText": "View Details",
+        "featured": false,
+        "date": "2025-02-01"
+    },
+    {
+        "id": "google-ambassador",
+        "title": "Google Student Ambassador Initiative",
+        "description": "Leading student community initiatives, organizing workshops on Google technologies, and fostering a culture of innovation on campus.",
+        "image": "assets/blog/googlestudent.webp",
+        "category": "Community",
+        "categoryColor": "purple",
+        "icon": "users",
+        "tags": ["Leadership", "Google", "Community"],
+        "link": "#",
+        "linkText": "View Details",
+        "featured": false,
+        "date": "2024-08-15"
+    }
+]

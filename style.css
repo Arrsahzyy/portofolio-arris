@@ -1672,6 +1672,31 @@ footer {
     z-index: 10;
 }
 
+/* Footer layout refinements */
+.footer-content {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.25rem;
+}
+
+.footer-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  line-height: 1.5;
+}
+
+.footer-copy i[data-lucide="heart"] {
+  flex-shrink: 0;
+}
+
 /* Perbaikan untuk animasi skill cards yang lebih smooth */
 .skill-card {
     perspective: 1000px;
