@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
+    <!-- ============================================================
+         META TAGS & SEO
+         ============================================================ -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects Showcase - Arris Ahmad Fadillah | Portfolio</title>
-    <meta name="description" content="Project showcase by Arris Ahmad Fadillah covering IoT, electrical engineering, machine learning, and web development projects.">
+    <meta name="description" content="Explore my portfolio of projects in IoT, Electrical Engineering, Machine Learning, and Web Development. Each project showcases practical solutions and innovative approaches.">
+    <meta name="keywords" content="portfolio, projects, IoT, machine learning, web development, electrical engineering, embedded systems">
+    <meta name="author" content="Arris Ahmad Fadillah">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Projects Showcase - Arris Ahmad Fadillah">
+    <meta property="og:description" content="Explore my portfolio of projects in IoT, Electrical Engineering, Machine Learning, and Web Development.">
+    <meta property="og:type" content="website">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/icons/arrisahmad.jpg">
+    
+    <!-- ============================================================
+         STYLESHEETS
+         ============================================================ -->
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,6 +34,9 @@
             darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
                     keyframes: {
                         shine: {
                             '0%': { 'background-position': '100%' },
@@ -30,144 +51,93 @@
         }
     </script>
     
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="../style.css">
+    
+    <!-- Projects Page Specific Styles -->
+    <link rel="stylesheet" href="../assets/css/projects.css">
+    
+    <!-- ============================================================
+         INLINE CRITICAL STYLES
+         ============================================================ -->
     <style>
-        /* Enhanced Category Filter Styling */
+        /* Logo shine effect */
+        .shine-text {
+            color: #2dd4bf;
+            background: linear-gradient(
+                120deg, 
+                rgba(45, 212, 191, 0.6) 40%, 
+                rgba(45, 212, 191, 1) 50%, 
+                rgba(45, 212, 191, 0.6) 60%
+            );
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 5s linear infinite;
+            text-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
+        }
+        
+        /* Category filter active state */
         .category-filter {
-            position: relative;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            display: inline-block !important; /* Force visibility */
-            visibility: visible !important;   /* Force visibility */
-            opacity: 1 !important;           /* Force visibility */
-            background-color: #f3f4f6 !important; /* Light gray background */
-            color: #374151 !important; /* Dark gray text */
+            background-color: #f3f4f6;
+            color: #374151;
             font-weight: 500;
             border-radius: 9999px;
             padding: 0.5rem 1.5rem;
             cursor: pointer;
             user-select: none;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
         .dark .category-filter {
-            background-color: #374151 !important; /* Dark gray for dark mode */
-            color: #d1d5db !important; /* Light gray text */
-        }
-        
-        /* Load More Animation */
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            background-color: #374151;
+            color: #d1d5db;
         }
         
         .category-filter:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            background-color: #e5e7eb !important;
+            background-color: #e5e7eb;
         }
 
         .dark .category-filter:hover {
-            background-color: #4b5563 !important;
+            background-color: #4b5563;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         
         .category-filter.active {
-            background: linear-gradient(135deg, #0d9488, #06b6d4) !important;
-            color: white !important;
+            background: linear-gradient(135deg, #0d9488, #06b6d4);
+            color: white;
             border-color: #0d9488;
             box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
             transform: translateY(-2px);
         }
         
         .category-filter.active:hover {
-            background: linear-gradient(135deg, #0f766e, #0891b2) !important;
+            background: linear-gradient(135deg, #0f766e, #0891b2);
             box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
         }
-        
-        /* Dark mode adjustments */
-        /* Load More Button Enhanced Styling */
-        #load-more {
-            background: linear-gradient(135deg, #0d9488, #06b6d4) !important;
-            color: white !important;
-            font-weight: 600 !important;
-            padding: 1rem 2rem !important;
-            border-radius: 9999px !important;
-            border: 2px solid rgba(255, 255, 255, 0.2) !important;
-            cursor: pointer !important;
-            transition: all 0.3s ease !important;
-            box-shadow: 0 4px 15px rgba(13, 148, 136, 0.25) !important;
-            transform: translateY(0) !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            gap: 0.5rem !important;
-            min-height: 3rem !important;
-            position: relative !important;
-            overflow: hidden !important;
-            font-size: 1rem !important;
-            text-decoration: none !important;
-        }
 
-        #load-more:hover:not(:disabled) {
-            background: linear-gradient(135deg, #0f766e, #0891b2) !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 8px 25px rgba(13, 148, 136, 0.35) !important;
-            border-color: rgba(255, 255, 255, 0.3) !important;
-        }
-
-        #load-more:disabled {
-            opacity: 0.7 !important;
-            cursor: not-allowed !important;
-            transform: translateY(0) !important;
-        }
-
-        #load-more:active:not(:disabled) {
-            transform: translateY(1px);
-            box-shadow: 0 2px 10px rgba(13, 148, 136, 0.3);
+        /* Glass effect for header */
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background-color: rgba(255, 255, 255, 0.8);
         }
         
-        /* Filter animation */
-        .filter-transition {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .fade-in {
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .dark .glass-header {
+            background-color: rgba(17, 24, 39, 0.8);
         }
     </style>
     
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- AOS Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Performance optimization -->
+    <!-- ============================================================
+         ANALYTICS
+         ============================================================ -->
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
-    
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q136JZELGC"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -179,320 +149,373 @@
             send_page_view: true
         });
     </script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../style.css">
-    
-    <style>
-        .shine-text {
-            color: #2dd4bf;
-            background: linear-gradient(120deg, rgba(45, 212, 191, 0.6) 40%, rgba(45, 212, 191, 1) 50%, rgba(45, 212, 191, 0.6) 60%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            animation: shine 5s linear infinite;
-            text-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
-        }
-        
-        @keyframes shine {
-            0% { background-position: 100%; }
-            100% { background-position: -100%; }
-        }
-        
-        .project-card {
-            transition: all 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .dark .project-card:hover {
-            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.1);
-        }
-    </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
 
-    <!-- Header -->
-    <header id="navbar" class="glass-effect fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../index.html" class="text-xl font-bold tracking-wider shine-text">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
+
+    <!-- ============================================================
+         HEADER / NAVIGATION
+         ============================================================ -->
+    <header id="navbar" class="glass-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gray-200/50 dark:border-gray-700/50">
+        <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="../index.html" class="text-lg sm:text-xl font-bold tracking-wider shine-text">
                 Arris Ahmad Fadillah
             </a>
+            
+            <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../index.html#about" class="nav-link">About</a>
-                <a href="projects.html" class="nav-link active">Projects</a>
-                <a href="../blog/blog.html" class="nav-link">Blog</a>
-                <a href="../index.html#contact" class="nav-link">Contact</a>
+                <a href="../index.html" class="nav-link text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">Home</a>
+                <a href="../index.html#about" class="nav-link text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">About</a>
+                <a href="projects.html" class="nav-link text-teal-500 font-semibold">Projects</a>
+                <a href="../blog/blog.html" class="nav-link text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">Blog</a>
+                <a href="../index.html#contact" class="nav-link text-gray-600 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors">Contact</a>
             </nav>
-            <div class="flex items-center">
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                    <!-- Moon Icon (for dark mode toggle) -->
+            
+            <!-- Header Actions -->
+            <div class="flex items-center gap-2">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" 
+                        class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        aria-label="Toggle dark mode">
                     <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
-                    <!-- Sun Icon (for light mode toggle) -->
-                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="5" fill="currentColor"/>
-                        <line x1="12" y1="1" x2="12" y2="3"/>
-                        <line x1="12" y1="21" x2="12" y2="23"/>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                        <line x1="1" y1="12" x2="3" y2="12"/>
-                        <line x1="21" y1="12" x2="23" y2="12"/>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                        <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                        <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                        <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
                     </svg>
                 </button>
-                <button id="menu-btn" class="md:hidden ml-4 p-2">
+                
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" 
+                        class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500"
+                        aria-label="Toggle menu"
+                        aria-expanded="false">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
         </div>
+        
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-200 dark:bg-gray-800" data-mobile-enhanced="true">
+        <nav id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
             <div class="flex flex-col items-center py-4 space-y-4">
-                <a href="../index.html" class="nav-link-mobile" data-mobile-enhanced="true">Home</a>
-                <a href="../index.html#about" class="nav-link-mobile" data-mobile-enhanced="true">About</a>
-                <a href="projects.html" class="nav-link-mobile active" data-mobile-enhanced="true">Projects</a>
-                <a href="../blog/blog.html" class="nav-link-mobile" data-mobile-enhanced="true">Blog</a>
-                <a href="../index.html#contact" class="nav-link-mobile" data-mobile-enhanced="true">Contact</a>
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 transition-colors py-2 px-4">Home</a>
+                <a href="../index.html#about" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 transition-colors py-2 px-4">About</a>
+                <a href="projects.html" class="text-teal-500 font-semibold py-2 px-4">Projects</a>
+                <a href="../blog/blog.html" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 transition-colors py-2 px-4">Blog</a>
+                <a href="../index.html#contact" class="text-gray-600 dark:text-gray-300 hover:text-teal-500 transition-colors py-2 px-4">Contact</a>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <main class="pt-24">
-        <!-- Hero Section -->
-        <section class="py-20 bg-gradient-to-br from-teal-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up">
-                    Project <span class="text-teal-400">Showcase</span>
+    <!-- ============================================================
+         MAIN CONTENT
+         ============================================================ -->
+    <main class="pt-20">
+        
+        <!-- ========================================
+             HERO SECTION
+             ======================================== -->
+        <section class="hero-gradient py-16 sm:py-20 bg-gradient-to-br from-teal-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 text-center">
+                <!-- Title -->
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6" data-aos="fade-up">
+                    Project <span class="text-teal-500">Showcase</span>
                 </h1>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+                
+                <!-- Subtitle -->
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-6 sm:mb-8 px-4" data-aos="fade-up" data-aos-delay="100">
                     Explore my portfolio of projects in IoT, Electrical Engineering, Machine Learning, and Web Development.
                 </p>
                 
                 <!-- Search Bar -->
-                <div class="max-w-md mx-auto" data-aos="fade-up" data-aos-delay="400">
-                    <div class="relative">
-                        <input type="text" id="search-input" placeholder="Search projects..." 
-                               class="w-full px-4 py-3 pl-12 pr-16 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200">
-                        <svg class="absolute left-4 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                <div class="max-w-md mx-auto px-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="search-container relative">
+                        <input type="text" 
+                               id="search-input" 
+                               placeholder="Search projects..." 
+                               class="search-input w-full px-4 py-3 pl-12 pr-12 rounded-xl border border-gray-300 dark:border-gray-600 
+                                      bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200
+                                      focus:ring-2 focus:ring-teal-500 focus:border-transparent 
+                                      transition-all duration-200 text-sm sm:text-base"
+                               autocomplete="off">
+                        
+                        <!-- Search Icon -->
+                        <svg class="search-icon absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" 
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
-                        <button id="search-button" class="absolute right-2 top-2 p-2 text-gray-400 hover:text-teal-500 transition-all duration-200 hover:scale-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 rounded-md group">
-                            <svg class="w-5 h-5 transition-transform duration-200 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                        
+                        <!-- Clear Button -->
+                        <button id="search-clear" 
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 
+                                       dark:hover:text-gray-300 hidden transition-colors"
+                                aria-label="Clear search">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
                     </div>
+                    
                     <!-- Search Results Counter -->
-                    <div id="search-results" class="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center opacity-0 transition-opacity duration-300"></div>
+                    <div id="search-results" class="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center hidden transition-opacity duration-300"></div>
                 </div>
             </div>
         </section>
 
-        <!-- Category Filter -->
-        <section class="py-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-            <div class="container mx-auto px-6">
-                <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
-                    <button class="category-filter active" data-category="all">
+        <!-- ========================================
+             CATEGORY FILTER
+             ======================================== -->
+        <section class="py-6 sm:py-8 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-16 sm:top-[72px] z-30">
+            <div class="container mx-auto px-4 sm:px-6">
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-4" data-aos="fade-up">
+                    <button class="category-filter active text-sm sm:text-base" data-category="all">
                         All Projects
                     </button>
-                    <button class="category-filter" data-category="iot">
+                    <button class="category-filter text-sm sm:text-base" data-category="iot">
                         IoT & Embedded
                     </button>
-                    <button class="category-filter" data-category="web">
+                    <button class="category-filter text-sm sm:text-base" data-category="web">
                         Web Development
                     </button>
-                    <button class="category-filter" data-category="ml">
+                    <button class="category-filter text-sm sm:text-base" data-category="ml">
                         Machine Learning
                     </button>
-                    <button class="category-filter" data-category="electronics">
+                    <button class="category-filter text-sm sm:text-base" data-category="electronics">
                         Electronics
                     </button>
                 </div>
+                
                 <!-- Filter Results Counter -->
-                <div id="filter-results" class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400 opacity-0 transition-all duration-300">
-                    <span id="filter-count">4</span> projects found
+                <div id="filter-results" class="mt-3 text-center text-sm text-gray-600 dark:text-gray-400 opacity-0 transition-all duration-300">
+                    <span id="project-count">0</span> projects found
                 </div>
             </div>
         </section>
 
-        <!-- Projects Grid -->
-        <section class="py-20">
-            <div class="container mx-auto px-6">
-                <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                    <!-- Projects will be loaded here dynamically -->
-                    <div class="col-span-full text-center py-12">
-                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-teal-500"></div>
-                        <p class="mt-2 text-gray-500">Loading projects...</p>
-                    </div>
+        <!-- ========================================
+             PROJECTS GRID
+             ======================================== -->
+        <section class="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6">
+                <!-- Projects Container -->
+                <div id="projects-grid" 
+                     class="projects-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+                    <!-- Projects will be loaded here dynamically by project-loader.js -->
                 </div>
 
-                <!-- Load More Button -->
-                <div class="text-center mt-12" data-aos="fade-up">
-                    <button id="load-more">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                        </svg>
-                        Load More Projects
-                    </button>
-                </div>
+                <!-- Back to Top Button (appears after scrolling) -->
+                <button id="back-to-top" 
+                        class="fixed bottom-6 right-6 p-3 bg-teal-500 text-white rounded-full shadow-lg 
+                               hover:bg-teal-600 transition-all duration-300 opacity-0 invisible
+                               focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+                        aria-label="Back to top">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+                    </svg>
+                </button>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-400 py-8">
-        <div class="container mx-auto px-6 text-center">
-            <div class="mt-4">
-                <a href="../index.html" class="text-teal-400 hover:text-teal-300 mx-2">Home</a>
-                <a href="../index.html#about" class="text-teal-400 hover:text-teal-300 mx-2">About</a>
-                <a href="../index.html#contact" class="text-teal-400 hover:text-teal-300 mx-2">Contact</a>
-            </div>
-            <div class="mt-4 pt-4 border-t border-gray-700">
-                <p class="text-sm text-gray-500">Arris Ahmad Fadillah 2025</p>
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-gray-400 py-8">
+        <div class="container mx-auto px-4 sm:px-6 text-center">
+            <!-- Quick Links -->
+            <nav class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                <a href="../index.html" class="text-teal-400 hover:text-teal-300 transition-colors text-sm sm:text-base">Home</a>
+                <a href="../index.html#about" class="text-teal-400 hover:text-teal-300 transition-colors text-sm sm:text-base">About</a>
+                <a href="../blog/blog.html" class="text-teal-400 hover:text-teal-300 transition-colors text-sm sm:text-base">Blog</a>
+                <a href="../index.html#contact" class="text-teal-400 hover:text-teal-300 transition-colors text-sm sm:text-base">Contact</a>
+            </nav>
+            
+            <!-- Copyright -->
+            <div class="mt-6 pt-6 border-t border-gray-700">
+                <p class="text-sm text-gray-500">&copy; 2025 Arris Ahmad Fadillah. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- ============================================================
+         SCRIPTS
+         ============================================================ -->
+    <!-- AOS Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Lucide Icons -->
     <script src="https://cdn.jsdelivr.net/npm/lucide-static@latest/umd/lucide.js"></script>
     
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-
-        // Dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        
-        if (currentTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-            darkIcon.classList.add('hidden');
-            lightIcon.classList.remove('hidden');
-        } else {
-            document.documentElement.classList.remove('dark');
-            lightIcon.classList.add('hidden');
-            darkIcon.classList.remove('hidden');
-        }
-
-        themeToggle.addEventListener('click', function() {
-            document.documentElement.classList.toggle('dark');
-            
-            if (document.documentElement.classList.contains('dark')) {
-                localStorage.setItem('theme', 'dark');
-                darkIcon.classList.add('hidden');
-                lightIcon.classList.remove('hidden');
-            } else {
-                localStorage.setItem('theme', 'light');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
-            }
-        });
-
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Category Filter Logic
-        const filterButtons = document.querySelectorAll('.category-filter');
-        const projectCards = document.querySelectorAll('.project-card');
-        const filterCount = document.getElementById('filter-count');
-        const filterResults = document.getElementById('filter-results');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-
-                const category = button.getAttribute('data-category');
-                let count = 0;
-
-                projectCards.forEach(card => {
-                    const cardCategories = card.getAttribute('data-category');
-                    
-                    if (category === 'all' || cardCategories.includes(category)) {
-                        card.style.display = 'block';
-                        // Add animation
-                        card.classList.remove('fade-in');
-                        void card.offsetWidth; // Trigger reflow
-                        card.classList.add('fade-in');
-                        count++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                // Update count
-                filterCount.textContent = count;
-                filterResults.style.opacity = '1';
-                setTimeout(() => {
-                    filterResults.style.opacity = '0';
-                }, 2000);
-            });
-        });
-
-        // Search Logic
-        const searchInput = document.getElementById('search-input');
-        const searchResults = document.getElementById('search-results');
-
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            let count = 0;
-
-            projectCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                const tags = Array.from(card.querySelectorAll('.text-xs')).map(tag => tag.textContent.toLowerCase()).join(' ');
-
-                if (title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm)) {
-                    card.style.display = 'block';
-                    count++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            if (searchTerm.length > 0) {
-                searchResults.textContent = `${count} projects found`;
-                searchResults.style.opacity = '1';
-            } else {
-                searchResults.style.opacity = '0';
-            }
-        });
-    </script>
-
     <!-- Project Loader -->
     <script src="../assets/js/project-loader.js"></script>
+    
+    <!-- Page Initialization Script -->
     <script>
-        // Load all projects for showcase page
-        document.addEventListener('DOMContentLoaded', () => {
+        // ============================================================
+        // INITIALIZATION
+        // ============================================================
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50
+            });
+            
+            // Initialize theme
+            initializeTheme();
+            
+            // Initialize mobile menu
+            initializeMobileMenu();
+            
+            // Initialize search
+            initializeSearch();
+            
+            // Initialize back to top button
+            initializeBackToTop();
+            
+            // Load projects
             loadProjects({
                 containerId: 'projects-grid',
-                featuredOnly: false
+                featuredOnly: false,
+                sortBy: 'date',
+                sortOrder: 'desc'
             });
         });
+        
+        // ============================================================
+        // THEME TOGGLE
+        // ============================================================
+        
+        function initializeTheme() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            
+            // Check saved theme or system preference
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            // Apply initial theme
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                lightIcon.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                darkIcon.classList.remove('hidden');
+            }
+            
+            // Toggle handler
+            themeToggle.addEventListener('click', function() {
+                const isDarkNow = document.documentElement.classList.toggle('dark');
+                
+                localStorage.setItem('theme', isDarkNow ? 'dark' : 'light');
+                darkIcon.classList.toggle('hidden', isDarkNow);
+                lightIcon.classList.toggle('hidden', !isDarkNow);
+            });
+        }
+        
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        
+        function initializeMobileMenu() {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuBtn.addEventListener('click', function() {
+                const isExpanded = mobileMenu.classList.toggle('hidden');
+                this.setAttribute('aria-expanded', !isExpanded);
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+            
+            // Close menu on outside click
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+        
+        // ============================================================
+        // SEARCH FUNCTIONALITY
+        // ============================================================
+        
+        function initializeSearch() {
+            const searchInput = document.getElementById('search-input');
+            const searchClear = document.getElementById('search-clear');
+            
+            if (!searchInput || !searchClear) return;
+            
+            // Show/hide clear button
+            searchInput.addEventListener('input', function() {
+                searchClear.classList.toggle('hidden', !this.value);
+            });
+            
+            // Clear search
+            searchClear.addEventListener('click', function() {
+                searchInput.value = '';
+                searchInput.focus();
+                searchClear.classList.add('hidden');
+                
+                // Trigger search reset
+                if (typeof searchProjects === 'function') {
+                    searchProjects('');
+                }
+            });
+        }
+        
+        // ============================================================
+        // BACK TO TOP BUTTON
+        // ============================================================
+        
+        function initializeBackToTop() {
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (!backToTop) return;
+            
+            // Show/hide based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backToTop.classList.remove('opacity-0', 'invisible');
+                    backToTop.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTop.classList.add('opacity-0', 'invisible');
+                    backToTop.classList.remove('opacity-100', 'visible');
+                }
+            });
+            
+            // Scroll to top on click
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     </script>
 </body>
 </html>
